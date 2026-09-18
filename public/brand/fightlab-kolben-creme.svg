@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="FightLab">
+  <defs>
+    <clipPath id="flask"><path d="M42 26 L42 46 L14 84 Q12 94 24 94 L76 94 Q88 94 86 84 L58 46 L58 26 Z"/></clipPath>
+  </defs>
+  <g clip-path="url(#flask)">
+    <path d="M4 72 C22 65 34 80 50 74 C64 69 74 81 96 71 L96 100 L4 100 Z" fill="#E23B22"/>
+  </g>
+  <path d="M42 26 L42 46 L14 84 Q12 94 24 94 L76 94 Q88 94 86 84 L58 46 L58 26" fill="none" stroke="#F5F1EA" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+  <rect x="32" y="17" width="36" height="10" rx="5" fill="#F5F1EA"/>
+  <circle cx="56" cy="9" r="4.6" fill="#E23B22"/>
+  <circle cx="66" cy="2.6" r="2.6" fill="#E23B22"/>
+</svg>

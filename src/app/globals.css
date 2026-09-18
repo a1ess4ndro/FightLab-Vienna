@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   FightLab Vienna — Design-Tokens
+   Einzige Quelle für Farbe, Abstand, Schrift und Bewegung.
+   Entspricht Dokument 05 (Handoff), Abschnitt 01. Keine Farbwerte im Markup.
+--------------------------------------------------------------------------- */
+
+@theme {
+  /* Farbe — Putz 70 %, Schwarz 25 %, Rot maximal 5 % */
+  --color-ground: oklch(0.96 0.008 85); /* #F6F2EA Kalkputz */
+  --color-ground2: oklch(0.93 0.012 80); /* #EDE6DA Putzgrau */
+  --color-ink: oklch(0.18 0.006 70); /* #211F1B Tiefschwarz */
+  --color-night: oklch(0.14 0.006 70); /* dunkler Grund */
+  --color-night2: oklch(0.19 0.006 70); /* zweiter dunkler Grund */
+  --color-night3: oklch(0.23 0.006 70); /* Flächen auf dunklem Grund */
+  --color-band: oklch(0.52 0.2 25); /* #C43A27 nur Fläche und Band */
+  --color-mark: oklch(0.45 0.17 25); /* #A53020 Kleinschrift auf Putz */
+  --color-signal: oklch(0.72 0.19 28); /* Kleinschrift auf Schwarz */
+  --color-ember: oklch(0.6 0.21 27); /* Marken auf Schwarz */
+  --color-concrete: oklch(0.62 0.006 80); /* Haarlinien, Inaktives */
+  --color-hairline: oklch(0.84 0.006 80); /* Trennlinien auf Putz */
+  --color-hairline2: oklch(0.87 0.006 80);
+  --color-nightline: oklch(0.3 0.006 70); /* Trennlinien auf Schwarz */
+  --color-nightline2: oklch(0.34 0.006 70);
+  --color-chalk: oklch(0.95 0.008 85); /* Text auf Schwarz */
+  --color-chalk2: oklch(0.72 0.008 85); /* Sekundärtext auf Schwarz */
+
+  /* Abstandsfolge — keine Zwischenwerte */
+  --spacing-s1: 8px;
+  --spacing-s2: 16px;
+  --spacing-s3: 24px;
+  --spacing-s4: 40px;
+  --spacing-s5: 64px;
+  --spacing-s6: 104px;
+
+  /* Schrift */
+  --font-sans: var(--font-grotesk), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  /* Maße */
+  --container-shell: 1180px;
+
+  /* Bewegung — 120 ms Zustand, 180 ms Übergang */
+  --animate-duration-fast: 120ms;
+  --animate-duration-base: 180ms;
+  --ease-base: cubic-bezier(0.2, 0, 0, 1);
+
+  /* Radius überall 0, keine Schatten */
+  --radius-*: initial;
+  --shadow-*: initial;
+  --blur-*: initial;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-radius: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-night);
+    color: var(--color-chalk);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-wrap: pretty;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-band);
+    color: var(--color-ground);
+  }
+
+  /* Sichtbarer Fokus auf jedem bedienbaren Element, auch bei Maus. */
+  :where(a, button, [role="slider"], input, select, textarea):focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Haarlinien-Raster: Teilstriche im Achtelraster, jeder fünfte in Messrot. */
+  .scale-rule-light {
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        var(--color-concrete) 0 1px,
+        transparent 1px 8px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        var(--color-mark) 0 1px,
+        transparent 1px 40px
+      );
+    background-size:
+      100% 50%,
+      100% 100%;
+    background-position: left bottom;
+    background-repeat: repeat-x;
+  }
+
+  .scale-rule-dark {
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        var(--color-nightline2) 0 1px,
+        transparent 1px 8px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        var(--color-ember) 0 1px,
+        transparent 1px 40px
+      );
+    background-size:
+      100% 50%,
+      100% 100%;
+    background-position: left bottom;
+    background-repeat: repeat-x;
+  }
+
+  /* Platzhalterfläche bis zum Shooting — schraffiert, nie ein Stockfoto. */
+  .hatch-light {
+    background-image: repeating-linear-gradient(
+      135deg,
+      oklch(0.9 0.01 80) 0 7px,
+      oklch(0.93 0.012 80) 7px 14px
+    );
+  }
+
+  .hatch-dark {
+    background-image: repeating-linear-gradient(
+      135deg,
+      oklch(0.22 0.006 70) 0 8px,
+      oklch(0.18 0.006 70) 8px 16px
+    );
+  }
+
+  /* Daten stehen immer in Monospace, Versalien, weite Laufweite. */
+  .data {
+    font-family: var(--font-mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+}
+
+/* Bei reduzierter Bewegungspräferenz: alle Übergänge auf 0. Keine Ausnahme. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
