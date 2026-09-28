@@ -1,5 +1,5 @@
-import { coachFacts } from "@/lib/content";
-import { Band } from "@/components/ui/Band";
+import { coachFacts } from '@/lib/content';
+import { Band } from '@/components/ui/Band';
 
 /**
  * 06 — Der Coach.
@@ -24,13 +24,13 @@ export function Coach() {
             Ein Lehrer, ein Plan
           </h2>
           <p className="m-0 max-w-[46ch] text-[1.0625rem] leading-[1.6] text-chalk2">
-            Aaron Kaplan unterrichtet jede Einheit selbst. Aktiver Wettkämpfer in
+            Aaron unterrichtet jede Einheit selbst. Als aktiver Wettkämpfer in
             K1 und MMA, trainiert regelmäßig in Thailand mit Profis. Was er dort
             lernt, kommt als Methode zurück, nicht als Anekdote.
-          </p>
-          <p className="m-0 max-w-[46ch] text-[1.0625rem] leading-[1.6] text-chalk2">
-            Keine wechselnden Aushilfen. Wenn er im Trainingslager ist, steht das
-            vorher im Plan.
+            <br />
+            Das Jiu-Jitsu-Training übernimmt Firo von BrownBear BJJ. Er ist
+            ebenfalls erfahrener Wettkämpfer und unterrichtet im BrownBear BJJ
+            als Brown Belt unter [Ergänzen].
           </p>
 
           <dl className="m-0 grid pt-3">
