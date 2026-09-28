@@ -67,7 +67,7 @@ export function SiteFooter() {
       </div>
 
       <div className="flex flex-wrap items-baseline justify-between gap-s3 px-[clamp(1.125rem,4vw,3.5rem)] py-[clamp(1.75rem,4vw,2.75rem)]">
-        <Wordmark size="lg" sublabel={`${site.sublabel} · 1120 Wien`} />
+        <Wordmark size="lg" />
         <nav aria-label="Rechtliches">
           <ul className="m-0 flex list-none flex-wrap gap-y-s1 gap-x-s3 p-0">
             {legal.map((item) => (

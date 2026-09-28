@@ -57,7 +57,7 @@ export function RailNav() {
           }}
           className="grid content-center border-r border-nightline px-[1.125rem] py-3 no-underline"
         >
-          <Wordmark sublabel="Team Kaplan" accent />
+          <Wordmark accent />
         </Link>
 
         {isMobile ? (

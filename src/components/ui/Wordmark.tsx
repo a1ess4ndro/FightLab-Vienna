@@ -1,58 +1,74 @@
-import { FightLabMark } from '@/components/ui/FightLabMark';
-
 /**
- * Die Lockup: Bildmarke links, Wortmarke rechts, Sublabel unter der
- * Grundlinie — nie daneben, nie größer als ein Drittel der Wortmarkenhöhe
+ * Die Wortmarke: Schriftzug, darunter die Ortszeile auf die volle Breite
+ * verteilt — nie daneben, nie größer als ein Drittel der Wortmarkenhöhe
  * (Dokument 02).
  *
- * Der Schutzraum links entsteht über den Abstand zur Bildmarke, rechts über
- * das Raster der Fläche, in der die Lockup steht.
+ * Ohne Bildmarke. Der Kolben steht weiterhin als Favicon, im Apple-Touch-Icon
+ * und in `public/brand`, aber nicht mehr in der Lockup.
+ *
+ * Die Ortszeile steht fest im Bauteil statt als Eigenschaft: Sie gehört zur
+ * Marke, nicht zur Fläche, in der die Marke hängt — zwei Aufrufe mit zwei
+ * verschiedenen Zeilen wären zwei verschiedene Logos.
  */
 const SIZES = {
   /** Kopfleiste. */
   sm: {
-    mark: 'h-7 w-7',
-    gap: 'gap-1',
     name: 'text-base',
-    sub: 'text-[0.5rem] tracking-[0.24em]',
+    sub: 'text-[0.5rem]',
   },
   /** Fuß. */
   lg: {
-    mark: 'h-[clamp(2.25rem,4.4vw,3.25rem)] w-[clamp(2.25rem,4.4vw,3.25rem)]',
-    gap: 'gap-2',
     name: 'text-[clamp(1.5rem,3vw,2.375rem)]',
-    sub: 'text-[0.5938rem] tracking-[0.26em]',
+    sub: 'text-[0.5938rem]',
   },
 } as const;
 
+const LOCATION = 'Vienna';
+
 export function Wordmark({
   size = 'sm',
-  sublabel,
   accent = false,
 }: {
   size?: keyof typeof SIZES;
-  sublabel: string;
   /** Kopfleiste setzt „Lab" in Ember ab, der Fuß bleibt einfarbig. */
   accent?: boolean;
 }) {
   const s = SIZES[size];
 
   return (
-    <span className={`flex items-end ${s.gap}`}>
-      <FightLabMark className={`${s.mark} shrink-0`} />
-      <span className="grid gap-[2px]">
-        <span
-          className={`${s.name} leading-none font-bold tracking-[-0.03em] uppercase`}
-        >
-          Fight{accent ? <span className="text-ember">Lab</span> : 'Lab'}
-        </span>
-        {/* leading-none: ohne das steht unter dem Sublabel noch eine halbe
-            Zeilendurchschuss-Höhe Luft, und die Wortmarke sitzt sichtbar
-            höher als der Kolben, obwohl die Boxen bündig sind. */}
-        <span className={`data ${s.sub} leading-none text-chalk2 padding-0`}>
-          {sublabel}
-        </span>
+    // `w-fit`: der Block ist genau so breit wie der Schriftzug. Er gibt damit
+    // das Maß vor, auf das die Ortszeile darunter verteilt wird, und die
+    // Lockup bindet trotzdem linksbündig.
+    <span className="grid w-fit gap-[2px]">
+      <span
+        className={`${s.name} leading-none font-bold tracking-[-0.03em] uppercase`}
+      >
+        Fight{accent ? <span className="text-ember">Lab</span> : 'Lab'}
       </span>
+
+      {/* Jeder Buchstabe ein eigenes Feld, der Zwischenraum entsteht aus
+          `justify-between`: So steht das V genau unter dem F und das A unter
+          dem letzten Buchstaben — auf jede Breite, ohne eine Laufweite zu
+          raten, die nur bei einer Schriftgröße aufgeht.
+          `tracking-[0em]` hebt die Sperrung aus `.data` auf; sie setzt auch
+          hinter den letzten Buchstaben noch Luft und schöbe die Zeile sonst
+          über die rechte Kante hinaus. */}
+      <span
+        aria-hidden
+        className={`data ${s.sub} flex justify-between tracking-[0em] leading-none text-chalk2`}
+      >
+        {LOCATION.split('').map((letter, index) => (
+          <span key={`${letter}-${index}`}>{letter}</span>
+        ))}
+      </span>
+
+      {/* Einmal am Stück für die Sprachausgabe — aus einzelnen Feldern liest
+          ein Screenreader sonst „V I E N N A".
+          `absolute` muss dazu: `sr-only` allein schrumpft das Feld nur auf
+          einen Pixel, nimmt es aber nicht aus dem Fluss — es stünde als
+          dritte Rasterzeile da und legte über den Zeilenabstand zwei Pixel
+          unter die Lockup. */}
+      <span className="sr-only absolute">{LOCATION}</span>
     </span>
   );
 }
