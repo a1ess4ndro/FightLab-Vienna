@@ -95,7 +95,7 @@ export function DistanceHero() {
 
       <div className="grid gap-s3 px-[clamp(1.125rem,4vw,3.5rem)]">
         <h1 id="distanz-titel" className="sr-only">
-          FightLab — Kampfsportschule für Muay Thai und Kickboxen in
+          FightLab — Kampfsport-Gym für Muay Thai und Kickboxen in
           Wien-Meidling
         </h1>
         <p className="data flex flex-wrap gap-y-s1 gap-x-s3 text-[0.6563rem] tracking-[0.2em] text-chalk2">

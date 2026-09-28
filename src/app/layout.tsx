@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: "%s — FightLab",
   },
   description:
-    "Kampfsportschule in Wien-Meidling für Muay Thai und Kickboxen. Anfängerkurs ohne Vorkenntnisse, feste Gruppen, Preise vollständig auf der Seite. Eröffnung November 2026.",
+    "Kampfsport-Gym in Wien-Meidling für Muay Thai und Kickboxen. Anfängerkurs ohne Vorkenntnisse, feste Gruppen, Preise vollständig auf der Seite. Eröffnung November 2026.",
   keywords: [
     "Muay Thai Wien",
     "Kickboxen Wien",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     siteName: "FightLab",
     title: "Muay Thai & Kickboxen in Wien-Meidling — FightLab",
     description:
-      "Kämpfen ist wie Schach, nur dass Fehler weh tun. Kampfsportschule für Distanz, Timing und Entscheidungen unter Druck.",
+      "Kämpfen ist wie Schach, nur dass Fehler weh tun. Kampfsport-Gym für Distanz, Timing und Entscheidungen unter Druck.",
   },
   robots: { index: true, follow: true },
 };

@@ -110,7 +110,7 @@ export const impressum: LegalDoc = {
             { label: 'UID-Nummer', value: 'wird ergänzt', pending: true },
             {
               label: 'Gegenstand',
-              value: 'Betrieb einer Kampfsportschule, Sportunterricht',
+              value: 'Betrieb eines Kampfsport-Gyms, Sportunterricht',
             },
           ],
         },

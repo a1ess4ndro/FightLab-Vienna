@@ -15,7 +15,7 @@ export function StructuredData() {
         name: "FightLab Vienna",
         alternateName: "FightLab — Team Kaplan",
         description:
-          "Kampfsportschule in Wien-Meidling für Muay Thai und Kickboxen. Anfängerkurse, Technikeinheiten, Privattraining und Fight Team.",
+          "Kampfsport-Gym in Wien-Meidling für Muay Thai und Kickboxen. Anfängerkurse, Technikeinheiten, Privattraining und Fight Team.",
         url: "https://fightlab.at",
         email: site.email,
         address: {
