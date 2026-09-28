@@ -6,8 +6,9 @@ import { Wordmark } from "@/components/ui/Wordmark";
 
 const legal = [
   { label: "Impressum", href: "/impressum" },
-  { label: "AGB", href: "/agb" },
   { label: "Datenschutz", href: "/datenschutz" },
+  { label: "Cookies", href: "/cookies" },
+  { label: "AGB", href: "/agb" },
   { label: "English", href: "/en" },
 ];
 

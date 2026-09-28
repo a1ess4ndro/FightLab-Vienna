@@ -16,7 +16,7 @@ export default function Home() {
     <>
       <StructuredData />
       <RailNav />
-      <main>
+      <main id="inhalt">
         <DistanceHero />
         <Proof />
         <WeekTimeline />

@@ -60,8 +60,10 @@ export default function RootLayout({
   return (
     <html lang="de-AT" className={`${grotesk.variable} ${jetbrains.variable}`}>
       <body>
+        {/* Zielt auf `main`, nicht auf einen Abschnitt der Startseite — sonst
+            läuft der Skip-Link auf den Rechtsseiten ins Leere. */}
         <a
-          href="#distanz"
+          href="#inhalt"
           className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-ground focus:px-s2 focus:py-s1 focus:font-mono focus:text-xs focus:text-ink"
         >
           Zum Inhalt springen
