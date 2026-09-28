@@ -17,7 +17,9 @@ export const site = {
   transit: 'U6 Meidling · ~3 Minuten zu Fuß',
   email: 'office@fightlab.at',
   phone: '+43 — folgt',
-  hours: 'Mo — Sa, 17:00 — 21:30',
+  /* Eine Zeitspanne über die ganze Woche wäre gelogen — der Samstag liegt
+     Stunden vor dem Rest. Deshalb „ab", und der Stundenplan hat das Genaue. */
+  hours: 'Mo — Fr ab 16:45 · Sa ab 13:00',
   opening: 'Eröffnung November 2026',
   tagline: 'Kämpfen ist wie Schach, nur dass Fehler weh tun.',
   disciplines: 'Muay Thai · Kickboxen · Boxen',
@@ -160,94 +162,102 @@ export const reviewSlots = [
 /* 03 — Die Woche als Zeitachse                                                */
 /* -------------------------------------------------------------------------- */
 
-/** Achse der Wochenansicht: 17:00 bis 21:30, senkrecht gelesen. */
-export const AXIS_START_MIN = 17 * 60;
-export const AXIS_END_MIN = 21 * 60 + 30;
+/**
+ * Achse der Wochenansicht: 16:00 bis 19:30, senkrecht gelesen.
+ *
+ * Beginnt zur vollen Stunde, weil das Stundenraster der Spalten am oberen
+ * Rand ansetzt — liefe die Achse ab 16:30, stünden die Striche eine halbe
+ * Stunde neben ihrer Beschriftung.
+ */
+export const AXIS_START_MIN = 16 * 60;
+export const AXIS_END_MIN = 19 * 60 + 30;
 export const AXIS_SPAN_MIN = AXIS_END_MIN - AXIS_START_MIN;
 
-export const axisHours = ['17:00', '18:00', '19:00', '20:00', '21:00'];
+export const axisHours = ['16:00', '17:00', '18:00', '19:00'];
 
 export type Session = {
   id: string;
   day: string;
   short: string;
   name: string;
-  from: string;
-  to: string;
+  /**
+   * Ohne Zeit steht die Einheit fest, die Uhrzeit aber noch nicht — sie
+   * bekommt keinen Balken auf der Achse, sondern eine gestrichelte Marke.
+   * Eine geschätzte Zeit im Stundenplan wäre schlimmer als gar keine.
+   */
+  from?: string;
+  to?: string;
   level: string;
   slots: string;
-  /** Einheit liegt außerhalb der Abendachse (Samstag vormittags). */
+  /** Einheit liegt außerhalb der Nachmittagsachse (Samstag mittags). */
   offAxis?: boolean;
 };
 
-export const days = ['MO', 'DI', 'MI', 'DO', 'FR', 'SA'] as const;
+/** Sonntag steht leer im Plan, statt zu fehlen: geschlossen ist eine Aussage. */
+export const days = ['MO', 'DI', 'MI', 'DO', 'FR', 'SA', 'SO'] as const;
 
-/** Platzhalterzeiten — der echte Plan folgt von Aaron. */
 export const sessions: Session[] = [
   {
-    id: 'mo-1830',
+    id: 'mo-1730',
     day: 'MO',
-    short: 'Anfänger',
-    name: 'Anfängerkurs',
-    from: '18:30',
-    to: '20:00',
+    short: 'Fundamentals',
+    name: 'Fundamentals',
+    from: '17:30',
+    to: '19:00',
     level: 'Ohne Vorkenntnisse',
-    slots: '4 frei',
+    slots: 'wird ergänzt',
   },
   {
-    id: 'di-1900',
+    id: 'di-kinder',
     day: 'DI',
-    short: 'Technik',
-    name: 'Muay Thai Technik',
-    from: '19:00',
-    to: '20:30',
-    level: 'Alle Stufen',
-    slots: '7 frei',
+    short: 'Kinder',
+    name: 'Kindertraining',
+    level: 'Kinder',
+    slots: 'wird ergänzt',
   },
   {
     id: 'mi-1730',
     day: 'MI',
-    short: 'Privat',
-    name: 'Privattraining',
+    short: 'Pads',
+    name: 'Pads',
     from: '17:30',
-    to: '18:30',
-    level: 'Nach Absprache',
-    slots: 'auf Anfrage',
-  },
-  {
-    id: 'do-1830',
-    day: 'DO',
-    short: 'Anfänger',
-    name: 'Anfängerkurs',
-    from: '18:30',
-    to: '20:00',
-    level: 'Ohne Vorkenntnisse',
-    slots: 'voll',
-  },
-  {
-    id: 'fr-1900',
-    day: 'FR',
-    short: 'Kickboxen',
-    name: 'Kickboxen',
-    from: '19:00',
-    to: '20:00',
+    to: '19:00',
     level: 'Alle Stufen',
-    slots: '9 frei',
+    slots: 'wird ergänzt',
   },
   {
-    id: 'sa-1100',
+    id: 'do-kinder',
+    day: 'DO',
+    short: 'Kinder',
+    name: 'Kindertraining',
+    level: 'Kinder',
+    slots: 'wird ergänzt',
+  },
+  {
+    id: 'fr-1645',
+    day: 'FR',
+    short: 'Competition',
+    name: 'Competition Training',
+    from: '16:45',
+    to: '18:00',
+    level: 'Auf Einladung',
+    slots: 'wird ergänzt',
+  },
+  {
+    id: 'sa-1300',
     day: 'SA',
-    short: 'Sparring',
-    name: 'Sparring, auf Einladung',
-    from: '11:00',
-    to: '12:30',
-    level: 'Fortgeschritten',
-    slots: '—',
+    short: 'S & C',
+    name: 'Strength & Conditioning',
+    from: '13:00',
+    to: '14:00',
+    level: 'Alle Stufen',
+    slots: 'wird ergänzt',
     offAxis: true,
   },
 ];
 
-export const weekNote = 'Privattraining nach Absprache.';
+export const weekNote =
+  'Privattraining nach Absprache. Die Zeiten für das Kindertraining am Dienstag und Donnerstag folgen.';
 
 /* -------------------------------------------------------------------------- */
 /* 04 — Einwände                                                               */
@@ -271,7 +281,7 @@ export const doubts = [
   {
     no: '03',
     claim: 'Ich will nicht sofort geschlagen werden.',
-    answer: 'Im Anfängerkurs wird sieben Wochen lang nicht gesparrt.',
+    answer: 'Schmerzen sind freiwillig.',
     detail:
       'Sparring ist freiwillig, nach Regeln und mit Coach im Ring. Niemand wird ins kalte Wasser geworfen, das ruiniert nur Technik und den Spaß am Sport.',
   },
@@ -287,7 +297,7 @@ export const doubts = [
     claim: 'Ich habe nie gekämpft.',
     answer: 'Das ist die Zielgruppe, nicht das Hindernis.',
     detail:
-      'Die Schule ist für Leute gebaut, die bei null anfangen. Das Fight Team ist der Beweis, dass hier gut unterrichtet wird — nicht die Eintrittskarte.',
+      'Das Gym ist für Leute gebaut, die bei null anfangen. Das Fight Team ist der Beweis, dass hier gut unterrichtet wird — nicht die Eintrittskarte.',
   },
 ] as const;
 
@@ -333,13 +343,16 @@ export const priceNotes = {
 export const coachFacts = [
   {
     label: 'Unterricht',
-    value: 'Muay Thai, Kickboxen, Privattraining, Fight Team',
+    value: 'Muay Thai, Kickboxen, Privattraining.',
   },
   {
     label: 'Camps',
     value: 'Thailand, laufend — mit Profis aus dem Oktagon- und UFC-Umfeld',
   },
-  { label: 'Halle', value: 'Pottendorfer Straße 9, 1120 Wien — U6 Meidling' },
+  {
+    label: 'Gym',
+    value: 'Pottendorfer Straße 9, 1120 Wien — U6 Meidling, Europlaza',
+  },
 ] as const;
 
 /* -------------------------------------------------------------------------- */

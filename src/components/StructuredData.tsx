@@ -29,19 +29,29 @@ export function StructuredData() {
         geo: { "@type": "GeoCoordinates", latitude: 48.1739, longitude: 16.3283 },
         areaServed: "Wien",
         sport: ["Muay Thai", "Kickboxen", "Boxen"],
+        /* Je Einheit eine Angabe statt einer Spanne über die Woche: Google
+           zeigt sonst durchgehend geöffnet von 13:00 bis 19:00, auch an
+           Tagen, an denen um 13:00 niemand in der Halle steht. Dienstag und
+           Donnerstag fehlen, solange die Zeit des Kindertrainings offen ist —
+           lieber keine Angabe als eine geratene. */
         openingHoursSpecification: [
           {
             "@type": "OpeningHoursSpecification",
-            dayOfWeek: [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday",
-            ],
-            opens: "17:00",
-            closes: "21:30",
+            dayOfWeek: ["Monday", "Wednesday"],
+            opens: "17:30",
+            closes: "19:00",
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: "Friday",
+            opens: "16:45",
+            closes: "18:00",
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: "Saturday",
+            opens: "13:00",
+            closes: "14:00",
           },
         ],
       },
