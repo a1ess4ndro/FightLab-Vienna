@@ -58,29 +58,56 @@ export function distanceInCm(value: number): number {
   return Math.round(MIN_CM + (value / 100) * (MAX_CM - MIN_CM));
 }
 
-export type Zone = { name: string; line: string; hit: string };
+export type ZoneKey = 'clinch' | 'mid' | 'long';
 
-/** Die drei Distanzzonen, aufgelöst über die Reglerposition. */
-export function zoneOf(value: number): Zone {
-  if (value < 34) {
-    return {
-      name: 'Clinch',
-      line: 'Ganz nah hilft keine Kraft mehr. Hier entscheiden Haltung, Knie und die Fähigkeit, ruhig zu bleiben, während jemand an dir zieht.',
-      hit: 'hoch',
-    };
-  }
-  if (value < 68) {
-    return {
-      name: 'Mid Range',
-      line: 'Ab hier trifft, wer früher denkt. Nicht der Schnellere gewinnt, sondern der, der schon weiß, was der andere vorhat.',
-      hit: 'entscheidend',
-    };
-  }
-  return {
+export type Zone = {
+  key: ZoneKey;
+  name: string;
+  line: string;
+  hit: string;
+  /**
+   * Platzhalterbild bis zum eigenen Shooting. Liegt selbst gehostet unter
+   * `public/hero` — kein Nachladen von einer fremden CDN, siehe Dokument 04.
+   * Quelle: RDNE Stock project, Pexels-Lizenz. Eine Aufnahmereihe, damit die
+   * drei Zustände nicht nach drei verschiedenen Hallen aussehen.
+   */
+  image: string;
+};
+
+/**
+ * Die drei Distanzzonen. Ein Array statt drei Rückgaben, weil der Hero alle
+ * drei Bilder gleichzeitig im DOM hält und nur die Deckkraft umschaltet —
+ * sonst blitzt beim Ziehen am Regler jedes Bild beim ersten Mal weiß auf.
+ */
+export const zones: Zone[] = [
+  {
+    key: 'clinch',
+    name: 'Clinch',
+    line: 'Ganz nah hilft keine Kraft mehr. Hier entscheiden Haltung, Knie und die Fähigkeit, ruhig zu bleiben, während jemand an dir zieht.',
+    hit: 'hoch',
+    image: '/hero/clinch.webp',
+  },
+  {
+    key: 'mid',
+    name: 'Mid Range',
+    line: 'Ab hier trifft, wer früher denkt. Nicht der Schnellere gewinnt, sondern der, der schon weiß, was der andere vorhat.',
+    hit: 'entscheidend',
+    image: '/hero/mid.webp',
+  },
+  {
+    key: 'long',
     name: 'Long Range',
     line: 'Hier passiert nichts, außer du willst es. Teep und Low Kick halten diesen Abstand — Distanz kontrollieren heißt, das Tempo bestimmen.',
     hit: 'gering',
-  };
+    image: '/hero/long.webp',
+  },
+];
+
+/** Die Zone zur Reglerposition. */
+export function zoneOf(value: number): Zone {
+  if (value < 34) return zones[0];
+  if (value < 68) return zones[1];
+  return zones[2];
 }
 
 /* -------------------------------------------------------------------------- */

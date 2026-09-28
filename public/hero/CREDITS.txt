@@ -1,0 +1,21 @@
+Platzhalterbilder für die drei Distanzzustände im Hero.
+Bis zum eigenen Shooting — danach ersatzlos austauschen.
+
+Fotograf:  RDNE Stock project
+Quelle:    Pexels
+Lizenz:    Pexels-Lizenz — kostenlose kommerzielle Nutzung, keine
+           Namensnennung verpflichtend, Weiterverkauf unveränderter
+           Kopien nicht gestattet.
+
+clinch.webp  Pexels 8612065  https://www.pexels.com/photo/8612065/
+mid.webp     Pexels 8612014  https://www.pexels.com/photo/8612014/
+long.webp    Pexels 8612518  https://www.pexels.com/photo/8612518/
+
+Alle drei stammen aus derselben Aufnahmereihe, damit die Zustände
+nicht nach drei verschiedenen Hallen aussehen. Bearbeitung: auf 16:9
+zugeschnitten, 1800 px breit, WebP; die Entsättigung macht das CSS.
+
+Hinweis: Die abgebildeten Personen sind erkennbar. Die Pexels-Lizenz
+deckt die Nutzung, sie begründet aber kein Einverständnis der
+Abgebildeten, für FightLab zu werben. Für Anzeigen oder Plakate
+deshalb eigene Aufnahmen verwenden.

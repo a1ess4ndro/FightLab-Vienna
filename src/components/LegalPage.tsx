@@ -2,10 +2,9 @@ import Link from "next/link";
 
 import type { LegalBlock, LegalDoc } from "@/lib/legal";
 import { legalDocs } from "@/lib/legal";
-import { site } from "@/lib/content";
+import { RailNav } from "@/components/RailNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Band } from "@/components/ui/Band";
-import { Wordmark } from "@/components/ui/Wordmark";
 
 /**
  * Gemeinsame Form der drei Rechtsseiten.
@@ -19,46 +18,6 @@ import { Wordmark } from "@/components/ui/Wordmark";
  */
 
 const SHELL = "px-[clamp(1.125rem,4vw,3.5rem)]";
-
-/* -------------------------------------------------------------------------- */
-/* Kopfleiste                                                                  */
-/* -------------------------------------------------------------------------- */
-
-/**
- * Eigene Kopfleiste statt `RailNav`: die Rail ist eine Scroll-Skala über die
- * sechs Abschnitte der Startseite. Auf einer Rechtsseite gibt es diese
- * Abschnitte nicht — die Skala hätte nichts zu messen.
- */
-function LegalNav() {
-  return (
-    <header className="sticky top-0 z-40 border-b border-nightline bg-night">
-      <div className="flex items-stretch">
-        <Link
-          href="/"
-          className="grid content-center border-r border-nightline px-[1.125rem] py-3 no-underline"
-        >
-          <Wordmark sublabel={site.sublabel} accent />
-        </Link>
-
-        <div className="flex min-w-0 flex-1 items-center justify-end">
-          <Link
-            href="/"
-            className="grid min-h-[2.75rem] content-center px-s2 font-mono text-[0.625rem] tracking-[0.16em] text-chalk2 uppercase no-underline transition-colors duration-[120ms] ease-linear hover:text-chalk"
-          >
-            Zurück zur Startseite
-          </Link>
-        </div>
-
-        <Link
-          href="/#buchen"
-          className="hidden content-center bg-band px-s3 py-3.5 font-mono text-[0.6563rem] tracking-[0.14em] text-ground uppercase no-underline transition-colors duration-[120ms] ease-linear hover:bg-mark min-[720px]:grid"
-        >
-          Probetraining
-        </Link>
-      </div>
-    </header>
-  );
-}
 
 /* -------------------------------------------------------------------------- */
 /* Bausteine                                                                   */
@@ -171,7 +130,7 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
 
   return (
     <>
-      <LegalNav />
+      <RailNav />
 
       <main id="inhalt">
         <article>

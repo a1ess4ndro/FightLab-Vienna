@@ -1,6 +1,8 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useState } from "react";
 
 import { rail, railIds } from "@/lib/content";
@@ -11,10 +13,18 @@ import { Wordmark } from "@/components/ui/Wordmark";
  * Kopfleiste als Messskala: links die Wortmarke, in der Mitte die Teilstriche
  * mit einer roten Positionsmarke, rechts die einzige Hauptaktion der Seite.
  * Unter 720 px wird die Skala zu einem Menü.
+ *
+ * Steht auf jeder Seite. Die Skala misst aber die Startseite: nur dort gibt es
+ * die sechs Abschnitte zum Scrollen. Auf den Rechtsseiten werden aus den
+ * Teilstrichen deshalb Verweise auf `/#abschnitt`, und es leuchtet keine
+ * Positionsmarke — ein Zeiger, der nichts misst, wäre eine Falschanzeige.
  */
 export function RailNav() {
   const isMobile = useIsMobile();
-  const active = useActiveSection(railIds);
+  const pathname = usePathname();
+  const onHome = pathname === "/";
+  const spy = useActiveSection(railIds);
+  const active = onHome ? spy : null;
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
 
@@ -38,16 +48,17 @@ export function RailNav() {
   return (
     <header className="sticky top-0 z-40 border-b border-nightline bg-night">
       <div className="flex items-stretch">
-        <a
-          href="#distanz"
+        <Link
+          href="/"
           onClick={(event) => {
+            if (!onHome) return;
             event.preventDefault();
             goTo("distanz");
           }}
           className="grid content-center border-r border-nightline px-[1.125rem] py-3 no-underline"
         >
           <Wordmark sublabel="Team Kaplan" accent />
-        </a>
+        </Link>
 
         {isMobile ? (
           <button
@@ -76,16 +87,11 @@ export function RailNav() {
             <div className="relative flex w-full flex-nowrap overflow-x-auto">
               {rail.map((item) => {
                 const isActive = item.id === active;
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => goTo(item.id)}
-                    aria-current={isActive ? "true" : undefined}
-                    className={`relative grid flex-[1_0_auto] cursor-pointer gap-[5px] border-r border-nightline bg-transparent px-3.5 pt-3.5 pb-3 text-left font-mono text-[0.5938rem] tracking-[0.16em] uppercase transition-colors duration-[120ms] ease-linear hover:bg-night2 ${
-                      isActive ? "text-chalk" : "text-chalk2"
-                    }`}
-                  >
+                const className = `relative grid flex-[1_0_auto] cursor-pointer gap-[5px] border-r border-nightline bg-transparent px-3.5 pt-3.5 pb-3 text-left font-mono text-[0.5938rem] tracking-[0.16em] uppercase no-underline transition-colors duration-[120ms] ease-linear hover:bg-night2 ${
+                  isActive ? "text-chalk" : "text-chalk2"
+                }`;
+                const body = (
+                  <>
                     {/* Die Positionsmarke sitzt im aktiven Feld selbst, damit
                         sie auch bei ungleich breiten Feldern exakt steht. */}
                     {isActive ? (
@@ -98,7 +104,23 @@ export function RailNav() {
                     ) : null}
                     <span className="text-ember">{item.no}</span>
                     <span>{item.label}</span>
+                  </>
+                );
+
+                return onHome ? (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => goTo(item.id)}
+                    aria-current={isActive ? "true" : undefined}
+                    className={className}
+                  >
+                    {body}
                   </button>
+                ) : (
+                  <Link key={item.id} href={`/#${item.id}`} className={className}>
+                    {body}
+                  </Link>
                 );
               })}
             </div>
@@ -109,12 +131,12 @@ export function RailNav() {
             Probetraining-Knöpfe gleichzeitig wären eine Dopplung. Bewusst per
             CSS ausgeblendet und nicht über die Umbruchpunkt-Abfrage, damit der
             Knopf beim ersten Laden nicht kurz aufblitzt. */}
-        <a
-          href="#buchen"
+        <Link
+          href={onHome ? "#buchen" : "/#buchen"}
           className="hidden content-center bg-band px-s3 py-3.5 font-mono text-[0.6563rem] tracking-[0.14em] text-ground uppercase no-underline transition-colors duration-[120ms] ease-linear hover:bg-mark min-[720px]:grid"
         >
           Probetraining
-        </a>
+        </Link>
       </div>
 
       <AnimatePresence initial={false}>
@@ -128,17 +150,36 @@ export function RailNav() {
             transition={{ duration: 0.18, ease: [0.2, 0, 0, 1] }}
             className="grid gap-px border-t border-nightline bg-nightline"
           >
-            {rail.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => goTo(item.id)}
-                className="grid min-h-[2.75rem] cursor-pointer grid-cols-[2.5rem_minmax(0,1fr)] items-baseline gap-3 bg-night2 px-s2 py-[1.125rem] text-left font-mono text-[0.8125rem] tracking-[0.1em] text-chalk uppercase"
-              >
-                <span className="text-[0.625rem] text-ember">{item.no}</span>
-                <span>{item.label}</span>
-              </button>
-            ))}
+            {rail.map((item) => {
+              const className =
+                "grid min-h-[2.75rem] cursor-pointer grid-cols-[2.5rem_minmax(0,1fr)] items-baseline gap-3 bg-night2 px-s2 py-[1.125rem] text-left font-mono text-[0.8125rem] tracking-[0.1em] text-chalk uppercase no-underline";
+              const body = (
+                <>
+                  <span className="text-[0.625rem] text-ember">{item.no}</span>
+                  <span>{item.label}</span>
+                </>
+              );
+
+              return onHome ? (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => goTo(item.id)}
+                  className={className}
+                >
+                  {body}
+                </button>
+              ) : (
+                <Link
+                  key={item.id}
+                  href={`/#${item.id}`}
+                  onClick={() => setOpen(false)}
+                  className={className}
+                >
+                  {body}
+                </Link>
+              );
+            })}
           </motion.div>
         ) : null}
       </AnimatePresence>

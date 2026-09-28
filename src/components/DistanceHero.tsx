@@ -1,10 +1,11 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
 import { useCallback, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent, KeyboardEvent } from "react";
 
-import { distanceInCm, site, zoneOf } from "@/lib/content";
+import { distanceInCm, site, zoneOf, zones } from "@/lib/content";
 
 /** Startwert des Reglers — entspricht 126 cm, also mittlere Distanz. */
 const START = 46;
@@ -68,6 +69,39 @@ export function DistanceHero() {
         <p className="m-0 max-w-[30ch] text-[clamp(1.0625rem,1.7vw,1.375rem)] leading-[1.4] italic">
           {site.tagline}
         </p>
+      </div>
+
+      {/* Bildband zur Zone. Angeschnitten wie das rote Band, nie eingerahmt.
+          Alle drei Bilder liegen übereinander und wechseln nur die Deckkraft —
+          ein Zustandswechsel, keine Scroll-Bewegung, und beim Ziehen am Regler
+          bleibt der Wechsel ohne Nachladen. Entsättigt, weil die Halle sonst
+          mit Blau und Rot gegen die Palette arbeitet.
+          Aus der Vorlesereihenfolge genommen: Zone, Abstand und Trefferbild
+          spricht der Regler über `aria-valuetext` bereits aus. */}
+      <div
+        aria-hidden
+        className="relative h-[clamp(7rem,20vh,15rem)] overflow-hidden border-y border-nightline bg-night2"
+      >
+        {zones.map((item) => (
+          <motion.div
+            key={item.key}
+            className="absolute inset-0"
+            initial={false}
+            animate={{ opacity: item.key === zone.key ? 1 : 0 }}
+            transition={{ duration: reduce ? 0 : 0.18, ease: [0.2, 0, 0, 1] }}
+          >
+            <Image
+              src={item.image}
+              alt=""
+              fill
+              sizes="100vw"
+              // Der Regler startet in der Mitte — dieses Bild trägt den ersten
+              // Bildaufbau, die beiden anderen dürfen danach kommen.
+              priority={item.key === "mid"}
+              className="object-cover object-[50%_35%] [filter:grayscale(1)_contrast(1.06)_brightness(0.74)]"
+            />
+          </motion.div>
+        ))}
       </div>
 
       <div className="grid">
