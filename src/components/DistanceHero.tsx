@@ -54,34 +54,22 @@ export function DistanceHero() {
     <section
       id="distanz"
       aria-labelledby="distanz-titel"
-      className="grid min-h-[88vh] content-between gap-s4 pt-s5"
+      // Kein `overflow-hidden`: der Hintergrund liegt auf `inset-0` und
+      // `object-cover` beschneidet im Element selbst, es läuft nichts über.
+      // Ein Überlauf-Schnitt würde nur den Fokusrahmen des randlosen Reglers
+      // an der Kante abschneiden.
+      className="relative isolate grid min-h-[88vh] content-between gap-s4 pt-s5"
     >
-      <div className="grid gap-s3 px-[clamp(1.125rem,4vw,3.5rem)]">
-        <h1 id="distanz-titel" className="sr-only">
-          FightLab — Kampfsportschule für Muay Thai und Kickboxen in
-          Wien-Meidling
-        </h1>
-        <p className="data flex flex-wrap gap-y-s1 gap-x-s3 text-[0.6563rem] tracking-[0.2em] text-chalk2">
-          <span>FightLab Wien Meidling</span>
-          <span>{site.disciplines}</span>
-          <span className="text-signal">{site.opening}</span>
-        </p>
-        <p className="m-0 max-w-[30ch] text-[clamp(1.0625rem,1.7vw,1.375rem)] leading-[1.4] italic">
-          {site.tagline}
-        </p>
-      </div>
-
-      {/* Bildband zur Zone. Angeschnitten wie das rote Band, nie eingerahmt.
-          Alle drei Bilder liegen übereinander und wechseln nur die Deckkraft —
-          ein Zustandswechsel, keine Scroll-Bewegung, und beim Ziehen am Regler
-          bleibt der Wechsel ohne Nachladen. Entsättigt, weil die Halle sonst
-          mit Blau und Rot gegen die Palette arbeitet.
+      {/* Bild zur Zone, hinter dem ganzen Abschnitt.
+          Alle drei liegen übereinander und wechseln nur die Deckkraft — ein
+          Zustandswechsel, keine Scroll-Bewegung, und beim Ziehen am Regler
+          wechselt das Bild ohne Nachladen.
+          Entsättigt und abgedunkelt, darüber ein Verlauf: die Halle ist hell,
+          und die Schrift darauf muss lesbar bleiben — nach unten läuft er ins
+          volle Schwarz, damit die Skala auf ruhigem Grund sitzt.
           Aus der Vorlesereihenfolge genommen: Zone, Abstand und Trefferbild
           spricht der Regler über `aria-valuetext` bereits aus. */}
-      <div
-        aria-hidden
-        className="relative h-[clamp(7rem,20vh,15rem)] overflow-hidden border-y border-nightline bg-night2"
-      >
+      <div aria-hidden className="absolute inset-0 -z-10">
         {zones.map((item) => (
           <motion.div
             key={item.key}
@@ -98,10 +86,26 @@ export function DistanceHero() {
               // Der Regler startet in der Mitte — dieses Bild trägt den ersten
               // Bildaufbau, die beiden anderen dürfen danach kommen.
               priority={item.key === "mid"}
-              className="object-cover object-[50%_35%] [filter:grayscale(1)_contrast(1.06)_brightness(0.74)]"
+              className="object-cover object-[50%_38%] [filter:grayscale(1)_contrast(1.05)_brightness(0.42)]"
             />
           </motion.div>
         ))}
+        <div className="absolute inset-0 bg-gradient-to-t from-night via-night/85 to-night/65" />
+      </div>
+
+      <div className="grid gap-s3 px-[clamp(1.125rem,4vw,3.5rem)]">
+        <h1 id="distanz-titel" className="sr-only">
+          FightLab — Kampfsportschule für Muay Thai und Kickboxen in
+          Wien-Meidling
+        </h1>
+        <p className="data flex flex-wrap gap-y-s1 gap-x-s3 text-[0.6563rem] tracking-[0.2em] text-chalk2">
+          <span>FightLab Wien Meidling</span>
+          <span>{site.disciplines}</span>
+          <span className="text-signal">{site.opening}</span>
+        </p>
+        <p className="m-0 max-w-[30ch] text-[clamp(1.0625rem,1.7vw,1.375rem)] leading-[1.4] italic">
+          {site.tagline}
+        </p>
       </div>
 
       <div className="grid">
