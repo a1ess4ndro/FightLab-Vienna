@@ -55,7 +55,7 @@ export type LegalDoc = {
   sections: LegalSection[];
 };
 
-const UPDATED = 'September 2026';
+const UPDATED = 'Oktober 2026';
 
 /** Steht unter jeder der drei Seiten, solange die Texte ungeprüft sind. */
 const DRAFT_NOTE =
@@ -206,11 +206,11 @@ export const impressum: LegalDoc = {
 export const datenschutz: LegalDoc = {
   slug: 'datenschutz',
   title: 'Datenschutz',
-  lead: 'Was diese Seite überträgt, an wen und warum. Kurz: sehr wenig — und die Karte erst, wenn du sie anklickst.',
+  lead: 'Was diese Seite überträgt, an wen und warum. Kurz: kein Tracking, eine Karte von Google, die Formulare für Probetraining und Mitgliedschaft von Jotform und die Bezahlung über Stripe.',
   updated: UPDATED,
   metaTitle: 'Datenschutzerklärung',
   metaDescription:
-    'Datenschutzerklärung von FightLab Wien nach DSGVO: Server-Protokolle, Kontaktaufnahme, Google Maps nur auf Klick, kein Tracking.',
+    'Datenschutzerklärung von FightLab Wien nach DSGVO: Server-Protokolle, Google Maps, Formulare über Jotform, Kontaktaufnahme, kein Tracking.',
   sections: [
     {
       no: '01',
@@ -243,11 +243,11 @@ export const datenschutz: LegalDoc = {
       blocks: [
         {
           kind: 'text',
-          text: 'Diese Seite ist so gebaut, dass beim bloßen Aufruf keine Verbindung zu Dritten entsteht. Schriften liegen auf unserem Server statt bei einer Schriften-CDN, es läuft keine Analyse-Software mit, und eingebettete Inhalte laden erst nach ausdrücklichem Klick.',
+          text: 'Diese Seite überträgt so wenig wie möglich. Schriften liegen auf unserem Server statt bei einer Schriften-CDN, und es läuft keine Analyse-Software mit.',
         },
         {
           kind: 'text',
-          text: 'Du kannst die gesamte Seite lesen, ohne Daten an jemanden außerhalb unseres Hosters zu senden.',
+          text: 'Zwei Dienste binden wir ein, weil die Seite ihren Zweck sonst nicht erfüllt: eine Karte von Google Maps im Fuß jeder Seite und die Formulare von Jotform auf den Seiten Probetraining und Mitgliedschaft. Beide laden direkt aus dem jeweiligen Dienst; was dabei übertragen wird, steht in den Abschnitten 05 und 07. Bezahlt wird auf der Seite von Stripe, siehe Abschnitt 08.',
         },
       ],
     },
@@ -307,22 +307,19 @@ export const datenschutz: LegalDoc = {
     {
       no: '05',
       id: 'karte',
-      heading: 'Google Maps — nur auf Klick',
+      heading: 'Google Maps',
       blocks: [
         {
           kind: 'text',
-          text: 'Im Fuß der Startseite liegt eine Karte. Im Grundzustand ist sie nicht geladen: Du siehst eine Fläche mit unserer Adresse, und es besteht keine Verbindung zu Google.',
-        },
-        {
-          kind: 'text',
-          text: 'Erst wenn du „Karte laden“ anklickst, wird sie von Google Maps nachgeladen. Dabei erfährt Google deine IP-Adresse und kann Cookies setzen; Daten können in die USA übertragen werden.',
+          text: 'Im Fuß jeder Seite zeigt eine Karte von Google Maps, wo das Gym liegt. Sie lädt, sobald du in die Nähe des Fußes scrollst. Dabei erfährt Google deine IP-Adresse und kann Cookies setzen; Daten können in die USA übertragen werden.',
         },
         {
           kind: 'facts',
           rows: [
             {
               label: 'Rechtsgrundlage',
-              value: 'Art. 6 Abs. 1 lit. a DSGVO — deine Einwilligung durch den Klick',
+              value:
+                'Art. 6 Abs. 1 lit. f DSGVO — berechtigtes Interesse, unseren Standort auffindbar zu zeigen',
             },
             {
               label: 'Empfänger',
@@ -333,15 +330,15 @@ export const datenschutz: LegalDoc = {
               value: 'USA, gestützt auf das EU-US Data Privacy Framework',
             },
             {
-              label: 'Widerruf',
-              value: 'Seite neu laden — die Karte ist dann wieder inaktiv',
+              label: 'Widerspruch',
+              value: 'jederzeit nach Art. 21 DSGVO, formlos per E-Mail',
             },
           ],
         },
         {
           kind: 'text',
           text:
-            'Der Routen-Link daneben lädt nichts nach. Er öffnet Google Maps erst, wenn du ihn anklickst — und führt zur selben Adresse: ' +
+            'Der Routen-Link daneben öffnet Google Maps erst, wenn du ihn anklickst — und führt zur selben Adresse: ' +
             site.street +
             ', ' +
             site.city +
@@ -375,31 +372,128 @@ export const datenschutz: LegalDoc = {
         },
         {
           kind: 'text',
-          text: 'Auf dieser Seite gibt es derzeit kein Kontaktformular. Es bleibt bei E-Mail und Telefon.',
+          text: 'Ein allgemeines Kontaktformular gibt es nicht. Für Probetraining und Mitgliedschaft gibt es eigene Formulare, siehe Abschnitt 07.',
         },
       ],
     },
     {
       no: '07',
-      id: 'geplant',
-      heading: 'Noch nicht aktiv',
+      id: 'formulare',
+      heading: 'Probetraining und Mitgliedschaft',
       blocks: [
         {
           kind: 'text',
-          text: 'Die Buchungsstrecke, die Zahlungsabwicklung und die Mitgliederverwaltung sind vorbereitet, aber nicht in Betrieb. Sobald sie laufen, wird diese Erklärung vorher um Empfänger, Rechtsgrundlagen und Speicherdauer ergänzt.',
+          text: 'Die Formulare zum Buchen eines Probetrainings und zum Abschließen einer Mitgliedschaft stellt der Formulardienst Jotform bereit. Sie laden mit der jeweiligen Seite direkt von Jotform; dabei erfährt Jotform deine IP-Adresse und kann Cookies setzen. Was du einträgst, speichert Jotform in unserem Auftrag.',
         },
         {
           kind: 'text',
-          text: 'Auch Reichweitenmessung findet derzeit nicht statt. Sie käme erst mit einem Einwilligungsdialog und nicht vorher.',
+          text: 'Probetraining: Name, Alter, E-Mail-Adresse, Wunschtermin und, falls vorhanden, ein Probetraining-Code.',
+        },
+        {
+          kind: 'text',
+          text: 'Mitgliedschaft: Name, E-Mail-Adresse, Telefonnummer, Geburtsdatum, Adresse, Tarif und Laufzeit, deine Unterschrift und — für den Studenten- und den Kombitarif — ein hochgeladener Nachweis. Bei Minderjährigen zusätzlich Name, E-Mail-Adresse und Unterschrift eines Erziehungsberechtigten.',
+        },
+        {
+          kind: 'facts',
+          rows: [
+            {
+              label: 'Zweck',
+              value:
+                'Probetraining vereinbaren, Mitgliedschaftsvertrag abschließen und durchführen',
+            },
+            {
+              label: 'Rechtsgrundlage',
+              value:
+                'Art. 6 Abs. 1 lit. b DSGVO — Vertrag und vorvertragliche Anfrage; für das Laden der Formulare lit. f',
+            },
+            {
+              label: 'Empfänger',
+              value:
+                'Jotform Inc., 4 Embarcadero Center, Suite 780, San Francisco, CA 94111, USA',
+            },
+            {
+              label: 'Drittland',
+              value: 'USA, gestützt auf das EU-US Data Privacy Framework',
+            },
+            {
+              label: 'Verarbeitung',
+              value: 'Vertrag nach Art. 28 DSGVO mit Jotform — wird ergänzt',
+              pending: true,
+            },
+            {
+              label: 'Speicherdauer',
+              value:
+                'Probetraining: bis es stattgefunden hat oder abgesagt ist. Mitgliedschaft: für die Dauer des Vertrags, danach im Rahmen der gesetzlichen Aufbewahrungsfristen',
+            },
+          ],
         },
         {
           kind: 'note',
-          text: 'Vor Aktivierung der Buchung ist dieser Abschnitt zu ersetzen.',
+          text: 'Den Auftragsverarbeitungsvertrag mit Jotform abschließen und die Speicherdauer bestätigen. Jotform bietet auch Speicherung in der EU an — mit einem EU-Konto entfiele die Übermittlung in die USA.',
         },
       ],
     },
     {
       no: '08',
+      id: 'zahlung',
+      heading: 'Bezahlung über Stripe',
+      blocks: [
+        {
+          kind: 'text',
+          text: 'Nach dem Absenden des Mitgliedschaftsformulars leitet dich Jotform zur Bezahlseite von Stripe weiter. Dort gibst du deine Zahlungsdaten direkt bei Stripe ein; wir sehen sie nicht. Von Stripe erfahren wir, ob und welchen Betrag du bezahlt hast, deinen Namen und deine E-Mail-Adresse.',
+        },
+        {
+          kind: 'text',
+          text: 'Stripe verarbeitet die Zahlungsdaten teils in unserem Auftrag, teils als eigener Verantwortlicher, etwa zur Betrugsabwehr und um gesetzliche Pflichten zu erfüllen. Dafür gilt die Datenschutzerklärung von Stripe.',
+        },
+        {
+          kind: 'facts',
+          rows: [
+            { label: 'Zweck', value: 'Mitgliedsbeiträge und Aktivierungsgebühr einziehen' },
+            {
+              label: 'Rechtsgrundlage',
+              value: 'Art. 6 Abs. 1 lit. b DSGVO — Durchführung des Mitgliedschaftsvertrags',
+            },
+            {
+              label: 'Empfänger',
+              value:
+                'Stripe Payments Europe, Limited, 1 Grand Canal Street Lower, Grand Canal Dock, Dublin, D02 H210, Irland',
+              pending: true,
+            },
+            {
+              label: 'Drittland',
+              value: 'USA, gestützt auf das EU-US Data Privacy Framework',
+            },
+            {
+              label: 'Speicherdauer',
+              value:
+                'Zahlungsbelege sieben Jahre, wie es die Bundesabgabenordnung vorschreibt',
+            },
+          ],
+        },
+        {
+          kind: 'note',
+          text: 'Im Stripe-Konto nachsehen, welche Stripe-Gesellschaft Vertragspartner ist, und den Empfänger danach bestätigen.',
+        },
+      ],
+    },
+    {
+      no: '09',
+      id: 'geplant',
+      heading: 'Noch nicht aktiv',
+      blocks: [
+        {
+          kind: 'text',
+          text: 'Eine eigene Mitgliederverwaltung ist vorbereitet, aber nicht in Betrieb. Sobald sie läuft, wird diese Erklärung vorher um Empfänger, Rechtsgrundlagen und Speicherdauer ergänzt.',
+        },
+        {
+          kind: 'text',
+          text: 'Auch Reichweitenmessung findet derzeit nicht statt.',
+        },
+      ],
+    },
+    {
+      no: '10',
       id: 'rechte',
       heading: 'Deine Rechte',
       blocks: [
@@ -449,11 +543,11 @@ export const datenschutz: LegalDoc = {
 export const cookies: LegalDoc = {
   slug: 'cookies',
   title: 'Cookies',
-  lead: 'Diese Seite setzt von sich aus keine Cookies. Kein Banner, weil es nichts wegzuklicken gibt.',
+  lead: 'Diese Seite setzt von sich aus keine Cookies. Die eingebettete Karte und die Formulare kommen von Google und Jotform und können eigene setzen.',
   updated: UPDATED,
   metaTitle: 'Cookies',
   metaDescription:
-    'Cookie-Hinweis für FightLab Wien: Die Seite setzt keine eigenen Cookies. Google Maps lädt erst auf Klick.',
+    'Cookie-Hinweis für FightLab Wien: keine eigenen Cookies. Google Maps und die Formulare von Jotform können eigene setzen.',
   sections: [
     {
       no: '01',
@@ -462,11 +556,11 @@ export const cookies: LegalDoc = {
       blocks: [
         {
           kind: 'text',
-          text: 'Beim Aufruf dieser Seite werden keine Cookies gesetzt und es wird nichts in der lokalen Ablage deines Browsers gespeichert. Es läuft keine Reichweitenmessung, kein Werbenetzwerk und kein Wiedererkennungsdienst mit.',
+          text: 'Wir selbst setzen keine Cookies und speichern nichts in der lokalen Ablage deines Browsers. Es läuft keine Reichweitenmessung, kein Werbenetzwerk und kein Wiedererkennungsdienst mit.',
         },
         {
           kind: 'text',
-          text: 'Deshalb steht hier auch kein Einwilligungsbanner. Ein Banner, das nur die eigene Existenz bestätigt, hilft niemandem.',
+          text: 'Zwei eingebettete Dienste laden direkt von ihren Anbietern und können dabei eigene Cookies setzen: die Karte von Google Maps im Fuß jeder Seite und die Formulare von Jotform auf den Seiten Probetraining und Mitgliedschaft.',
         },
       ],
     },
@@ -482,7 +576,7 @@ export const cookies: LegalDoc = {
         },
         {
           kind: 'text',
-          text: 'Eine Ausnahme entsteht erst durch dich selbst: Wenn du im Fuß der Startseite die Karte lädst, setzt Google beim Ausliefern der Karte eigene Cookies.',
+          text: 'Cookies der eingebetteten Dienste:',
         },
         {
           kind: 'table',
@@ -494,11 +588,17 @@ export const cookies: LegalDoc = {
               'Auslieferung und Einstellungen der Karte, Missbrauchsabwehr',
               'nach Angaben von Google bis zu 6 Monate',
             ],
+            [
+              'Jotform',
+              'Jotform Inc.',
+              'Betrieb des Formulars, Schutz vor Missbrauch',
+              'wird ergänzt',
+            ],
           ],
         },
         {
-          kind: 'text',
-          text: 'Diese Cookies entstehen ausschließlich nach deinem Klick auf „Karte laden“. Lädst du die Seite neu, ohne die Karte anzufordern, bleibt es beim Grundzustand ohne Cookies.',
+          kind: 'note',
+          text: 'Welche Cookies Jotform beim Ausfüllen setzt und wie lange, ist vor dem Livegang in den Angaben von Jotform nachzusehen und hier einzutragen.',
         },
       ],
     },
@@ -509,7 +609,15 @@ export const cookies: LegalDoc = {
       blocks: [
         {
           kind: 'text',
-          text: 'Nach § 165 Abs. 3 Telekommunikationsgesetz 2021 dürfen Daten in deinem Endgerät nur mit deiner Einwilligung gespeichert oder ausgelesen werden, sofern sie für den Betrieb nicht unbedingt erforderlich sind. Da wir nichts speichern, braucht der Grundzustand keine Einwilligung. Für die Karte holen wir sie über den Klick ein.',
+          text: 'Nach § 165 Abs. 3 Telekommunikationsgesetz 2021 dürfen Daten in deinem Endgerät nur mit deiner Einwilligung gespeichert oder ausgelesen werden, sofern sie nicht unbedingt erforderlich sind, um einen von dir ausdrücklich gewünschten Dienst bereitzustellen. Wir selbst speichern nichts.',
+        },
+        {
+          kind: 'text',
+          text: 'Die Formulare von Jotform rufst du gezielt auf, um ein Probetraining zu buchen oder Mitglied zu werden; ihre Cookies dienen dem Betrieb dieses Formulars. Die Karte binden wir ein, damit du das Gym findest — wer sie nicht nutzen will, kommt über den Routen-Link oder die Adresse genauso hin.',
+        },
+        {
+          kind: 'note',
+          text: 'Ob Karte und Formulare ohne Einwilligungsdialog eingebunden werden dürfen, ist vor dem Livegang anwaltlich zu bestätigen.',
         },
       ],
     },
@@ -533,7 +641,7 @@ export const cookies: LegalDoc = {
         },
         {
           kind: 'text',
-          text: 'Das Blockieren von Cookies schränkt diese Seite nicht ein. Nur die eingebettete Karte kann dann fehlschlagen — der Routen-Link funktioniert weiterhin.',
+          text: 'Das Blockieren von Cookies schränkt unsere eigenen Inhalte nicht ein. Karte und Formulare können dann eingeschränkt funktionieren — der Routen-Link und unsere E-Mail-Adresse gehen immer.',
         },
       ],
     },
@@ -544,7 +652,7 @@ export const cookies: LegalDoc = {
       blocks: [
         {
           kind: 'text',
-          text: 'Sobald Buchung, Zahlung oder Reichweitenmessung dazukommen, brauchen sie einen Einwilligungsdialog. Der kommt vor der Funktion, nicht danach, und diese Seite wird vorher aktualisiert.',
+          text: 'Die Bezahlseite von Stripe ist eine eigene Seite von Stripe; welche Cookies dort gesetzt werden, regelt Stripe. Sobald hier Reichweitenmessung dazukommt, wird diese Seite vorher aktualisiert.',
         },
         { kind: 'note', text: DRAFT_NOTE },
       ],

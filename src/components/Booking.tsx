@@ -21,9 +21,7 @@ export function Booking() {
             {site.bookingHeadline}
           </h2>
           <p className="m-0 max-w-[44ch] text-[1.0625rem] leading-[1.6] text-ink/80">
-            Du zahlst die Probestunde und bekommst den Betrag auf die
-            Mitgliedschaft angerechnet. Komm in Sportkleidung, Handschuhe und
-            Bandagen leihen wir dir.
+            {site.bookingLead}
           </p>
           <Cta
             href="/probetraining"

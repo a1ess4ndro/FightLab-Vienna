@@ -59,10 +59,19 @@
     border-radius: 0;
   }
 
+  /* Anker landen direkt unter der Kopfleiste. Ihre Höhe misst RailNav und legt
+     sie in `--rail-h` ab; die Werte dahinter gelten nur bis zum ersten Messen,
+     etwa wenn die Seite gleich mit `#abschnitt` aufgerufen wird. */
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: var(--rail-h, 3.1875rem);
     -webkit-text-size-adjust: 100%;
+  }
+
+  @media (min-width: 720px) {
+    html {
+      scroll-padding-top: var(--rail-h, 3.75rem);
+    }
   }
 
   body {

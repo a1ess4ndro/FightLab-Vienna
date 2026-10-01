@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { useIsMobile } from '@/hooks/useViewport';
@@ -8,7 +9,9 @@ import { useIsMobile } from '@/hooks/useViewport';
  * Feste Aktionsleiste am Handy, 56 px hoch.
  *
  * Sie steht von Anfang an da — die Hauptaktion soll nicht erst erscrollt
- * werden müssen. Solange der Hero zu sehen ist, bleibt sie durchscheinend und
+ * werden müssen. Deshalb führt sie direkt auf die Buchungsseite, wie der
+ * Knopf im Buchungsabschnitt, statt erst zu diesem Knopf hinunterzuscrollen.
+ * Solange der Hero zu sehen ist, bleibt sie durchscheinend und
  * tritt hinter die große Zeile zurück; danach wird sie deckend. Das ist ein
  * Zustandswechsel (180 ms), keine scrollgekoppelte Bewegung.
  *
@@ -56,14 +59,14 @@ export function MobileCtaBar() {
             overHero ? 'opacity-70' : 'opacity-0'
           }`}
         />
-        <a
-          href="#buchen"
+        <Link
+          href="/probetraining"
           className={`relative grid min-h-[3.5rem] content-center px-s2 py-[1.125rem] text-center font-mono text-[0.75rem] tracking-[0.14em] text-ground uppercase no-underline transition-colors duration-[180ms] ease-[cubic-bezier(.2,0,0,1)] ${
             overHero ? 'bg-band/85' : 'bg-band'
           }`}
         >
           Probetraining buchen
-        </a>
+        </Link>
       </div>
     </>
   );

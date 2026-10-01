@@ -1,4 +1,10 @@
-import { AXIS_SPAN_MIN, AXIS_START_MIN, contractStart } from "@/lib/content";
+import {
+  AXIS_SPAN_MIN,
+  AXIS_START_MIN,
+  contractStart,
+  quote,
+  type Selection,
+} from "@/lib/content";
 
 const MONTHS = [
   "Jänner",
@@ -30,6 +36,17 @@ export function monthLabel(offset: number): string {
   return `${MONTHS[((index % 12) + 12) % 12]} ${
     contractStart.year + Math.floor(index / 12)
   }`;
+}
+
+/** Die Preiszeilen zu einer Auswahl, wie Rechner und Mitgliedschaftsseite sie zeigen. */
+export function quoteRows(selection: Selection) {
+  const q = quote(selection);
+  return [
+    { label: "Monatlich", value: eur(q.monthly) },
+    { label: "Aktivierung einmalig", value: eur(q.activation) },
+    { label: "Gesamt", value: eur(q.total) },
+    { label: "Mindestlaufzeit bis", value: monthLabel(q.lastMonth) },
+  ];
 }
 
 /** "18:30" → Minuten seit Mitternacht. */

@@ -4,42 +4,34 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { useState } from 'react';
 
 import {
-  COMBO_DISCOUNT,
+  membershipHref,
   priceNotes,
-  rates,
   tariffs,
   termLabel,
   terms,
+  type Selection,
   type TariffId,
   type Term,
 } from '@/lib/content';
-import { eur, monthLabel } from '@/lib/format';
+import { quoteRows } from '@/lib/format';
+import { Cta } from '@/components/ui/Cta';
 import { SectionHead } from '@/components/ui/SectionHead';
 
 /**
- * 05 — Laufzeit.
+ * 05 — Mitglied werden.
  *
- * Preis, Gesamtsumme, Ende und letzter Kündigungstag stehen gleichzeitig da.
- * Das verhindert Rückfragen und Streit — und ist der Unterschied zu allen
- * Mitbewerbern mit „Preis auf Anfrage“.
+ * Monatsbetrag, Aktivierungsgebühr, Gesamtsumme und Mindestlaufzeit stehen
+ * gleichzeitig da, die Kündigungsfrist gleich darunter. Das verhindert
+ * Rückfragen und Streit — und ist der Unterschied zu allen Mitbewerbern mit
+ * „Preis auf Anfrage“.
  */
 export function PriceCalculator() {
   const [tariff, setTariff] = useState<TariffId>('standard');
   const [term, setTerm] = useState<Term>(6);
-  const [combo, setCombo] = useState(false);
   const reduce = useReducedMotion();
 
-  const base = rates[tariff][term];
-  const monthly = combo ? base * (1 - COMBO_DISCOUNT) : base;
-
-  const readouts = [
-    { label: 'Monatlich', value: eur(monthly), accent: false },
-    { label: 'Gesamt', value: eur(monthly * term), accent: false },
-    { label: 'Ende', value: monthLabel(term), accent: false },
-    {
-      accent: true,
-    },
-  ];
+  const selection: Selection = { tariff, term };
+  const readouts = quoteRows(selection);
 
   const toggle =
     'min-h-[2.75rem] cursor-pointer border px-s3 font-mono text-[0.6875rem] tracking-[0.12em] uppercase transition-colors duration-[120ms] ease-linear';
@@ -57,43 +49,31 @@ export function PriceCalculator() {
           titleWidth="max-w-[18ch]"
         />
 
-        <div className="flex flex-wrap items-center gap-y-s1 gap-x-s3">
-          <div
-            className="flex flex-wrap gap-s1"
-            role="group"
-            aria-label="Tarif"
-          >
-            {tariffs.map((item) => {
-              const isActive = tariff === item.id;
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  aria-pressed={isActive}
-                  onClick={() => setTariff(item.id)}
-                  className={`${toggle} border-ink ${
-                    isActive
-                      ? 'bg-ink text-ground'
-                      : 'bg-ground text-ink hover:bg-ink hover:text-ground'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
-          </div>
-          <button
-            type="button"
-            aria-pressed={combo}
-            onClick={() => setCombo((value) => !value)}
-            className={`${toggle} border-mark ${
-              combo
-                ? 'bg-mark text-ground'
-                : 'bg-ground text-mark hover:bg-mark hover:text-ground'
-            }`}
-          >
-            Kombi Brown Bear BJJ − 15 %
-          </button>
+        {/* Drei Tarife, genau einer aktiv. Die Kombi behält ihr Rot: Sie ist
+            das Angebot mit Bedingung, der Nachweis von Brown Bear BJJ. */}
+        <div className="flex flex-wrap gap-s1" role="group" aria-label="Tarif">
+          {tariffs.map((item) => {
+            const isActive = tariff === item.id;
+            const tone =
+              item.id === 'combo'
+                ? isActive
+                  ? 'border-mark bg-mark text-ground'
+                  : 'border-mark bg-ground text-mark hover:bg-mark hover:text-ground'
+                : isActive
+                  ? 'border-ink bg-ink text-ground'
+                  : 'border-ink bg-ground text-ink hover:bg-ink hover:text-ground';
+            return (
+              <button
+                key={item.id}
+                type="button"
+                aria-pressed={isActive}
+                onClick={() => setTariff(item.id)}
+                className={`${toggle} ${tone}`}
+              >
+                {item.label}
+              </button>
+            );
+          })}
         </div>
 
         <div
@@ -147,18 +127,10 @@ export function PriceCalculator() {
         <dl className="m-0 grid grid-cols-[repeat(auto-fit,minmax(min(8rem,100%),1fr))] gap-s3 pt-[6px]">
           {readouts.map((item) => (
             <div key={item.label} className="grid gap-[6px]">
-              <dt
-                className={`data text-[0.625rem] tracking-[0.16em] ${
-                  item.accent ? 'text-mark' : 'text-ink/60'
-                }`}
-              >
+              <dt className="data text-[0.625rem] tracking-[0.16em] text-ink/60">
                 {item.label}
               </dt>
-              <dd
-                className={`m-0 font-mono text-[clamp(1.25rem,2.4vw,2.125rem)] ${
-                  item.accent ? 'text-mark' : ''
-                }`}
-              >
+              <dd className="m-0 font-mono text-[clamp(1.25rem,2.4vw,2.125rem)]">
                 {item.value}
               </dd>
             </div>
@@ -166,8 +138,21 @@ export function PriceCalculator() {
         </dl>
 
         <p className="data m-0 text-[0.625rem] text-mark">
-          {combo ? priceNotes.combo : priceNotes.standard}
+          {tariff === 'combo' ? priceNotes.combo : priceNotes.standard}
         </p>
+
+        <p className="m-0 max-w-[60ch] text-[clamp(0.9375rem,1vw,1rem)] leading-[1.55] text-ink/80">
+          {priceNotes.terms}
+        </p>
+
+        {/* Die Hauptaktion dieser Fläche. Die Auswahl geht mit und steht im
+            Formular schon drin. */}
+        <Cta
+          href={membershipHref(selection)}
+          className="justify-self-start px-[1.625rem] py-[1.0625rem] text-[0.75rem]"
+        >
+          Mitglied werden
+        </Cta>
 
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(16rem,100%),1fr))] items-start gap-s2 gap-x-[clamp(1.5rem,4vw,4rem)] border-t-2 border-ink pt-[1.125rem]">
           <div className="grid content-start gap-s1">

@@ -5,10 +5,27 @@ import Image from "next/image";
 import { useCallback, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent, KeyboardEvent } from "react";
 
-import { distanceInCm, site, zoneOf, zones } from "@/lib/content";
+import {
+  distanceInCm,
+  MAX_CM,
+  MIN_CM,
+  site,
+  zoneOf,
+  zones,
+} from "@/lib/content";
 
 /** Startwert des Reglers — entspricht 126 cm, also mittlere Distanz. */
 const START = 46;
+
+/**
+ * Teilstriche alle 5 cm, gesetzt an echten Zentimetern statt in einem festen
+ * Pixelraster: Jeder zehnte Zentimeter ist länger, jeder fünfzigste am
+ * längsten, und die rote Marke steht auf derselben Teilung.
+ */
+const TICKS = Array.from(
+  { length: (MAX_CM - MIN_CM) / 5 + 1 },
+  (_, i) => MIN_CM + i * 5,
+);
 
 /**
  * 01 — Distanz.
@@ -166,8 +183,32 @@ export function DistanceHero() {
             dragging.current = false;
           }}
           onKeyDown={onKeyDown}
-          className="relative mt-[clamp(1.5rem,4vw,2.75rem)] h-[clamp(7.5rem,20vh,11.875rem)] touch-none border-t border-nightline bg-[repeating-linear-gradient(90deg,var(--color-nightline)_0_1px,transparent_1px_16px)] bg-[length:100%_22px] bg-left-top bg-repeat-x outline-offset-2 select-none [cursor:ew-resize]"
+          className="relative mt-[clamp(1.5rem,4vw,2.75rem)] h-[clamp(7.5rem,20vh,11.875rem)] touch-none border-t border-nightline outline-offset-2 select-none [cursor:ew-resize]"
         >
+          {/* Einzelne Striche statt eines Verlaufsmusters: Einen sich
+              wiederholenden 1-px-Verlauf zeichnet Safari ungleichmäßig, am
+              iPhone fiel dadurch etwa jeder zweite Strich weg. Gesetzt wie die
+              Marke, also mit der rechten Kante auf dem Wert. Die 5-cm-Striche
+              kommen erst ab 720 px dazu — am Handy stünden sie keine 9 px
+              auseinander. */}
+          <div aria-hidden className="absolute inset-x-0 top-0">
+            {TICKS.map((tick) => (
+              <span
+                key={tick}
+                style={{
+                  left: `${((tick - MIN_CM) / (MAX_CM - MIN_CM)) * 100}%`,
+                }}
+                className={`absolute top-0 w-px -translate-x-px bg-nightline2 ${
+                  tick % 50 === 0
+                    ? "h-[22px]"
+                    : tick % 10 === 0
+                      ? "h-3"
+                      : "hidden h-1.5 min-[720px]:block"
+                }`}
+              />
+            ))}
+          </div>
+
           <div
             className="absolute top-0 bottom-0 w-px -translate-x-px bg-ember"
             style={{ left: `${value}%` }}
@@ -187,8 +228,14 @@ export function DistanceHero() {
             </span>
           </div>
 
+          {/* Deckend hinterlegt: Die rote Marke läuft hinter dem Hinweis durch
+              statt mitten durch die Schrift. Pfeiltasten nennt er nur, wo es
+              eine Tastatur gibt. */}
           <div className="data absolute inset-x-0 bottom-0 flex justify-center px-[clamp(1.125rem,4vw,3.5rem)] pb-3.5 text-[0.625rem] tracking-[0.18em] text-chalk2">
-            <span>↔ ziehen, oder Pfeiltasten</span>
+            <span className="bg-night px-s1">
+              ↔ ziehen
+              <span className="pointer-coarse:hidden">, oder Pfeiltasten</span>
+            </span>
           </div>
         </div>
       </div>

@@ -6,9 +6,10 @@
  * Ohne Bildmarke. Der Kolben steht weiterhin als Favicon, im Apple-Touch-Icon
  * und in `public/brand`, aber nicht mehr in der Lockup.
  *
- * Die Ortszeile steht fest im Bauteil statt als Eigenschaft: Sie gehört zur
- * Marke, nicht zur Fläche, in der die Marke hängt — zwei Aufrufe mit zwei
- * verschiedenen Zeilen wären zwei verschiedene Logos.
+ * Ortszeile und das „Lab" in Ember stehen fest im Bauteil statt als
+ * Eigenschaft: Sie gehören zur Marke, nicht zur Fläche, in der die Marke
+ * hängt — zwei Aufrufe mit zwei verschiedenen Zeilen oder Farben wären zwei
+ * verschiedene Logos. Kopf und Fuß sind beide dunkel, Ember trägt auf beiden.
  */
 const SIZES = {
   /** Kopfleiste. */
@@ -25,14 +26,7 @@ const SIZES = {
 
 const LOCATION = 'Vienna';
 
-export function Wordmark({
-  size = 'sm',
-  accent = false,
-}: {
-  size?: keyof typeof SIZES;
-  /** Kopfleiste setzt „Lab" in Ember ab, der Fuß bleibt einfarbig. */
-  accent?: boolean;
-}) {
+export function Wordmark({ size = 'sm' }: { size?: keyof typeof SIZES }) {
   const s = SIZES[size];
 
   return (
@@ -43,7 +37,7 @@ export function Wordmark({
       <span
         className={`${s.name} leading-none font-bold tracking-[-0.03em] uppercase`}
       >
-        Fight{accent ? <span className="text-ember">Lab</span> : 'Lab'}
+        Fight<span className="text-ember">Lab</span>
       </span>
 
       {/* Jeder Buchstabe ein eigenes Feld, der Zwischenraum entsteht aus

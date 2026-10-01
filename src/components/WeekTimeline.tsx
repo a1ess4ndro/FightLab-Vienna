@@ -232,7 +232,7 @@ export function WeekTimeline() {
             {weekNote}
           </p>
           <Cta
-            href="#buchen"
+            href="/probetraining"
             className="justify-self-start self-center min-[720px]:justify-self-center"
           >
             Probetraining buchen

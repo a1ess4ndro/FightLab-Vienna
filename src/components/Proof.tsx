@@ -1,8 +1,8 @@
-import { pledges, reviewSlots } from "@/lib/content";
-import { SectionHead } from "@/components/ui/SectionHead";
+import { pledges, reviewSlots } from '@/lib/content';
+import { SectionHead } from '@/components/ui/SectionHead';
 
 /**
- * 02 — Belege & Benefits.
+ * 02 — Versprechen.
  *
  * Belege statt Behauptungen: vier Zusagen, die am ersten Abend überprüfbar
  * sind. Keine erfundenen Bewertungen, keine Mitgliederzahlen — die Plätze
@@ -44,7 +44,7 @@ export function Proof() {
             ))}
           </ul>
 
-          <div className="grid items-center gap-s3 lg:grid-cols-[minmax(0,15rem)_minmax(0,1fr)]">
+          {/*<div className="grid items-center gap-s3 lg:grid-cols-[minmax(0,15rem)_minmax(0,1fr)]">
             <div className="hatch-light grid aspect-[9/16] place-items-center border border-dashed border-mark p-s3">
               <span className="data text-center text-[0.6563rem] leading-[1.7] text-ink/70">
                 Videoeinbettung folgt
@@ -57,10 +57,10 @@ export function Proof() {
               Stattdessen vier Zusagen, die du am ersten Abend überprüfen kannst
               — und alles andere kommt, wenn es echt ist.
             </p>
-          </div>
+          </div>*/}
         </div>
 
-        <div className="grid gap-s2 pt-s1">
+        {/*<div className="grid gap-s2 pt-s1">
           <div className="flex flex-wrap items-baseline justify-between gap-y-s1 gap-x-s3">
             <span className="data text-[0.625rem] tracking-[0.18em] text-ink/60">
               Bewertungen
@@ -84,7 +84,7 @@ export function Proof() {
               </div>
             ))}
           </div>
-        </div>
+        </div>*/}
       </div>
     </section>
   );

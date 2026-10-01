@@ -7,13 +7,17 @@ import { doubts } from "@/lib/content";
 import { SectionHead } from "@/components/ui/SectionHead";
 
 /**
- * 04 — Einwände.
+ * 04 — Zweifel.
  *
  * Abbruchgrund Nummer eins der Einsteigerin ist nicht Schmerz, sondern Blamage.
  * Der Abschnitt nennt die Zweifel beim Namen und streicht sie sichtbar durch.
  */
 export function Objections() {
   const [index, setIndex] = useState(0);
+  /* Durchgestrichen bleibt, was einmal angeklickt wurde: Ein ausgeräumter
+     Zweifel kommt nicht zurück, nur weil man den nächsten anklickt. Die
+     Antwort zeigt immer den zuletzt angeklickten. */
+  const [struck, setStruck] = useState<ReadonlySet<number>>(() => new Set());
   const reduce = useReducedMotion();
   const active = doubts[index];
 
@@ -33,23 +37,36 @@ export function Objections() {
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(18.75rem,100%),1fr))] items-start gap-s3 gap-x-[clamp(1.5rem,4vw,4rem)]">
           <div className="grid">
             {doubts.map((doubt, i) => {
-              const isActive = i === index;
+              const isStruck = struck.has(i);
               return (
                 <button
                   key={doubt.no}
                   type="button"
-                  aria-pressed={isActive}
-                  onClick={() => setIndex(i)}
+                  aria-pressed={i === index}
+                  onClick={() => {
+                    setIndex(i);
+                    setStruck((prev) =>
+                      prev.has(i) ? prev : new Set(prev).add(i),
+                    );
+                  }}
                   className={`grid cursor-pointer grid-cols-[30px_minmax(0,1fr)] items-baseline gap-3.5 border-t border-hairline bg-transparent py-[1.125rem] text-left text-[clamp(1.1875rem,2.2vw,1.6875rem)] leading-[1.2] tracking-[-0.02em] transition-colors duration-[120ms] ease-linear hover:text-mark ${
-                    isActive
-                      ? "text-concrete [text-decoration:line-through_2px_var(--color-band)]"
-                      : "text-ink"
+                    isStruck ? "text-concrete" : "text-ink"
                   }`}
                 >
                   <span className="font-mono text-[0.6875rem] tracking-[0.1em] text-mark">
                     {doubt.no}
                   </span>
-                  <span>{doubt.claim}</span>
+                  {/* Die Linie steht in Einzelangaben: Die Kurzform
+                      `text-decoration` mit Strichstärke kennt Safari nicht und
+                      verwirft sie ganz — am iPhone wurde der Eintrag deshalb
+                      nur grau statt durchgestrichen. */}
+                  <span
+                    className={
+                      isStruck ? "line-through decoration-band decoration-2" : ""
+                    }
+                  >
+                    {doubt.claim}
+                  </span>
                 </button>
               );
             })}

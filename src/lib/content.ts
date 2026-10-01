@@ -24,6 +24,8 @@ export const site = {
   tagline: 'Kämpfen ist wie Schach, nur dass Fehler weh tun.',
   disciplines: 'Muay Thai · Kickboxen · Boxen',
   bookingHeadline: 'Komm einmal vorbei, dann weißt du es',
+  bookingLead:
+    'Das Probetraining kostet 10 €, bar vor Ort. Wirst du danach Mitglied, bekommst du sie mit deinem persönlichen Code zurück. Komm in Sportkleidung, Handschuhe und Bandagen leihen wir dir.',
   mapsRoute:
     'https://www.google.com/maps/dir/?api=1&destination=Pottendorfer+Stra%C3%9Fe+9%2C+1120+Wien',
   mapsEmbed:
@@ -39,10 +41,10 @@ export type RailItem = { id: string; no: string; label: string };
 
 export const rail: RailItem[] = [
   { id: 'distanz', no: '01', label: 'Distanz' },
-  { id: 'vertrauen', no: '02', label: 'Belege & Benefits' },
-  { id: 'woche', no: '03', label: 'Woche' },
-  { id: 'zweifel', no: '04', label: 'Einwände' },
-  { id: 'laufzeit', no: '05', label: 'Laufzeit' },
+  { id: 'vertrauen', no: '02', label: 'Versprechen' },
+  { id: 'woche', no: '03', label: 'Trainingsplan' },
+  { id: 'zweifel', no: '04', label: 'Zweifel' },
+  { id: 'laufzeit', no: '05', label: 'Mitglied werden' },
   { id: 'coach', no: '06', label: 'Coach' },
 ];
 
@@ -113,7 +115,7 @@ export function zoneOf(value: number): Zone {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 02 — Belege & Benefits                                                      */
+/* 02 — Versprechen                                                            */
 /* -------------------------------------------------------------------------- */
 
 export const pledges = [
@@ -127,7 +129,7 @@ export const pledges = [
     no: '02',
     claim: 'Preise vollständig auf der Seite',
     proof:
-      'Monatsbetrag, Gesamtsumme, Ende und letzter Kündigungstag stehen im Rechner weiter unten. Keine Aufnahmegebühr, kein Preis auf Anfrage.',
+      'Monatsbetrag, die einmalige Aktivierungsgebühr, Gesamtsumme und Mindestlaufzeit stehen im Rechner weiter unten, die Kündigungsfrist gleich darunter. Kein Preis auf Anfrage.',
   },
   {
     no: '03',
@@ -260,7 +262,7 @@ export const weekNote =
   'Privattraining nach Absprache. Die Zeiten für das Kindertraining am Dienstag und Donnerstag folgen.';
 
 /* -------------------------------------------------------------------------- */
-/* 04 — Einwände                                                               */
+/* 04 — Zweifel                                                                */
 /* -------------------------------------------------------------------------- */
 
 export const doubts = [
@@ -305,11 +307,17 @@ export const doubts = [
 /* 05 — Laufzeit und Preise                                                    */
 /* -------------------------------------------------------------------------- */
 
-export type TariffId = 'standard' | 'student';
+export type TariffId = 'standard' | 'student' | 'combo';
 
+/**
+ * Drei Tarife, einer davon aktiv. Die Kombi mit Brown Bear BJJ ist ein eigener
+ * Tarif mit Laufzeitwahl wie die anderen — so führt sie auch das
+ * Jotform-Formular.
+ */
 export const tariffs: { id: TariffId; label: string }[] = [
   { id: 'standard', label: 'Standard' },
   { id: 'student', label: 'Studenten & Azubis' },
+  { id: 'combo', label: 'Kombi Brown Bear BJJ − 15 %' },
 ];
 
 export const terms = [1, 3, 6, 12] as const;
@@ -320,13 +328,16 @@ export function termLabel(term: Term): string {
   return term === 1 ? '1 Monat' : `${term} Monate`;
 }
 
-/** Monatsbetrag in Euro je Tarif und Laufzeit. Zehn Euro Abstand je Stufe. */
+/**
+ * Monatsbetrag in Euro je Tarif und Mindestlaufzeit. Zehn Euro Abstand je
+ * Stufe. Die Kombi ist der Studentensatz minus 15 %, für alle — Beträge
+ * ausgeschrieben, genau wie in der Linkliste zum Formular.
+ */
 export const rates: Record<TariffId, Record<Term, number>> = {
   standard: { 1: 100, 3: 90, 6: 80, 12: 70 },
   student: { 1: 80, 3: 70, 6: 60, 12: 50 },
+  combo: { 1: 68, 3: 59.5, 6: 51, 12: 42.5 },
 };
-
-export const COMBO_DISCOUNT = 0.15;
 
 /** Vertragsstart: November 2026 (Monatsindex 10). */
 export const contractStart = { month: 10, year: 2026 };
@@ -334,7 +345,50 @@ export const contractStart = { month: 10, year: 2026 };
 export const priceNotes = {
   standard: 'Preise inklusive aller Kurse & Leihausrüstung beim Probetraining.',
   combo: 'Kombipreis — gilt mit Mitgliedsnachweis von Brown Bear BJJ',
+  /* Aus den Vertragsbedingungen im Jotform-Formular, Punkte 3.1, 4.1 und
+     5.1. Ändert sich dort etwas, ändert es sich hier. */
+  terms:
+    'Gesamt ist die Mindestlaufzeit samt einmaliger Aktivierungsgebühr. Danach läuft die Mitgliedschaft unbefristet weiter und ist mit drei Monaten Frist zum Monatsletzten kündbar. Die Beiträge sind an den Verbraucherpreisindex gebunden.',
 } as const;
+
+/** Einmalige Aktivierungsgebühr laut Vertrag, Punkt 3.1 — in jedem Tarif. */
+export const ACTIVATION_FEE = 60;
+
+/** Was im Rechner gewählt war. */
+export type Selection = { tariff: TariffId; term: Term };
+
+/**
+ * Alles, was der Rechner und die Mitgliedschaftsseite zu einer Auswahl zeigen
+ * — beide rechnen hiermit, damit es nur eine Wahrheit gibt. Der Vertrag läuft
+ * unbefristet; die gewählte Laufzeit ist eine Mindestlaufzeit. `lastMonth`
+ * ist ihr letzter Monat als Abstand zum Vertragsstart (für `monthLabel`),
+ * `total` die Summe bis dahin samt Aktivierungsgebühr.
+ */
+export function quote({ tariff, term }: Selection) {
+  const monthly = rates[tariff][term];
+  return {
+    monthly,
+    activation: ACTIVATION_FEE,
+    total: monthly * term + ACTIVATION_FEE,
+    lastMonth: term - 1,
+  };
+}
+
+/** Adresse der Mitgliedschaftsseite, mit der Auswahl aus dem Rechner. */
+export function membershipHref({ tariff, term }: Selection): string {
+  return `/mitgliedschaft?${new URLSearchParams({ tarif: tariff, laufzeit: String(term) })}`;
+}
+
+/**
+ * Liest die Auswahl aus der Adresse zurück. Alles, was nicht exakt passt,
+ * ergibt `null` — dann wählt man im Formular selbst, statt mit einem
+ * halb erratenen Tarif dort anzukommen.
+ */
+export function parseSelection(query: URLSearchParams): Selection | null {
+  const tariff = tariffs.find((t) => t.id === query.get('tarif'))?.id;
+  const term = terms.find((t) => String(t) === query.get('laufzeit'));
+  return tariff && term ? { tariff, term } : null;
+}
 
 /* -------------------------------------------------------------------------- */
 /* 06 — Coach                                                                  */
@@ -359,21 +413,63 @@ export const coachFacts = [
 /* Buchung                                                                     */
 /* -------------------------------------------------------------------------- */
 
+/** Folgt dem Ablauf im Jotform-Formular Probetraining — ändert er sich, hier mit. */
 export const bookingSteps = [
   {
     no: '01',
-    text: 'Einheit aus der Woche oben auswählen — die nächste Anfängereinheit ist vorausgewählt.',
+    text: 'Formular ausfüllen: Name, Alter, E-Mail und an welchem Tag du kommen möchtest — die Einheiten stehen im Trainingsplan oben.',
   },
   {
     no: '02',
-    text: 'Du erfährst vorher, was passiert, was du mitbringst und wer dich empfängt.',
+    text: 'Per E-Mail bekommst du die Bestätigung und deinen persönlichen Code.',
   },
   {
     no: '03',
-    text: 'Daten eingeben und zahlen: Karte, Apple Pay oder Lastschrift.',
+    text: 'Vorbeikommen und trainieren. Die 10 € zahlst du bar vor Ort, Handschuhe und Bandagen leihen wir dir.',
   },
   {
     no: '04',
-    text: 'Bestätigung mit Termin, Anfahrt und Checkliste. Absagen geht ohne Anruf.',
+    text: 'Wirst du danach Mitglied, bekommst du die 10 € mit deinem Code zurück.',
   },
 ] as const;
+
+/* -------------------------------------------------------------------------- */
+/* Formulare                                                                   */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Probetraining und Mitgliedschaft laufen über Jotform. Die Felder pflegt
+ * Jotform; hier steht nur, welches Formular wohin gehört.
+ */
+export const forms = {
+  probetraining: {
+    id: '262727207879066',
+    title: 'Formular — Probetraining buchen',
+  },
+  mitgliedschaft: {
+    id: '262723289788071',
+    title: 'Formular — Mitgliedschaft abschließen',
+  },
+} as const;
+
+/** Tarif-Optionen im Jotform-Formular, Zeichen für Zeichen. */
+const JOTFORM_TARIF: Record<TariffId, string> = {
+  standard: 'Standard',
+  student: 'Student/Lehrling',
+  combo: 'BBBjj-Mitglied',
+};
+
+/**
+ * Vorausfüllen des Mitgliedschaftsformulars aus der Auswahl im Rechner.
+ * Schlüssel sind die eindeutigen Feldnamen in Jotform, Werte die Optionen
+ * dort — ändert sich eine Option im Formular, muss sie hier mit.
+ * `vonWebseite` blendet Tarif und Laufzeit im Formular aus; sie sind ja
+ * schon gewählt.
+ */
+export function membershipPrefill({ tariff, term }: Selection): Record<string, string> {
+  return {
+    vonWebseite: 'ja',
+    tarif: JOTFORM_TARIF[tariff],
+    laufzeit: termLabel(term),
+  };
+}

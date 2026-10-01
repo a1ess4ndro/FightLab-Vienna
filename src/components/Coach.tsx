@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import { coachFacts } from '@/lib/content';
 import { Band } from '@/components/ui/Band';
 
@@ -48,12 +50,17 @@ export function Coach() {
           </dl>
         </div>
 
-        <div className="hatch-dark grid min-h-[26.25rem] place-items-center">
-          <span className="data text-center text-[0.6875rem] tracking-[0.16em] text-chalk2 p-s3">
-            Platzhalter — Porträt Aaron,
-            <br />
-            vorhandene Profiaufnahme
-          </span>
+        {/* Hochformat in einer Spalte, die neben dem Text eher quer steht:
+            Der Ausschnitt hält Kopf und Deckung im Bild, nach unten darf
+            angeschnitten werden. */}
+        <div className="relative min-h-[26.25rem] bg-night">
+          <Image
+            src="/coach/aaron.webp"
+            alt="Aaron im Wettkampf, in Kampfstellung unter dem Hallenlicht"
+            fill
+            sizes="(min-width: 40rem) 50vw, 100vw"
+            className="object-cover object-[50%_28%]"
+          />
         </div>
       </div>
     </section>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { site } from "@/lib/content";
-import { ConsentMap } from "@/components/ConsentMap";
+import { FooterMap } from "@/components/FooterMap";
 import { Wordmark } from "@/components/ui/Wordmark";
 
 const legal = [
@@ -62,7 +62,7 @@ export function SiteFooter() {
         </div>
 
         <div className="grid border-b border-nightline">
-          <ConsentMap />
+          <FooterMap />
         </div>
       </div>
 
