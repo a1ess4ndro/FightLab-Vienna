@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Familjen_Grotesk, JetBrains_Mono } from "next/font/google";
 
+import { ScrollReset } from "@/components/ScrollReset";
+
 import "./globals.css";
 
 /**
@@ -58,7 +60,13 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="de-AT" className={`${grotesk.variable} ${jetbrains.variable}`}>
+    // `data-scroll-behavior`: Beim Seitenwechsel springt Next ohne das weiche
+    // Scrollen aus globals.css — innerhalb der Seite bleibt es weich.
+    <html
+      lang="de-AT"
+      data-scroll-behavior="smooth"
+      className={`${grotesk.variable} ${jetbrains.variable}`}
+    >
       <body>
         {/* Zielt auf `main`, nicht auf einen Abschnitt der Startseite — sonst
             läuft der Skip-Link auf den Rechtsseiten ins Leere. */}
@@ -68,6 +76,7 @@ export default function RootLayout({
         >
           Zum Inhalt springen
         </a>
+        <ScrollReset />
         {children}
       </body>
     </html>

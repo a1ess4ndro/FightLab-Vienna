@@ -62,9 +62,6 @@ export function SelectionSummary({ selection }: { selection: Selection | null })
         Deine Auswahl
       </span>
       <FactList rows={rows} />
-      <p className="m-0 text-[0.9375rem] leading-[1.55] text-ink/80">
-        {priceNotes.terms}
-      </p>
       <Cta
         href="/#laufzeit"
         variant="outlineLight"
@@ -72,6 +69,9 @@ export function SelectionSummary({ selection }: { selection: Selection | null })
       >
         Auswahl ändern
       </Cta>
+      <p className="m-0 text-[0.9375rem] leading-[1.55] text-ink/80">
+        {priceNotes.terms}
+      </p>
     </>
   );
 }

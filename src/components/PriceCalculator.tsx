@@ -137,6 +137,15 @@ export function PriceCalculator() {
           ))}
         </dl>
 
+        {/* Die Hauptaktion dieser Fläche, direkt unter dem Preis. Die Auswahl
+            geht mit und steht im Formular schon drin. */}
+        <Cta
+          href={membershipHref(selection)}
+          className="justify-self-start px-[1.625rem] py-[1.0625rem] text-[0.75rem]"
+        >
+          Mitglied werden
+        </Cta>
+
         <p className="data m-0 text-[0.625rem] text-mark">
           {tariff === 'combo' ? priceNotes.combo : priceNotes.standard}
         </p>
@@ -144,15 +153,6 @@ export function PriceCalculator() {
         <p className="m-0 max-w-[60ch] text-[clamp(0.9375rem,1vw,1rem)] leading-[1.55] text-ink/80">
           {priceNotes.terms}
         </p>
-
-        {/* Die Hauptaktion dieser Fläche. Die Auswahl geht mit und steht im
-            Formular schon drin. */}
-        <Cta
-          href={membershipHref(selection)}
-          className="justify-self-start px-[1.625rem] py-[1.0625rem] text-[0.75rem]"
-        >
-          Mitglied werden
-        </Cta>
 
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(16rem,100%),1fr))] items-start gap-s2 gap-x-[clamp(1.5rem,4vw,4rem)] border-t-2 border-ink pt-[1.125rem]">
           <div className="grid content-start gap-s1">

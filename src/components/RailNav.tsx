@@ -141,6 +141,7 @@ export function RailNav() {
   return (
     <header
       ref={headerRef}
+      data-rail
       className="sticky top-0 z-40 border-b border-nightline bg-night"
     >
       <div className="flex items-stretch">
