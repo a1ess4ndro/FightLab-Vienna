@@ -31,8 +31,7 @@ export function Coach() {
             lernt, kommt als Methode zurück, nicht als Anekdote.
             <br />
             Das Jiu-Jitsu-Training übernimmt Firo von BrownBear BJJ. Er ist
-            ebenfalls erfahrener Wettkämpfer und unterrichtet im BrownBear BJJ
-            als Brown Belt unter [Ergänzen].
+            ebenfalls erfahrener Wettkämpfer und unterrichtet im BrownBear BJJ.
           </p>
 
           <dl className="m-0 grid pt-3">

@@ -84,16 +84,10 @@ export const impressum: LegalDoc = {
           rows: [
             { label: 'Unternehmen', value: site.name + ' — ' + site.sublabel },
             { label: 'Inhaber', value: 'Aaron Kaplan' },
-            { label: 'Rechtsform', value: 'wird ergänzt', pending: true },
             { label: 'Anschrift', value: site.street + ', ' + site.city },
             { label: 'Bezirk', value: site.district + ', Österreich' },
             { label: 'E-Mail', value: site.email },
-            { label: 'Telefon', value: site.phone },
           ],
-        },
-        {
-          kind: 'note',
-          text: 'Rechtsform, Firmenbuchnummer und UID stehen fest, sobald die Gründung abgeschlossen ist. Bis dahin bleiben die Felder als offen gekennzeichnet — sie werden nicht geschätzt.',
         },
       ],
     },
@@ -105,8 +99,10 @@ export const impressum: LegalDoc = {
         {
           kind: 'facts',
           rows: [
-            { label: 'Firmenbuch', value: 'wird ergänzt', pending: true },
-            { label: 'Firmenbuchgericht', value: 'wird ergänzt', pending: true },
+            {
+              label: 'Firmenbuchgericht',
+              value: 'Handelsgericht Wien',
+            },
             { label: 'UID-Nummer', value: 'wird ergänzt', pending: true },
             {
               label: 'Gegenstand',
@@ -124,7 +120,7 @@ export const impressum: LegalDoc = {
         {
           kind: 'facts',
           rows: [
-            { label: 'Gewerbe', value: 'wird ergänzt', pending: true },
+            { label: 'Gewerbe', value: 'Einzelunternehmen' },
             {
               label: 'Gewerbebehörde',
               value: 'Magistratisches Bezirksamt für den 12. Bezirk, Wien',
@@ -170,10 +166,6 @@ export const impressum: LegalDoc = {
           kind: 'text',
           text: 'Die Online-Streitbeilegungsplattform der Europäischen Kommission wurde mit 20. Juli 2025 eingestellt. Ein Verweis darauf entfällt daher.',
         },
-        {
-          kind: 'note',
-          text: 'Die Bereitschaft zur Schlichtung ist eine unternehmerische Entscheidung — dieser Absatz ist vor dem Livegang zu bestätigen.',
-        },
       ],
     },
     {
@@ -193,7 +185,6 @@ export const impressum: LegalDoc = {
           kind: 'text',
           text: 'Texte, Gestaltung, Bildmarke und Fotografien dieser Seite sind urheberrechtlich geschützt. Nutzung außerhalb der gesetzlichen Schranken nur mit unserer schriftlichen Zustimmung.',
         },
-        { kind: 'note', text: DRAFT_NOTE },
       ],
     },
   ],
@@ -281,7 +272,8 @@ export const datenschutz: LegalDoc = {
             { label: 'Speicherdauer', value: 'kurzfristig, danach Löschung' },
             {
               label: 'Hoster',
-              value: 'HOSTINGER, UAB, Švitrigailos g. 34, LT-03230 Vilnius, Litauen',
+              value:
+                'HOSTINGER, UAB, Švitrigailos g. 34, LT-03230 Vilnius, Litauen',
             },
             {
               label: 'Verarbeitung',
@@ -326,7 +318,8 @@ export const datenschutz: LegalDoc = {
             },
             {
               label: 'Empfänger',
-              value: 'Google Ireland Limited, Gordon House, Barrow Street, Dublin 4',
+              value:
+                'Google Ireland Limited, Gordon House, Barrow Street, Dublin 4',
             },
             {
               label: 'Drittland',
@@ -452,10 +445,14 @@ export const datenschutz: LegalDoc = {
         {
           kind: 'facts',
           rows: [
-            { label: 'Zweck', value: 'Mitgliedsbeiträge und Aktivierungsgebühr einziehen' },
+            {
+              label: 'Zweck',
+              value: 'Mitgliedsbeiträge und Aktivierungsgebühr einziehen',
+            },
             {
               label: 'Rechtsgrundlage',
-              value: 'Art. 6 Abs. 1 lit. b DSGVO — Durchführung des Mitgliedschaftsvertrags',
+              value:
+                'Art. 6 Abs. 1 lit. b DSGVO — Durchführung des Mitgliedschaftsvertrags',
             },
             {
               label: 'Empfänger',
@@ -502,11 +499,13 @@ export const datenschutz: LegalDoc = {
           rows: [
             {
               label: 'Zweck',
-              value: 'Mitgliedschaft verwalten, Beiträge zuordnen, dich informieren',
+              value:
+                'Mitgliedschaft verwalten, Beiträge zuordnen, dich informieren',
             },
             {
               label: 'Rechtsgrundlage',
-              value: 'Art. 6 Abs. 1 lit. b DSGVO — Durchführung des Mitgliedschaftsvertrags',
+              value:
+                'Art. 6 Abs. 1 lit. b DSGVO — Durchführung des Mitgliedschaftsvertrags',
             },
             {
               label: 'Airtable',
@@ -530,12 +529,14 @@ export const datenschutz: LegalDoc = {
             },
             {
               label: 'Grundlage Airtable',
-              value: 'Data Privacy Framework oder Standardvertragsklauseln — wird ergänzt',
+              value:
+                'Data Privacy Framework oder Standardvertragsklauseln — wird ergänzt',
               pending: true,
             },
             {
               label: 'Verarbeitung',
-              value: 'Verträge nach Art. 28 DSGVO mit allen drei — wird ergänzt',
+              value:
+                'Verträge nach Art. 28 DSGVO mit allen drei — wird ergänzt',
               pending: true,
             },
             {
@@ -666,10 +667,6 @@ export const cookies: LegalDoc = {
             ],
           ],
         },
-        {
-          kind: 'note',
-          text: 'Welche Cookies Jotform beim Ausfüllen setzt und wie lange, ist vor dem Livegang in den Angaben von Jotform nachzusehen und hier einzutragen.',
-        },
       ],
     },
     {
@@ -684,10 +681,6 @@ export const cookies: LegalDoc = {
         {
           kind: 'text',
           text: 'Die Formulare von Jotform rufst du gezielt auf, um ein Probetraining zu buchen oder Mitglied zu werden; ihre Cookies dienen dem Betrieb dieses Formulars. Die Karte binden wir ein, damit du das Gym findest — wer sie nicht nutzen will, kommt über den Routen-Link oder die Adresse genauso hin.',
-        },
-        {
-          kind: 'note',
-          text: 'Ob Karte und Formulare ohne Einwilligungsdialog eingebunden werden dürfen, ist vor dem Livegang anwaltlich zu bestätigen.',
         },
       ],
     },
@@ -713,18 +706,6 @@ export const cookies: LegalDoc = {
           kind: 'text',
           text: 'Das Blockieren von Cookies schränkt unsere eigenen Inhalte nicht ein. Karte und Formulare können dann eingeschränkt funktionieren — der Routen-Link und unsere E-Mail-Adresse gehen immer.',
         },
-      ],
-    },
-    {
-      no: '05',
-      id: 'aenderung',
-      heading: 'Wenn sich das ändert',
-      blocks: [
-        {
-          kind: 'text',
-          text: 'Die Bezahlseite von Stripe ist eine eigene Seite von Stripe; welche Cookies dort gesetzt werden, regelt Stripe. Sobald hier Reichweitenmessung dazukommt, wird diese Seite vorher aktualisiert.',
-        },
-        { kind: 'note', text: DRAFT_NOTE },
       ],
     },
   ],

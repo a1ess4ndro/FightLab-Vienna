@@ -25,7 +25,7 @@ export const site = {
   disciplines: 'Muay Thai · Kickboxen · Boxen',
   bookingHeadline: 'Komm einmal vorbei, dann weißt du es',
   bookingLead:
-    'Das Probetraining kostet 10 €, bar vor Ort. Nach dem Training bekommst du einen persönlichen Code: Wirst du Mitglied, rechnen wir die 10 € damit auf die Mitgliedschaft an. Komm in Sportkleidung, Handschuhe und Bandagen leihen wir dir.',
+    'Das Probetraining kostet 10 €, bar vor Ort. Nach dem Training bekommst du einen persönlichen Code: Wirst du Mitglied, rechnen wir die 10 € damit auf die Mitgliedschaft an. Komm in Sportkleidung, Handschuhe und Ausrüstung leihen wir dir.',
   mapsRoute:
     'https://www.google.com/maps/dir/?api=1&destination=Pottendorfer+Stra%C3%9Fe+9%2C+1120+Wien',
   mapsEmbed:
@@ -290,7 +290,8 @@ export const doubts = [
   {
     no: '04',
     claim: 'Ich habe keine Ausrüstung.',
-    answer: 'Handschuhe und Bandagen leihen wir dir für die ersten Wochen.',
+    answer:
+      'Handschuhe und Schienbeinschoner leihen wir dir für die ersten Wochen.',
     detail:
       'Mitbringen: Sportkleidung, Wasser, Handtuch. Eigene Ausrüstung kaufst du erst, wenn du weißt, dass du bleibst.',
   },
@@ -393,7 +394,8 @@ export function quote(selection: Selection) {
 /** Adresse der Mitgliedschaftsseite, mit der Auswahl aus dem Rechner. */
 export function membershipHref(selection: Selection): string {
   const query = new URLSearchParams({ tarif: selection.tariff });
-  if (selection.tariff !== 'combo') query.set('laufzeit', String(selection.term));
+  if (selection.tariff !== 'combo')
+    query.set('laufzeit', String(selection.term));
   return `/mitgliedschaft?${query}`;
 }
 
@@ -485,7 +487,9 @@ const JOTFORM_TARIF: Record<TariffId, string> = {
  * `vonWebseite` blendet Tarif und Laufzeit im Formular aus; sie sind ja
  * schon gewählt.
  */
-export function membershipPrefill(selection: Selection): Record<string, string> {
+export function membershipPrefill(
+  selection: Selection,
+): Record<string, string> {
   // Die Kombi kommt ohne Laufzeit: Jotform hat dafür noch keine Option.
   if (selection.tariff === 'combo') {
     return { vonWebseite: 'ja', tarif: JOTFORM_TARIF.combo };
