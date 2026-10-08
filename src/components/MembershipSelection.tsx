@@ -52,7 +52,9 @@ export function SelectionSummary({ selection }: { selection: Selection | null })
       label: "Tarif",
       value: tariffs.find((t) => t.id === selection.tariff)?.label,
     },
-    { label: "Mindestlaufzeit", value: termLabel(selection.term) },
+    selection.tariff === "combo"
+      ? { label: "Laufzeit", value: priceNotes.comboTerm }
+      : { label: "Mindestlaufzeit", value: termLabel(selection.term) },
     ...quoteRows(selection),
   ];
 
@@ -70,7 +72,7 @@ export function SelectionSummary({ selection }: { selection: Selection | null })
         Auswahl ändern
       </Cta>
       <p className="m-0 text-[0.9375rem] leading-[1.55] text-ink/80">
-        {priceNotes.terms}
+        {selection.tariff === "combo" ? priceNotes.comboTerms : priceNotes.terms}
       </p>
     </>
   );

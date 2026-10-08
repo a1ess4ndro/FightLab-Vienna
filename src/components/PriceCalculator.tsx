@@ -4,6 +4,8 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { useState } from 'react';
 
 import {
+  COMBO_RATE,
+  COMBO_TERM_LABEL,
   membershipHref,
   priceNotes,
   tariffs,
@@ -13,7 +15,7 @@ import {
   type TariffId,
   type Term,
 } from '@/lib/content';
-import { quoteRows } from '@/lib/format';
+import { eur, quoteRows } from '@/lib/format';
 import { Cta } from '@/components/ui/Cta';
 import { SectionHead } from '@/components/ui/SectionHead';
 
@@ -30,7 +32,10 @@ export function PriceCalculator() {
   const [term, setTerm] = useState<Term>(6);
   const reduce = useReducedMotion();
 
-  const selection: Selection = { tariff, term };
+  const isCombo = tariff === 'combo';
+  // Die gewählte Laufzeit bleibt bei der Kombi erhalten und steht wieder da,
+  // sobald man zurück auf Standard oder Studenten wechselt.
+  const selection: Selection = isCombo ? { tariff } : { tariff, term };
   const readouts = quoteRows(selection);
 
   const toggle =
@@ -81,7 +86,19 @@ export function PriceCalculator() {
           role="group"
           aria-label="Laufzeit"
         >
-          {terms.map((item) => {
+          {/* Die Kombi hat keine Laufzeit zur Wahl: An ihrer Stelle steht ein
+              einziges, schon gewähltes Feld. */}
+          {isCombo ? (
+            <button
+              type="button"
+              aria-pressed
+              disabled
+              className={`${toggle} cursor-default border-ink bg-ink px-[1.375rem] text-[0.75rem] text-ground`}
+            >
+              {COMBO_TERM_LABEL}
+            </button>
+          ) : null}
+          {(isCombo ? [] : terms).map((item) => {
             const isActive = term === item;
             return (
               <button
@@ -101,7 +118,7 @@ export function PriceCalculator() {
           })}
         </div>
 
-        <div className="grid gap-s1">
+        <div className={`grid gap-s1 ${isCombo ? 'hidden' : ''}`}>
           <div aria-hidden className="flex items-end gap-[3px]">
             {Array.from({ length: 12 }, (_, i) => (
               <div key={i} className="relative aspect-[3/2] flex-1">
@@ -147,11 +164,11 @@ export function PriceCalculator() {
         </Cta>
 
         <p className="data m-0 text-[0.625rem] text-mark">
-          {tariff === 'combo' ? priceNotes.combo : priceNotes.standard}
+          {priceNotes[tariff]}
         </p>
 
         <p className="m-0 max-w-[60ch] text-[clamp(0.9375rem,1vw,1rem)] leading-[1.55] text-ink/80">
-          {priceNotes.terms}
+          {isCombo ? priceNotes.comboTerms : priceNotes.terms}
         </p>
 
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(16rem,100%),1fr))] items-start gap-s2 gap-x-[clamp(1.5rem,4vw,4rem)] border-t-2 border-ink pt-[1.125rem]">
@@ -164,8 +181,9 @@ export function PriceCalculator() {
             </span>
           </div>
           <p className="m-0 max-w-[52ch] text-[clamp(1rem,1.05vw,1.0625rem)] leading-[1.6] text-ink/80">
-            Mitglieder trainieren bei uns mit 15 % Rabatt. Wer schlagen lernt,
-            sollte auch am Boden etwas können — und umgekehrt.
+            Mitglieder trainieren bei uns zum Fixpreis von {eur(COMBO_RATE)} im
+            Monat. Wer schlagen lernt, sollte auch am Boden etwas können — und
+            umgekehrt.
           </p>
         </div>
       </div>

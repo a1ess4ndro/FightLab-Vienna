@@ -9,7 +9,7 @@ const legal = [
   { label: "Datenschutz", href: "/datenschutz" },
   { label: "Cookies", href: "/cookies" },
   { label: "AGB", href: "/agb" },
-  { label: "English", href: "/en" },
+  // „English" kommt zurück, sobald es /en gibt — ein toter Link wäre schlimmer als keiner.
 ];
 
 const contact = [

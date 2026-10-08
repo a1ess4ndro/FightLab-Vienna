@@ -6,7 +6,7 @@ import { Band } from '@/components/ui/Band';
 /**
  * 06 — Der Coach.
  *
- * Kein Kampfrekord, wie festgelegt: Kompetenz statt Bilanz. Ein Lehrer und ein
+ * Kein Kampfrekord, wie festgelegt: Kompetenz statt Bilanz. Ein Coach und ein
  * Plan sind für einen Ein-Coach-Betrieb die Stärke, nicht die Entschuldigung.
  */
 export function Coach() {
@@ -23,7 +23,7 @@ export function Coach() {
             id="coach-titel"
             className="m-0 max-w-[16ch] text-[clamp(1.75rem,4.4vw,4rem)] leading-[0.98] font-bold tracking-[-0.035em]"
           >
-            Ein Lehrer, ein Plan
+            Ein Coach, ein Plan
           </h2>
           <p className="m-0 max-w-[46ch] text-[1.0625rem] leading-[1.6] text-chalk2">
             Aaron unterrichtet jede Einheit selbst. Als aktiver Wettkämpfer in

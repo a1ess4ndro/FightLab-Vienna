@@ -38,15 +38,23 @@ export function monthLabel(offset: number): string {
   }`;
 }
 
-/** Die Preiszeilen zu einer Auswahl, wie Rechner und Mitgliedschaftsseite sie zeigen. */
+/**
+ * Die Preiszeilen zu einer Auswahl, wie Rechner und Mitgliedschaftsseite sie
+ * zeigen. Die Kombi hat ohne Laufzeit weder Gesamtsumme noch Ende.
+ */
 export function quoteRows(selection: Selection) {
   const q = quote(selection);
-  return [
+  const rows = [
     { label: "Monatlich", value: eur(q.monthly) },
     { label: "Aktivierung einmalig", value: eur(q.activation) },
-    { label: "Gesamt", value: eur(q.total) },
-    { label: "Mindestlaufzeit bis", value: monthLabel(q.lastMonth) },
   ];
+  if (q.total !== null && q.lastMonth !== null) {
+    rows.push(
+      { label: "Gesamt", value: eur(q.total) },
+      { label: "Mindestlaufzeit bis", value: monthLabel(q.lastMonth) },
+    );
+  }
+  return rows;
 }
 
 /** "18:30" → Minuten seit Mitternacht. */

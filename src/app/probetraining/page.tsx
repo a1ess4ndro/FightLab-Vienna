@@ -24,7 +24,7 @@ export default function ProbetrainingPage() {
             rows={[
               {
                 label: "Kosten",
-                value: "10 €, bar vor Ort — als Mitglied mit deinem Code zurück",
+                value: "10 €, bar vor Ort — wird auf die Mitgliedschaft angerechnet",
               },
               { label: "Mitbringen", value: "Sportkleidung, Wasser, Handtuch" },
               { label: "Leihen wir dir", value: "Handschuhe und Bandagen" },

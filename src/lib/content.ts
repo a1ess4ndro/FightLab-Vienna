@@ -25,7 +25,7 @@ export const site = {
   disciplines: 'Muay Thai · Kickboxen · Boxen',
   bookingHeadline: 'Komm einmal vorbei, dann weißt du es',
   bookingLead:
-    'Das Probetraining kostet 10 €, bar vor Ort. Wirst du danach Mitglied, bekommst du sie mit deinem persönlichen Code zurück. Komm in Sportkleidung, Handschuhe und Bandagen leihen wir dir.',
+    'Das Probetraining kostet 10 €, bar vor Ort. Nach dem Training bekommst du einen persönlichen Code: Wirst du Mitglied, rechnen wir die 10 € damit auf die Mitgliedschaft an. Komm in Sportkleidung, Handschuhe und Bandagen leihen wir dir.',
   mapsRoute:
     'https://www.google.com/maps/dir/?api=1&destination=Pottendorfer+Stra%C3%9Fe+9%2C+1120+Wien',
   mapsEmbed:
@@ -135,7 +135,7 @@ export const pledges = [
     no: '03',
     claim: 'Kooperation mit Brown Bear BJJ',
     proof:
-      'Striking bei uns, Bodenkampf dort — Mitglieder trainieren gegenseitig mit 15 % Rabatt.',
+      'Striking bei uns, Bodenkampf dort — Mitglieder von Brown Bear BJJ trainieren bei uns zum Fixpreis von 55 € im Monat.',
   },
   {
     no: '04',
@@ -310,14 +310,14 @@ export const doubts = [
 export type TariffId = 'standard' | 'student' | 'combo';
 
 /**
- * Drei Tarife, einer davon aktiv. Die Kombi mit Brown Bear BJJ ist ein eigener
- * Tarif mit Laufzeitwahl wie die anderen — so führt sie auch das
- * Jotform-Formular.
+ * Drei Tarife, einer davon aktiv. Standard und Studenten haben eine
+ * Mindestlaufzeit zur Wahl; die Kombi mit Brown Bear BJJ hat einen Fixpreis,
+ * der gilt, solange die Mitgliedschaft dort läuft.
  */
 export const tariffs: { id: TariffId; label: string }[] = [
   { id: 'standard', label: 'Standard' },
   { id: 'student', label: 'Studenten & Azubis' },
-  { id: 'combo', label: 'Kombi Brown Bear BJJ − 15 %' },
+  { id: 'combo', label: 'Kombi Brown Bear BJJ' },
 ];
 
 export const terms = [1, 3, 6, 12] as const;
@@ -328,55 +328,73 @@ export function termLabel(term: Term): string {
   return term === 1 ? '1 Monat' : `${term} Monate`;
 }
 
-/**
- * Monatsbetrag in Euro je Tarif und Mindestlaufzeit. Zehn Euro Abstand je
- * Stufe. Die Kombi ist der Studentensatz minus 15 %, für alle — Beträge
- * ausgeschrieben, genau wie in der Linkliste zum Formular.
- */
-export const rates: Record<TariffId, Record<Term, number>> = {
+/** Steht bei der Kombi dort, wo sonst die Laufzeit gewählt wird. */
+export const COMBO_TERM_LABEL = 'Solange Mitgliedschaft bei BBBJJ';
+
+/** Monatsbetrag in Euro je Tarif und Mindestlaufzeit. Zehn Euro Abstand je Stufe. */
+export const rates: Record<'standard' | 'student', Record<Term, number>> = {
   standard: { 1: 100, 3: 90, 6: 80, 12: 70 },
   student: { 1: 80, 3: 70, 6: 60, 12: 50 },
-  combo: { 1: 68, 3: 59.5, 6: 51, 12: 42.5 },
 };
+
+/** Fixpreis der Kombi pro Monat, ohne eigene Laufzeit. */
+export const COMBO_RATE = 55;
 
 /** Vertragsstart: November 2026 (Monatsindex 10). */
 export const contractStart = { month: 10, year: 2026 };
 
 export const priceNotes = {
   standard: 'Preise inklusive aller Kurse & Leihausrüstung beim Probetraining.',
+  student: 'Studentenpreis — gilt mit Studien- oder Lehrbestätigung',
   combo: 'Kombipreis — gilt mit Mitgliedsnachweis von Brown Bear BJJ',
-  /* Aus den Vertragsbedingungen im Jotform-Formular, Punkte 3.1, 4.1 und
-     5.1. Ändert sich dort etwas, ändert es sich hier. */
+  /* Aus den AGB (legal.ts), Punkte 3.1, 4.1 und 5.1. Ändert sich dort
+     etwas, ändert es sich hier. */
   terms:
-    'Gesamt ist die Mindestlaufzeit samt einmaliger Aktivierungsgebühr. Danach läuft die Mitgliedschaft unbefristet weiter und ist mit drei Monaten Frist zum Monatsletzten kündbar. Die Beiträge sind an den Verbraucherpreisindex gebunden.',
+    'Gesamt ist die Mindestlaufzeit samt einmaliger Aktivierungsgebühr. Danach läuft die Mitgliedschaft unbefristet weiter und ist mit einem Monat Frist zum Monatsletzten kündbar. Die Beiträge sind an den Verbraucherpreisindex gebunden.',
+  comboTerms:
+    'Der Kombipreis gilt, solange deine Mitgliedschaft bei Brown Bear BJJ läuft, und ist mit einem Monat Frist zum Monatsletzten kündbar. Die Beiträge sind an den Verbraucherpreisindex gebunden.',
+  comboTerm: 'Solange deine Mitgliedschaft bei Brown Bear BJJ läuft',
 } as const;
 
-/** Einmalige Aktivierungsgebühr laut Vertrag, Punkt 3.1 — in jedem Tarif. */
+/** Einmalige Aktivierungsgebühr laut AGB, Punkt 3.1 — in jedem Tarif. */
 export const ACTIVATION_FEE = 60;
 
-/** Was im Rechner gewählt war. */
-export type Selection = { tariff: TariffId; term: Term };
+/** Was im Rechner gewählt war. Die Kombi hat keine Laufzeit zur Wahl. */
+export type Selection =
+  | { tariff: 'standard' | 'student'; term: Term }
+  | { tariff: 'combo' };
 
 /**
  * Alles, was der Rechner und die Mitgliedschaftsseite zu einer Auswahl zeigen
  * — beide rechnen hiermit, damit es nur eine Wahrheit gibt. Der Vertrag läuft
  * unbefristet; die gewählte Laufzeit ist eine Mindestlaufzeit. `lastMonth`
  * ist ihr letzter Monat als Abstand zum Vertragsstart (für `monthLabel`),
- * `total` die Summe bis dahin samt Aktivierungsgebühr.
+ * `total` die Summe bis dahin samt Aktivierungsgebühr. Die Kombi hat beides
+ * nicht.
  */
-export function quote({ tariff, term }: Selection) {
-  const monthly = rates[tariff][term];
+export function quote(selection: Selection) {
+  if (selection.tariff === 'combo') {
+    return {
+      monthly: COMBO_RATE,
+      activation: ACTIVATION_FEE,
+      total: null,
+      lastMonth: null,
+    };
+  }
+  const monthly = rates[selection.tariff][selection.term];
   return {
     monthly,
     activation: ACTIVATION_FEE,
-    total: monthly * term + ACTIVATION_FEE,
-    lastMonth: term - 1,
+    total: monthly * selection.term + ACTIVATION_FEE,
+    lastMonth: selection.term - 1,
   };
 }
 
 /** Adresse der Mitgliedschaftsseite, mit der Auswahl aus dem Rechner. */
-export function membershipHref({ tariff, term }: Selection): string {
-  return `/mitgliedschaft?${new URLSearchParams({ tarif: tariff, laufzeit: String(term) })}`;
+export function membershipHref(selection: Selection): string {
+  const query = new URLSearchParams({ tarif: selection.tariff });
+  if (selection.tariff !== 'combo') query.set('laufzeit', String(selection.term));
+  return `/mitgliedschaft?${query}`;
 }
 
 /**
@@ -386,6 +404,7 @@ export function membershipHref({ tariff, term }: Selection): string {
  */
 export function parseSelection(query: URLSearchParams): Selection | null {
   const tariff = tariffs.find((t) => t.id === query.get('tarif'))?.id;
+  if (tariff === 'combo') return { tariff };
   const term = terms.find((t) => String(t) === query.get('laufzeit'));
   return tariff && term ? { tariff, term } : null;
 }
@@ -401,7 +420,7 @@ export const coachFacts = [
   },
   {
     label: 'Camps',
-    value: 'Thailand, laufend — mit Profis aus dem Oktagon- und UFC-Umfeld',
+    value: 'Thailand, 2–3× pro Jahr — mit Profis aus aller Welt',
   },
   {
     label: 'Gym',
@@ -421,15 +440,15 @@ export const bookingSteps = [
   },
   {
     no: '02',
-    text: 'Per E-Mail bekommst du die Bestätigung und deinen persönlichen Code.',
+    text: 'Per E-Mail bekommst du die Bestätigung deines Termins.',
   },
   {
     no: '03',
-    text: 'Vorbeikommen und trainieren. Die 10 € zahlst du bar vor Ort, Handschuhe und Bandagen leihen wir dir.',
+    text: 'Vorbeikommen und trainieren. Die 10 € zahlst du bar vor Ort, Handschuhe und Bandagen leihen wir dir. Danach bekommst du deinen persönlichen Code.',
   },
   {
     no: '04',
-    text: 'Wirst du danach Mitglied, bekommst du die 10 € mit deinem Code zurück.',
+    text: 'Wirst du Mitglied, rechnen wir die 10 € mit deinem Code auf die Mitgliedschaft an.',
   },
 ] as const;
 
@@ -466,10 +485,14 @@ const JOTFORM_TARIF: Record<TariffId, string> = {
  * `vonWebseite` blendet Tarif und Laufzeit im Formular aus; sie sind ja
  * schon gewählt.
  */
-export function membershipPrefill({ tariff, term }: Selection): Record<string, string> {
+export function membershipPrefill(selection: Selection): Record<string, string> {
+  // Die Kombi kommt ohne Laufzeit: Jotform hat dafür noch keine Option.
+  if (selection.tariff === 'combo') {
+    return { vonWebseite: 'ja', tarif: JOTFORM_TARIF.combo };
+  }
   return {
     vonWebseite: 'ja',
-    tarif: JOTFORM_TARIF[tariff],
-    laufzeit: termLabel(term),
+    tarif: JOTFORM_TARIF[selection.tariff],
+    laufzeit: termLabel(selection.term),
   };
 }

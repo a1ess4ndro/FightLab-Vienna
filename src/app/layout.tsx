@@ -39,7 +39,8 @@ export const metadata: Metadata = {
     "Thaiboxen lernen Wien",
     "Kampfsport 1120 Wien",
   ],
-  alternates: { canonical: "/", languages: { "de-AT": "/", en: "/en" } },
+  // Ohne `en`, bis es /en gibt: Suchmaschinen sollen keine leere Fassung finden.
+  alternates: { canonical: "/", languages: { "de-AT": "/" } },
   openGraph: {
     type: "website",
     locale: "de_AT",
