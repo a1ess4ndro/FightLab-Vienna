@@ -25,7 +25,7 @@ export const site = {
   disciplines: 'Muay Thai · Kickboxen · Boxen',
   bookingHeadline: 'Komm einmal vorbei, dann weißt du es',
   bookingLead:
-    'Das Probetraining kostet 10 €, bar vor Ort. Nach dem Training bekommst du einen persönlichen Code: Wirst du Mitglied, rechnen wir die 10 € damit auf die Mitgliedschaft an. Komm in Sportkleidung, Handschuhe und Ausrüstung leihen wir dir.',
+    'Das Probetraining kostet 10 €, bar vor Ort. Nach dem Training bekommst du einen persönlichen Code: Wirst du Mitglied, rechnen wir die 10 € damit auf die Mitgliedschaft an. Komm in Sportkleidung, Ausrüstung leihen wir dir.',
   mapsRoute:
     'https://www.google.com/maps/dir/?api=1&destination=Pottendorfer+Stra%C3%9Fe+9%2C+1120+Wien',
   mapsEmbed:
@@ -123,7 +123,7 @@ export const pledges = [
     no: '01',
     claim: 'Leihausrüstung inklusive',
     proof:
-      'Handschuhe und Bandagen für die ersten Wochen. Eigene Ausrüstung kaufst du erst, wenn du weißt, dass du bleibst.',
+      'Handschuhe und Schienbeinschoner für die ersten Wochen. Eigene Ausrüstung kaufst du erst, wenn du weißt, dass du bleibst.',
   },
   {
     no: '02',
@@ -341,19 +341,23 @@ export const rates: Record<'standard' | 'student', Record<Term, number>> = {
 /** Fixpreis der Kombi pro Monat, ohne eigene Laufzeit. */
 export const COMBO_RATE = 55;
 
-/** Vertragsstart: November 2026 (Monatsindex 10). */
-export const contractStart = { month: 10, year: 2026 };
+/**
+ * Beginn der Mindestlaufzeit: Dezember 2026 (Monatsindex 11). Laut AGB 5.1
+ * beginnt sie bei Anmeldung vor dem 1. Dezember 2026 an diesem Tag; die
+ * Wochen ab der Eröffnung im November sind beitragsfrei.
+ */
+export const contractStart = { month: 11, year: 2026 };
 
 export const priceNotes = {
   standard: 'Preise inklusive aller Kurse & Leihausrüstung beim Probetraining.',
   student: 'Studentenpreis — gilt mit Studien- oder Lehrbestätigung',
   combo: 'Kombipreis — gilt mit Mitgliedsnachweis von Brown Bear BJJ',
-  /* Aus den AGB (legal.ts), Punkte 3.1, 4.1 und 5.1. Ändert sich dort
+  /* Aus den AGB (legal.ts), Punkte 3.1, 4.1, 5.1 und 5.5. Ändert sich dort
      etwas, ändert es sich hier. */
   terms:
-    'Gesamt ist die Mindestlaufzeit samt einmaliger Aktivierungsgebühr. Danach läuft die Mitgliedschaft unbefristet weiter und ist mit einem Monat Frist zum Monatsletzten kündbar. Die Beiträge sind an den Verbraucherpreisindex gebunden.',
+    'Gesamt ist die Mindestlaufzeit samt einmaliger Aktivierungsgebühr. Sie beginnt am 1. Dezember 2026 — wer vorher einsteigt, trainiert bis dahin beitragsfrei. Zum Ende der Mindestlaufzeit kündbar mit einem Monat Frist, sonst läuft die Mitgliedschaft unbefristet weiter und ist dann mit einem Monat Frist zum Monatsletzten kündbar. Die Beiträge sind an den Verbraucherpreisindex gebunden.',
   comboTerms:
-    'Der Kombipreis gilt, solange deine Mitgliedschaft bei Brown Bear BJJ läuft, und ist mit einem Monat Frist zum Monatsletzten kündbar. Die Beiträge sind an den Verbraucherpreisindex gebunden.',
+    'Keine Mindestlaufzeit: Der Kombipreis gilt, solange deine Mitgliedschaft bei Brown Bear BJJ läuft, und ist mit einem Monat Frist zum Monatsletzten kündbar. Endet die Mitgliedschaft dort, endet sie auch bei uns zum Monatsende. Die Beiträge sind an den Verbraucherpreisindex gebunden.',
   comboTerm: 'Solange deine Mitgliedschaft bei Brown Bear BJJ läuft',
 } as const;
 
@@ -446,7 +450,7 @@ export const bookingSteps = [
   },
   {
     no: '03',
-    text: 'Vorbeikommen und trainieren. Die 10 € zahlst du bar vor Ort, Handschuhe und Bandagen leihen wir dir. Danach bekommst du deinen persönlichen Code.',
+    text: 'Vorbeikommen und trainieren. Die 10 € zahlst du bar vor Ort, Ausrüstung leihen wir dir. Danach bekommst du deinen persönlichen Code.',
   },
   {
     no: '04',

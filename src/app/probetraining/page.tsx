@@ -8,7 +8,7 @@ import { Cta } from "@/components/ui/Cta";
 export const metadata: Metadata = {
   title: "Probetraining buchen",
   description:
-    "Probetraining Muay Thai und Kickboxen in Wien-Meidling buchen. Ohne Vorkenntnisse, Handschuhe und Bandagen leihen wir dir.",
+    "Probetraining Muay Thai und Kickboxen in Wien-Meidling buchen. Ohne Vorkenntnisse, Ausrüstung leihen wir dir.",
   alternates: { canonical: "/probetraining" },
 };
 
@@ -27,7 +27,7 @@ export default function ProbetrainingPage() {
                 value: "10 €, bar vor Ort — wird auf die Mitgliedschaft angerechnet",
               },
               { label: "Mitbringen", value: "Sportkleidung, Wasser, Handtuch" },
-              { label: "Leihen wir dir", value: "Handschuhe und Bandagen" },
+              { label: "Leihen wir dir", value: "Handschuhe und Schienbeinschoner" },
               {
                 label: "Adresse",
                 value: (

@@ -712,23 +712,23 @@ export const cookies: LegalDoc = {
 };
 
 /* -------------------------------------------------------------------------- */
-/* AGB — aus dem Mitgliedschaftsvertrag                                        */
+/* AGB — Mitgliedschaftsvertrag, Stand 09.10.2026                              */
 /* -------------------------------------------------------------------------- */
 
 /**
- * Wortgleich mit den Geschäftsbedingungen im Jotform-Formular Mitgliedschaft,
- * mit einer Ausnahme: Die Kündigungsfrist in 5.1 ist ein Monat statt drei, wie
- * vom Inhaber festgelegt. Im Formular muss sie genauso lauten — sonst
- * unterschreibt das Mitglied einen anderen Text als den, der hier steht.
+ * Die Geschäftsbedingungen des Mitgliedschaftsvertrags, Fassung vom
+ * 09.10.2026, wortgleich übernommen. Nur Trennfehler aus der Vorlage sind
+ * bereinigt („Bank-Einzugsermächtigung“). Im Jotform-Formular muss dieselbe
+ * Fassung stehen — unterschrieben wird der Text dort.
  */
 export const agb: LegalDoc = {
   slug: 'agb',
   title: 'AGB',
-  lead: 'Allgemeine Geschäftsbedingungen für die Mitgliedschaft bei FightLab. Sie sind Bestandteil des Mitgliedsvertrags, den du im Formular unterschreibst.',
-  updated: UPDATED,
+  lead: 'Allgemeine Geschäftsbedingungen für die Mitgliedschaft bei FightLab Vienna. Sie sind Bestandteil des Mitgliedsvertrags, den du im Formular unterschreibst.',
+  updated: '9. Oktober 2026',
   metaTitle: 'AGB',
   metaDescription:
-    'Allgemeine Geschäftsbedingungen von FightLab Wien: Vertragsabschluss, Mitgliedsbeitrag, Aktivierungsgebühr, Wertsicherung, Kündigung und Haftung.',
+    'Allgemeine Geschäftsbedingungen von FightLab Wien: Vertragsabschluss, Mitgliedsbeitrag, Aktivierungsgebühr, Wertsicherung, Mindestlaufzeit, Kündigung und Haftung.',
   sections: [
     {
       no: '01',
@@ -745,7 +745,7 @@ export const agb: LegalDoc = {
         },
         {
           kind: 'text',
-          text: '1.3. Bei Jugendlichen unter dem 18. Lebensjahr ist der Abschluss eines Mitgliedsvertrages nur mit Einwilligung des Erziehungsberechtigten und ferner nur bei Unterzeichnung einer Bürgschaftserklärung sowie einer Bank- Einzugsermächtigung durch den Erziehungsberechtigten zwecks Abbuchung der monatlichen Mitgliedsbeiträge von dessen Konto, möglich.',
+          text: '1.3. Bei Jugendlichen unter dem 18. Lebensjahr ist der Abschluss eines Mitgliedsvertrages nur mit Einwilligung des Erziehungsberechtigten und ferner nur bei Unterzeichnung einer Bürgschaftserklärung sowie einer Bank-Einzugsermächtigung durch den Erziehungsberechtigten zwecks Abbuchung der monatlichen Mitgliedsbeiträge von dessen Konto, möglich.',
         },
       ],
     },
@@ -817,7 +817,7 @@ export const agb: LegalDoc = {
       blocks: [
         {
           kind: 'text',
-          text: '5.1. Der Mitgliedschaftsvertrag wird auf unbestimmte Zeit geschlossen und kann von beiden Vertragsparteien unter Einhaltung einer einmonatigen Kündigungsfrist zum Monatsletzten schriftlich gekündigt werden.',
+          text: '5.1. Das Mitglied wählt bei Vertragsabschluss eine Mindestlaufzeit von 1, 3, 6 oder 12 Monaten. Die Höhe des monatlichen Mitgliedsbeitrages richtet sich nach dem gewählten Tarif und der gewählten Mindestlaufzeit. Die Mindestlaufzeit beginnt mit dem ersten beitragspflichtigen Monat. Bei Anmeldungen vor dem 1. Dezember 2026 beginnt sie am 1. Dezember 2026; die Nutzung von FightLab bis dahin ist beitragsfrei. Während der Mindestlaufzeit ist eine ordentliche Kündigung ausgeschlossen. Der Mitgliedschaftsvertrag kann von beiden Vertragsparteien unter Einhaltung einer einmonatigen Kündigungsfrist schriftlich zum Ende der Mindestlaufzeit gekündigt werden. Erfolgt keine fristgerechte Kündigung, läuft der Mitgliedschaftsvertrag nach Ablauf der Mindestlaufzeit auf unbestimmte Zeit weiter und kann danach von beiden Vertragsparteien unter Einhaltung einer einmonatigen Kündigungsfrist zum Monatsletzten schriftlich gekündigt werden.',
         },
         {
           kind: 'text',
@@ -830,6 +830,10 @@ export const agb: LegalDoc = {
         {
           kind: 'text',
           text: '5.4. Allfällige offenen Guthaben sind innerhalb der Kündigungsfrist bzw. bis zum Vertragsende zu verbrauchen und können nicht Bar abgelöst werden, hiervon ausgenommen ist lediglich ein Guthaben, welches bei berechtigter vorzeitiger Auflösung des Mitgliedsvertrages durch das Mitglied besteht.',
+        },
+        {
+          kind: 'text',
+          text: '5.5. Der Tarif „Kombi Brown Bear BJJ“ steht ausschließlich Mitgliedern von Brown Bear BJJ offen und setzt bei Vertragsabschluss den Nachweis einer aktiven Mitgliedschaft bei Brown Bear BJJ voraus. Abweichend von Punkt 5.1 gilt für diesen Tarif keine Mindestlaufzeit; der Mitgliedsbeitrag beträgt monatlich € 55,00. Der Vertrag kann von beiden Vertragsparteien unter Einhaltung einer einmonatigen Kündigungsfrist zum Monatsletzten schriftlich gekündigt werden. Das Mitglied ist verpflichtet, die Beendigung seiner Mitgliedschaft bei Brown Bear BJJ unverzüglich bekanntzugeben. Mit dem Ende der Mitgliedschaft bei Brown Bear BJJ endet auch die Mitgliedschaft im Tarif „Kombi Brown Bear BJJ“, und zwar zum Ende des betreffenden Kalendermonats.',
         },
       ],
     },
@@ -913,6 +917,17 @@ export const agb: LegalDoc = {
         {
           kind: 'text',
           text: 'Sollten einzelne Bestimmungen dieses Mitgliedvertrages ungültig oder sonst unwirksam sein, bleibt die Gültigkeit der übrigen Bestimmungen hiervon unberührt. Die ungültigen und unwirksamen Bestimmungen sind durch, den wirtschaftlichen Zweck entsprechende und dem ursprünglichen Vertragswillen der Parteien möglichst ähnliche gültige Bestimmungen zu ersetzen.',
+        },
+      ],
+    },
+    {
+      no: '11',
+      id: 'rechnungsadresse',
+      heading: 'Rechnungsadresse',
+      blocks: [
+        {
+          kind: 'text',
+          text: 'Aaron Kaplan – FightLab Vienna, Pottendorferstraße 9, 1120 Wien',
         },
       ],
     },
