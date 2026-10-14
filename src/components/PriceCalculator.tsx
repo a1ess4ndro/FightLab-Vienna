@@ -22,7 +22,7 @@ import { SectionHead } from '@/components/ui/SectionHead';
 /**
  * 05 — Mitglied werden.
  *
- * Monatsbetrag, Aktivierungsgebühr, Gesamtsumme und Mindestlaufzeit stehen
+ * Monatsbetrag, Anmeldegebühr, Gesamtsumme und Mindestlaufzeit stehen
  * gleichzeitig da, die Kündigungsfrist gleich darunter. Das verhindert
  * Rückfragen und Streit — und ist der Unterschied zu allen Mitbewerbern mit
  * „Preis auf Anfrage“.

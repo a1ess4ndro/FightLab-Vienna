@@ -129,7 +129,7 @@ export const pledges = [
     no: '02',
     claim: 'Preise vollständig auf der Seite',
     proof:
-      'Monatsbetrag, die einmalige Aktivierungsgebühr, Gesamtsumme und Mindestlaufzeit stehen im Rechner weiter unten, die Kündigungsfrist gleich darunter. Kein Preis auf Anfrage.',
+      'Monatsbetrag, die einmalige Anmeldegebühr, Gesamtsumme und Mindestlaufzeit stehen im Rechner weiter unten, die Kündigungsfrist gleich darunter. Kein Preis auf Anfrage.',
   },
   {
     no: '03',
@@ -355,13 +355,13 @@ export const priceNotes = {
   /* Aus den AGB (legal.ts), Punkte 3.1, 4.1, 5.1 und 5.5. Ändert sich dort
      etwas, ändert es sich hier. */
   terms:
-    'Gesamt ist die Mindestlaufzeit samt einmaliger Aktivierungsgebühr. Sie beginnt am 1. Dezember 2026 — wer vorher einsteigt, trainiert bis dahin beitragsfrei. Zum Ende der Mindestlaufzeit kündbar mit einem Monat Frist, sonst läuft die Mitgliedschaft unbefristet weiter und ist dann mit einem Monat Frist zum Monatsletzten kündbar. Die Beiträge sind an den Verbraucherpreisindex gebunden.',
+    'Gesamt ist die Mindestlaufzeit samt einmaliger Anmeldegebühr. Sie beginnt am 1. Dezember 2026 — wer vorher einsteigt, trainiert bis dahin beitragsfrei. Zum Ende der Mindestlaufzeit kündbar mit einem Monat Frist, sonst läuft die Mitgliedschaft unbefristet weiter und ist dann mit einem Monat Frist zum Monatsletzten kündbar. Die Beiträge sind an den Verbraucherpreisindex gebunden.',
   comboTerms:
     'Keine Mindestlaufzeit: Der Kombipreis gilt, solange deine Mitgliedschaft bei Brown Bear BJJ läuft, und ist mit einem Monat Frist zum Monatsletzten kündbar. Endet die Mitgliedschaft dort, endet sie auch bei uns zum Monatsende. Die Beiträge sind an den Verbraucherpreisindex gebunden.',
   comboTerm: 'Solange deine Mitgliedschaft bei Brown Bear BJJ läuft',
 } as const;
 
-/** Einmalige Aktivierungsgebühr laut AGB, Punkt 3.1 — in jedem Tarif. */
+/** Einmalige Anmeldegebühr laut AGB, Punkt 3.1 — in jedem Tarif. */
 export const ACTIVATION_FEE = 60;
 
 /** Was im Rechner gewählt war. Die Kombi hat keine Laufzeit zur Wahl. */
@@ -374,7 +374,7 @@ export type Selection =
  * — beide rechnen hiermit, damit es nur eine Wahrheit gibt. Der Vertrag läuft
  * unbefristet; die gewählte Laufzeit ist eine Mindestlaufzeit. `lastMonth`
  * ist ihr letzter Monat als Abstand zum Vertragsstart (für `monthLabel`),
- * `total` die Summe bis dahin samt Aktivierungsgebühr. Die Kombi hat beides
+ * `total` die Summe bis dahin samt Anmeldegebühr. Die Kombi hat beides
  * nicht.
  */
 export function quote(selection: Selection) {

@@ -46,7 +46,7 @@ export function quoteRows(selection: Selection) {
   const q = quote(selection);
   const rows = [
     { label: "Monatlich", value: eur(q.monthly) },
-    { label: "Aktivierung einmalig", value: eur(q.activation) },
+    { label: "Anmeldegebühr einmalig", value: eur(q.activation) },
   ];
   if (q.total !== null && q.lastMonth !== null) {
     rows.push(

@@ -276,15 +276,16 @@ export const datenschutz: LegalDoc = {
                 'HOSTINGER, UAB, Švitrigailos g. 34, LT-03230 Vilnius, Litauen',
             },
             {
-              label: 'Verarbeitung',
-              value: 'Vertrag nach Art. 28 DSGVO — wird ergänzt',
+              label: 'Serverstandort',
+              value: 'wird ergänzt',
               pending: true,
             },
+            {
+              label: 'Verarbeitung',
+              value:
+                'Vertrag nach Art. 28 DSGVO, Bestandteil der Nutzungsbedingungen von Hostinger',
+            },
           ],
-        },
-        {
-          kind: 'note',
-          text: 'Serverstandort, konkrete Speicherdauer und der Auftragsverarbeitungsvertrag mit Hostinger sind noch einzutragen.',
         },
       ],
     },
@@ -409,12 +410,13 @@ export const datenschutz: LegalDoc = {
             },
             {
               label: 'Drittland',
-              value: 'USA, gestützt auf das EU-US Data Privacy Framework',
+              value:
+                'USA, gestützt auf das EU-US Data Privacy Framework und die EU-Standardvertragsklauseln',
             },
             {
               label: 'Verarbeitung',
-              value: 'Vertrag nach Art. 28 DSGVO mit Jotform — wird ergänzt',
-              pending: true,
+              value:
+                'Vertrag nach Art. 28 DSGVO mit Jotform Ltd, einschließlich EU-Standardvertragsklauseln',
             },
             {
               label: 'Speicherdauer',
@@ -422,10 +424,6 @@ export const datenschutz: LegalDoc = {
                 'Probetraining: bis es stattgefunden hat oder abgesagt ist. Mitgliedschaft: für die Dauer des Vertrags, danach im Rahmen der gesetzlichen Aufbewahrungsfristen',
             },
           ],
-        },
-        {
-          kind: 'note',
-          text: 'Den Auftragsverarbeitungsvertrag mit Jotform abschließen und die Speicherdauer bestätigen. Jotform bietet auch Speicherung in der EU an — mit einem EU-Konto entfiele die Übermittlung in die USA.',
         },
       ],
     },
@@ -447,7 +445,7 @@ export const datenschutz: LegalDoc = {
           rows: [
             {
               label: 'Zweck',
-              value: 'Mitgliedsbeiträge und Aktivierungsgebühr einziehen',
+              value: 'Mitgliedsbeiträge und Anmeldegebühr einziehen',
             },
             {
               label: 'Rechtsgrundlage',
@@ -462,7 +460,8 @@ export const datenschutz: LegalDoc = {
             },
             {
               label: 'Drittland',
-              value: 'USA, gestützt auf das EU-US Data Privacy Framework',
+              value:
+                'USA, gestützt auf das EU-US Data Privacy Framework und die EU-Standardvertragsklauseln',
             },
             {
               label: 'Speicherdauer',
@@ -470,10 +469,6 @@ export const datenschutz: LegalDoc = {
                 'Zahlungsbelege sieben Jahre, wie es die Bundesabgabenordnung vorschreibt',
             },
           ],
-        },
-        {
-          kind: 'note',
-          text: 'Im Stripe-Konto nachsehen, welche Stripe-Gesellschaft Vertragspartner ist, und den Empfänger danach bestätigen.',
         },
       ],
     },
@@ -515,7 +510,7 @@ export const datenschutz: LegalDoc = {
             {
               label: 'Make',
               value:
-                'Celonis Inc., One World Trade Center, 87th Floor, New York, NY 10007, USA',
+                'Celonis, Inc., One World Trade Center, 87th Floor, New York, NY 10007, USA',
             },
             {
               label: 'Hostinger',
@@ -524,20 +519,21 @@ export const datenschutz: LegalDoc = {
             },
             {
               label: 'Drittland',
-              value:
-                'USA für Airtable und Make; Make gestützt auf das EU-US Data Privacy Framework',
+              value: 'USA für Airtable und Make',
             },
             {
               label: 'Grundlage Airtable',
               value:
-                'Data Privacy Framework oder Standardvertragsklauseln — wird ergänzt',
-              pending: true,
+                'EU-Standardvertragsklauseln (Bestandteil des Auftragsverarbeitungsvertrags)',
+            },
+            {
+              label: 'Grundlage Make',
+              value:
+                'EU-US Data Privacy Framework, ersatzweise EU-Standardvertragsklauseln',
             },
             {
               label: 'Verarbeitung',
-              value:
-                'Verträge nach Art. 28 DSGVO mit allen drei — wird ergänzt',
-              pending: true,
+              value: 'Verträge nach Art. 28 DSGVO mit allen drei abgeschlossen',
             },
             {
               label: 'Speicherdauer',
@@ -545,10 +541,6 @@ export const datenschutz: LegalDoc = {
                 'für die Dauer der Mitgliedschaft, danach im Rahmen der gesetzlichen Aufbewahrungsfristen',
             },
           ],
-        },
-        {
-          kind: 'note',
-          text: 'Auftragsverarbeitungsverträge mit Airtable, Make und Hostinger abschließen. Für Airtable klären, worauf die Übermittlung in die USA gestützt ist — die Datenschutzerklärung von Airtable nennt das nicht.',
         },
       ],
     },
@@ -728,7 +720,7 @@ export const agb: LegalDoc = {
   updated: '9. Oktober 2026',
   metaTitle: 'AGB',
   metaDescription:
-    'Allgemeine Geschäftsbedingungen von FightLab Wien: Vertragsabschluss, Mitgliedsbeitrag, Aktivierungsgebühr, Wertsicherung, Mindestlaufzeit, Kündigung und Haftung.',
+    'Allgemeine Geschäftsbedingungen von FightLab Wien: Vertragsabschluss, Mitgliedsbeitrag, Anmeldegebühr, Wertsicherung, Mindestlaufzeit, Kündigung und Haftung.',
   sections: [
     {
       no: '01',
@@ -737,7 +729,7 @@ export const agb: LegalDoc = {
       blocks: [
         {
           kind: 'text',
-          text: '1.1. Diese allgemeinen Geschäftsbedingungen (AGB) sind integrierter Bestandteil des Mitgliedsvertrages zwischen "Aaron Kaplan Einzelunternehmen" (im Folgenden kurz: FightLab) und dem Mitglied. Die AGB gelten für die Dauermitgliedschaft und die Tageskarte. Das Mitglied erklärt sich mit sämtlichen nachstehenden Bedingungen ausdrücklich einverstanden.',
+          text: '1.1. Diese allgemeinen Geschäftsbedingungen (AGB) sind integrierter Bestandteil des Mitgliedsvertrages zwischen "Aaron Kaplan – FightLab Vienna" (im Folgenden kurz: FightLab) und dem Mitglied. Die AGB gelten für die Dauermitgliedschaft und die Tageskarte. Das Mitglied erklärt sich mit sämtlichen nachstehenden Bedingungen ausdrücklich einverstanden.',
         },
         {
           kind: 'text',
@@ -771,7 +763,7 @@ export const agb: LegalDoc = {
       blocks: [
         {
           kind: 'text',
-          text: '3.1. Das Mitglied hat sich im Mitgliedschaftsvertrag zur Leistung einer Aktivierungsgebühr in Höhe von einmalig € 60,00 verpflichtet, die zum im Mitgliedschaftsvertrag ausgewiesenen Termin abgebucht wird. Durch die Aktivierungsgebühr wird der Verwaltungsaufwand von FightLab im Zusammenhang mit dem Beginn der Mitgliedschaft abgedeckt. Durch die Leistung der Aktivierungsgebühr erhält das Mitglied außerdem Anspruch auf folgende Leistungen: Das Mitglied hat aufgrund der Bezahlung der Aktivierungsgebühr Anspruch auf einen Rundgang mit einem Mitarbeiter von FightLab durch das Studio sowie eine Erstinformation zur Benutzung des Trainingsbereiches und des sonstigen Leistungsangebotes.',
+          text: '3.1. Das Mitglied hat sich im Mitgliedschaftsvertrag zur Leistung einer Anmeldegebühr in Höhe von einmalig € 60,00 verpflichtet, die zum im Mitgliedschaftsvertrag ausgewiesenen Termin abgebucht wird. Durch die Anmeldegebühr wird der Verwaltungsaufwand von FightLab im Zusammenhang mit dem Beginn der Mitgliedschaft abgedeckt. Durch die Leistung der Anmeldegebühr erhält das Mitglied außerdem Anspruch auf folgende Leistungen: Das Mitglied hat aufgrund der Bezahlung der Anmeldegebühr Anspruch auf einen Rundgang mit einem Mitarbeiter von FightLab durch das Studio sowie eine Erstinformation zur Benutzung des Trainingsbereiches und des sonstigen Leistungsangebotes.',
         },
         {
           kind: 'text',
@@ -825,7 +817,7 @@ export const agb: LegalDoc = {
         },
         {
           kind: 'text',
-          text: '5.3. Sollte FightLab den Mitgliedsvertrag aus einem der in a. bis e. genannten Gründen vorzeitig auflösen, hat das Mitglied dennoch die bis zum nächstmöglichen ordentlichen Kündigungstermin fälligen Mitgliedsbeiträge zu bezahlen. Sollte FightLab den Mitgliedsvertrag aus einem der in a. bis e. genannten Gründen vorzeitig auflösen, erfolgt keine Rückerstattung allfälliger nicht verbrauchter bzw. vorausbezahlter Mitgliedsbeiträge.',
+          text: '5.3. Sollte FightLab den Mitgliedsvertrag aus einem der in Punkt 5.2 genannten Gründe vorzeitig auflösen, hat das Mitglied dennoch die bis zum nächstmöglichen ordentlichen Kündigungstermin fälligen Mitgliedsbeiträge zu bezahlen. Sollte FightLab den Mitgliedsvertrag aus einem der in Punkt 5.2 genannten Gründe vorzeitig auflösen, erfolgt keine Rückerstattung allfälliger nicht verbrauchter bzw. vorausbezahlter Mitgliedsbeiträge.',
         },
         {
           kind: 'text',
