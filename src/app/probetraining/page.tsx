@@ -18,6 +18,7 @@ export default function ProbetrainingPage() {
       eyebrow="Probetraining"
       title={site.bookingHeadline}
       lead={site.bookingLead}
+      leadNote={site.trialDates}
       aside={
         <>
           <FactList

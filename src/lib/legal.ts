@@ -57,22 +57,18 @@ export type LegalDoc = {
 
 const UPDATED = 'Oktober 2026';
 
-/** Steht unter jeder der drei Seiten, solange die Texte ungeprüft sind. */
-const DRAFT_NOTE =
-  'Entwurfsfassung. Dieser Text ist noch nicht anwaltlich geprüft und vor der Eröffnung zu ersetzen.';
-
 /* -------------------------------------------------------------------------- */
-/* Impressum — § 5 ECG, § 14 UGB, §§ 24 f. MedienG                             */
+/* Impressum — § 5 ECG, §§ 24 f. MedienG                                      */
 /* -------------------------------------------------------------------------- */
 
 export const impressum: LegalDoc = {
   slug: 'impressum',
   title: 'Impressum',
-  lead: 'Offenlegung nach § 5 E-Commerce-Gesetz, § 14 Unternehmensgesetzbuch und §§ 24 f. Mediengesetz.',
+  lead: 'Offenlegung nach § 5 E-Commerce-Gesetz und §§ 24 f. Mediengesetz.',
   updated: UPDATED,
   metaTitle: 'Impressum',
   metaDescription:
-    'Offenlegung und Medieninhaber von FightLab, Pottendorfer Straße 9, 1120 Wien — nach ECG, UGB und Mediengesetz.',
+    'Offenlegung und Medieninhaber von FightLab Vienna, Pottendorferstraße 9, 1120 Wien — nach E-Commerce-Gesetz und Mediengesetz.',
   sections: [
     {
       no: '01',
@@ -82,7 +78,7 @@ export const impressum: LegalDoc = {
         {
           kind: 'facts',
           rows: [
-            { label: 'Unternehmen', value: site.name + ' — ' + site.sublabel },
+            { label: 'Unternehmen', value: site.legalName },
             { label: 'Inhaber', value: 'Aaron Kaplan' },
             { label: 'Anschrift', value: site.street + ', ' + site.city },
             { label: 'Bezirk', value: site.district + ', Österreich' },
@@ -99,40 +95,11 @@ export const impressum: LegalDoc = {
         {
           kind: 'facts',
           rows: [
-            {
-              label: 'Firmenbuchgericht',
-              value: 'Handelsgericht Wien',
-            },
+            { label: 'Rechtsform', value: 'Einzelunternehmen' },
             { label: 'UID-Nummer', value: 'wird ergänzt', pending: true },
             {
               label: 'Gegenstand',
               value: 'Betrieb eines Kampfsport-Gyms, Sportunterricht',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      no: '03',
-      id: 'gewerbe',
-      heading: 'Gewerbe und Aufsicht',
-      blocks: [
-        {
-          kind: 'facts',
-          rows: [
-            { label: 'Gewerbe', value: 'Einzelunternehmen' },
-            {
-              label: 'Gewerbebehörde',
-              value: 'Magistratisches Bezirksamt für den 12. Bezirk, Wien',
-            },
-            {
-              label: 'Kammer',
-              value:
-                'Wirtschaftskammer Wien, Fachgruppe Freizeit- und Sportbetriebe',
-            },
-            {
-              label: 'Rechtsvorschrift',
-              value: 'Gewerbeordnung 1994, abrufbar unter ris.bka.gv.at',
             },
             { label: 'Anwendbares Recht', value: 'Österreichisches Recht' },
           ],
@@ -140,7 +107,7 @@ export const impressum: LegalDoc = {
       ],
     },
     {
-      no: '04',
+      no: '03',
       id: 'blattlinie',
       heading: 'Blattlinie nach § 25 Mediengesetz',
       blocks: [
@@ -154,7 +121,7 @@ export const impressum: LegalDoc = {
       ],
     },
     {
-      no: '05',
+      no: '04',
       id: 'streitbeilegung',
       heading: 'Verbraucherstreitbeilegung',
       blocks: [
@@ -169,13 +136,13 @@ export const impressum: LegalDoc = {
       ],
     },
     {
-      no: '06',
+      no: '05',
       id: 'haftung',
       heading: 'Haftung und Urheberrecht',
       blocks: [
         {
           kind: 'text',
-          text: 'Inhalte dieser Seite werden mit Sorgfalt erstellt. Für Vollständigkeit und Aktualität — insbesondere bei Trainingszeiten und Preisen im Entwurfsstand — wird keine Gewähr übernommen. Verbindlich ist, was im Vertrag steht.',
+          text: 'Inhalte dieser Seite werden mit Sorgfalt erstellt. Für Vollständigkeit und Aktualität — insbesondere bei Trainingszeiten und Preisen — wird keine Gewähr übernommen. Verbindlich ist, was im Vertrag steht.',
         },
         {
           kind: 'text',
@@ -215,7 +182,7 @@ export const datenschutz: LegalDoc = {
         {
           kind: 'facts',
           rows: [
-            { label: 'Unternehmen', value: site.name + ' — ' + site.sublabel },
+            { label: 'Unternehmen', value: site.legalName },
             { label: 'Anschrift', value: site.street + ', ' + site.city },
             { label: 'E-Mail', value: site.email },
             { label: 'Telefon', value: site.phone },
@@ -277,8 +244,7 @@ export const datenschutz: LegalDoc = {
             },
             {
               label: 'Serverstandort',
-              value: 'wird ergänzt',
-              pending: true,
+              value: 'Europe (Germany, Frankfurt)',
             },
             {
               label: 'Verarbeitung',
@@ -384,11 +350,11 @@ export const datenschutz: LegalDoc = {
         },
         {
           kind: 'text',
-          text: 'Probetraining: Name, Alter, E-Mail-Adresse, Wunschtermin und, falls vorhanden, ein Probetraining-Code.',
+          text: 'Probetraining: Name, Alter, E-Mail-Adresse und Wunschtermin.',
         },
         {
           kind: 'text',
-          text: 'Mitgliedschaft: Name, E-Mail-Adresse, Telefonnummer, Geburtsdatum, Adresse, Tarif und Laufzeit, deine Unterschrift und — für den Studenten- und den Kombitarif — ein hochgeladener Nachweis. Bei Minderjährigen zusätzlich Name, E-Mail-Adresse und Unterschrift eines Erziehungsberechtigten.',
+          text: 'Mitgliedschaft: Name, E-Mail-Adresse, Telefonnummer, Geburtsdatum, Adresse, Tarif und Laufzeit, deine Unterschrift und — für den Studenten- und den Kombitarif — ein hochgeladener Nachweis sowie gegebenenfalls dein Probetraining-Code. Bei Minderjährigen zusätzlich Name, E-Mail-Adresse und Unterschrift eines Erziehungsberechtigten.',
         },
         {
           kind: 'facts',
@@ -421,7 +387,7 @@ export const datenschutz: LegalDoc = {
             {
               label: 'Speicherdauer',
               value:
-                'Probetraining: bis es stattgefunden hat oder abgesagt ist. Mitgliedschaft: für die Dauer des Vertrags, danach im Rahmen der gesetzlichen Aufbewahrungsfristen',
+                'Probetraining: bis drei Monate nach dem Training, so lange gilt dein persönlicher Code; danach werden die Daten gelöscht. Mitgliedschaft: für die Dauer des Vertrags, danach im Rahmen der gesetzlichen Aufbewahrungsfristen',
             },
           ],
         },
@@ -479,7 +445,7 @@ export const datenschutz: LegalDoc = {
       blocks: [
         {
           kind: 'text',
-          text: 'Ist deine Anmeldung eingegangen, führen wir dich als Mitglied: mit den Angaben aus dem Formular, Tarif, Laufzeit, Zahlungsstand und, bei Studenten- und Kombitarif, dem Nachweis. Dafür nutzen wir drei Dienste, alle in unserem Auftrag:',
+          text: 'Ist deine Anmeldung eingegangen, führen wir dich als Mitglied: mit den Angaben aus dem Formular, Tarif, Laufzeit, Zahlungsstand und, bei Studenten- und Kombitarif, dem Nachweis. Auch Probetrainings verwalten wir dort, um dir nach dem Training deinen persönlichen Code zu schicken. Dafür nutzen wir drei Dienste, alle in unserem Auftrag:',
         },
         {
           kind: 'list',
@@ -593,7 +559,6 @@ export const datenschutz: LegalDoc = {
             { label: 'Web', value: 'dsb.gv.at' },
           ],
         },
-        { kind: 'note', text: DRAFT_NOTE },
       ],
     },
   ],
@@ -652,10 +617,10 @@ export const cookies: LegalDoc = {
               'nach Angaben von Google bis zu 6 Monate',
             ],
             [
-              'Jotform',
+              'Jotform (JOTFORM_SESSION, userReferer, guest)',
               'Jotform Inc.',
               'Betrieb des Formulars, Schutz vor Missbrauch',
-              'wird ergänzt',
+              'bis zu 30 Tage',
             ],
           ],
         },
@@ -709,7 +674,7 @@ export const cookies: LegalDoc = {
 
 /**
  * Die Geschäftsbedingungen des Mitgliedschaftsvertrags, Fassung vom
- * 09.10.2026, wortgleich übernommen. Nur Trennfehler aus der Vorlage sind
+ * 15.10.2026, wortgleich übernommen. Nur Trennfehler aus der Vorlage sind
  * bereinigt („Bank-Einzugsermächtigung“). Im Jotform-Formular muss dieselbe
  * Fassung stehen — unterschrieben wird der Text dort.
  */
@@ -717,7 +682,7 @@ export const agb: LegalDoc = {
   slug: 'agb',
   title: 'AGB',
   lead: 'Allgemeine Geschäftsbedingungen für die Mitgliedschaft bei FightLab Vienna. Sie sind Bestandteil des Mitgliedsvertrags, den du im Formular unterschreibst.',
-  updated: '9. Oktober 2026',
+  updated: '15. Oktober 2026',
   metaTitle: 'AGB',
   metaDescription:
     'Allgemeine Geschäftsbedingungen von FightLab Wien: Vertragsabschluss, Mitgliedsbeitrag, Anmeldegebühr, Wertsicherung, Mindestlaufzeit, Kündigung und Haftung.',
@@ -759,7 +724,7 @@ export const agb: LegalDoc = {
     {
       no: '03',
       id: 'beitrag',
-      heading: 'Mitgliedsbeitrag und Aktivierungsgebühr',
+      heading: 'Mitgliedsbeitrag und Anmeldegebühr',
       blocks: [
         {
           kind: 'text',
@@ -903,6 +868,57 @@ export const agb: LegalDoc = {
     },
     {
       no: '10',
+      id: 'ruecktritt',
+      heading: 'Rücktrittsrecht bei Online-Abschluss',
+      blocks: [
+        {
+          kind: 'text',
+          text: '10.1. Schließt das Mitglied als Verbraucher den Mitgliedsvertrag online ab, hat es das Recht, binnen vierzehn Tagen ohne Angabe von Gründen von diesem Vertrag zurückzutreten. Die Rücktrittsfrist beträgt vierzehn Tage ab dem Tag des Vertragsabschlusses. Um das Rücktrittsrecht auszuüben, muss das Mitglied FightLab (Aaron Kaplan – FightLab Vienna, Pottendorferstraße 9, 1120 Wien, E-Mail: office@fightlab.at) mittels einer eindeutigen Erklärung (z. B. ein mit der Post versandter Brief oder eine E-Mail) über seinen Entschluss, von diesem Vertrag zurückzutreten, informieren. Es kann dafür das Muster-Widerrufsformular in Punkt 10.3 verwenden, das jedoch nicht vorgeschrieben ist. Zur Wahrung der Rücktrittsfrist reicht es aus, dass die Mitteilung über die Ausübung des Rücktrittsrechts vor Ablauf der Rücktrittsfrist abgesendet wird.',
+        },
+        {
+          kind: 'text',
+          text: '10.2. Tritt das Mitglied von diesem Vertrag zurück, hat FightLab alle Zahlungen, die es vom Mitglied erhalten hat, unverzüglich und spätestens binnen vierzehn Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung über den Rücktritt bei FightLab eingegangen ist. Für diese Rückzahlung wird dasselbe Zahlungsmittel verwendet, das bei der ursprünglichen Transaktion eingesetzt wurde, es sei denn, es wurde ausdrücklich etwas anderes vereinbart; in keinem Fall werden wegen dieser Rückzahlung Entgelte berechnet.',
+        },
+        {
+          kind: 'text',
+          text: '10.3. Muster-Widerrufsformular (Wenn Sie den Vertrag widerrufen wollen, dann füllen Sie bitte dieses Formular aus und senden Sie es zurück.)',
+        },
+        {
+          kind: 'text',
+          text: 'An: Aaron Kaplan – FightLab Vienna, Pottendorferstraße 9, 1120 Wien, office@fightlab.at',
+        },
+        {
+          kind: 'text',
+          text: 'Hiermit widerrufe(n) ich/wir (*) den von mir/uns (*) abgeschlossenen Vertrag über die Erbringung der folgenden Dienstleistung: Mitgliedschaft bei FightLab Vienna',
+        },
+        {
+          kind: 'text',
+          text: 'Abgeschlossen am (*): ______',
+        },
+        {
+          kind: 'text',
+          text: 'Name des/der Verbraucher(s): ______',
+        },
+        {
+          kind: 'text',
+          text: 'Anschrift des/der Verbraucher(s): ______',
+        },
+        {
+          kind: 'text',
+          text: 'Unterschrift des/der Verbraucher(s) (nur bei Mitteilung auf Papier): ______',
+        },
+        {
+          kind: 'text',
+          text: 'Datum: ______',
+        },
+        {
+          kind: 'text',
+          text: '(*) Unzutreffendes streichen.',
+        },
+      ],
+    },
+    {
+      no: '11',
       id: 'sonstiges',
       heading: 'Sonstiges',
       blocks: [
@@ -913,7 +929,7 @@ export const agb: LegalDoc = {
       ],
     },
     {
-      no: '11',
+      no: '12',
       id: 'rechnungsadresse',
       heading: 'Rechnungsadresse',
       blocks: [

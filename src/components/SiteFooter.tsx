@@ -85,10 +85,6 @@ export function SiteFooter() {
       </div>
 
       <div aria-hidden className="h-[14px] w-full bg-band" />
-
-      <p className="data m-0 px-[clamp(1.125rem,4vw,3.5rem)] py-s2 text-[0.625rem] text-chalk2">
-        {site.draftNote}
-      </p>
     </footer>
   );
 }

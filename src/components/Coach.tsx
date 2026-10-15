@@ -30,8 +30,8 @@ export function Coach() {
             K1 und MMA, trainiert regelmäßig in Thailand mit Profis. Was er dort
             lernt, kommt als Methode zurück, nicht als Anekdote.
             <br />
-            Das Jiu-Jitsu-Training übernimmt Firo von BrownBear BJJ. Er ist
-            ebenfalls erfahrener Wettkämpfer und unterrichtet im BrownBear BJJ.
+            Das Jiu-Jitsu-Training übernimmt Firo von Brown Bear BJJ. Er ist
+            ebenfalls erfahrener Wettkämpfer und unterrichtet im Brown Bear BJJ.
           </p>
 
           <dl className="m-0 grid pt-3">

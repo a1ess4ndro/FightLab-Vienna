@@ -152,6 +152,9 @@ export function RailNav() {
             event.preventDefault();
             goTo("distanz");
           }}
+          // Ohne Namen läse ein Screenreader die Wortmarke Buchstabe für
+          // Buchstabe vor: „Fight Lab V I E N N A Vienna“.
+          aria-label="FightLab Vienna"
           className="grid content-center border-r border-nightline px-[1.125rem] py-3 no-underline"
         >
           <Wordmark />

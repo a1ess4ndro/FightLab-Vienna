@@ -11,7 +11,11 @@
 export const site = {
   name: 'FightLab',
   sublabel: 'Team Kaplan',
-  street: 'Pottendorfer Straße 9',
+  /** So steht der Betrieb in Vertrag, AGB, Impressum und Datenschutz. */
+  legalName: 'Aaron Kaplan – FightLab Vienna',
+  /* Schreibweise wie in Vertrag und AGB. Die Maps-Links unten bleiben bei
+     „Pottendorfer Straße“, so findet Google die Adresse sicher. */
+  street: 'Pottendorferstraße 9',
   city: '1120 Wien',
   district: 'Meidling',
   transit: 'U6 Meidling · ~3 Minuten zu Fuß',
@@ -19,18 +23,19 @@ export const site = {
   phone: '+43 — folgt',
   /* Eine Zeitspanne über die ganze Woche wäre gelogen — der Samstag liegt
      Stunden vor dem Rest. Deshalb „ab", und der Stundenplan hat das Genaue. */
-  hours: 'Mo — Fr ab 16:45 · Sa ab 13:00',
+  hours: 'Mo & Mi ab 17:30 · Fr ab 16:45 · Sa ab 13:00',
   opening: 'Eröffnung November 2026',
   tagline: 'Kämpfen ist wie Schach, nur dass Fehler weh tun.',
   disciplines: 'Muay Thai · Kickboxen · Boxen',
   bookingHeadline: 'Komm einmal vorbei, dann weißt du es',
+  trialDates:
+    'Probetrainings sind ab 9. November buchbar, jeweils Mo, Mi, Fr und Sa. Für Einsteiger eignet sich am besten Fundamentals am Montag.',
   bookingLead:
     'Das Probetraining kostet 10 €, bar vor Ort. Nach dem Training bekommst du einen persönlichen Code: Wirst du Mitglied, rechnen wir die 10 € damit auf die Mitgliedschaft an. Komm in Sportkleidung, Ausrüstung leihen wir dir.',
   mapsRoute:
     'https://www.google.com/maps/dir/?api=1&destination=Pottendorfer+Stra%C3%9Fe+9%2C+1120+Wien',
   mapsEmbed:
     'https://www.google.com/maps?q=Pottendorfer%20Stra%C3%9Fe%209%2C%201120%20Wien&z=16&output=embed',
-  draftNote: 'Entwurf · Preise, Zeiten und Rechtstexte folgen',
 } as const;
 
 /* -------------------------------------------------------------------------- */
@@ -43,7 +48,7 @@ export const rail: RailItem[] = [
   { id: 'distanz', no: '01', label: 'Distanz' },
   { id: 'vertrauen', no: '02', label: 'Versprechen' },
   { id: 'woche', no: '03', label: 'Trainingsplan' },
-  { id: 'zweifel', no: '04', label: 'Zweifel' },
+  { id: 'zweifel', no: '04', label: 'Zweifel?' },
   { id: 'laufzeit', no: '05', label: 'Mitglied werden' },
   { id: 'coach', no: '06', label: 'Coach' },
 ];
@@ -349,7 +354,7 @@ export const COMBO_RATE = 55;
 export const contractStart = { month: 11, year: 2026 };
 
 export const priceNotes = {
-  standard: 'Preise inklusive aller Kurse & Leihausrüstung beim Probetraining.',
+  standard: 'Preise inklusive aller Kurse & Leihausrüstung für die ersten Wochen.',
   student: 'Studentenpreis — gilt mit Studien- oder Lehrbestätigung',
   combo: 'Kombipreis — gilt mit Mitgliedsnachweis von Brown Bear BJJ',
   /* Aus den AGB (legal.ts), Punkte 3.1, 4.1, 5.1 und 5.5. Ändert sich dort
@@ -357,7 +362,7 @@ export const priceNotes = {
   terms:
     'Gesamt ist die Mindestlaufzeit samt einmaliger Anmeldegebühr. Sie beginnt am 1. Dezember 2026 — wer vorher einsteigt, trainiert bis dahin beitragsfrei. Zum Ende der Mindestlaufzeit kündbar mit einem Monat Frist, sonst läuft die Mitgliedschaft unbefristet weiter und ist dann mit einem Monat Frist zum Monatsletzten kündbar. Die Beiträge sind an den Verbraucherpreisindex gebunden.',
   comboTerms:
-    'Keine Mindestlaufzeit: Der Kombipreis gilt, solange deine Mitgliedschaft bei Brown Bear BJJ läuft, und ist mit einem Monat Frist zum Monatsletzten kündbar. Endet die Mitgliedschaft dort, endet sie auch bei uns zum Monatsende. Die Beiträge sind an den Verbraucherpreisindex gebunden.',
+    'Keine Mindestlaufzeit: Der Kombipreis gilt, solange deine Mitgliedschaft bei Brown Bear BJJ läuft, und ist mit einem Monat Frist zum Monatsletzten kündbar. Wer vor dem 1. Dezember 2026 einsteigt, trainiert bis dahin beitragsfrei. Endet die Mitgliedschaft dort, endet sie auch bei uns zum Monatsende. Die Beiträge sind an den Verbraucherpreisindex gebunden.',
   comboTerm: 'Solange deine Mitgliedschaft bei Brown Bear BJJ läuft',
 } as const;
 
@@ -430,7 +435,7 @@ export const coachFacts = [
   },
   {
     label: 'Gym',
-    value: 'Pottendorfer Straße 9, 1120 Wien — U6 Meidling, Europlaza',
+    value: 'Pottendorferstraße 9, 1120 Wien — U6 Meidling · ~3 Minuten zu Fuß',
   },
 ] as const;
 

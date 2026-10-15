@@ -22,12 +22,15 @@ export function FormPage({
   eyebrow,
   title,
   lead,
+  leadNote,
   aside,
   children,
 }: {
   eyebrow: string;
   title: string;
   lead: string;
+  /** Praktisches direkt unter der Einleitung: Termine, Zahlung. */
+  leadNote?: string;
   aside: ReactNode;
   children: ReactNode;
 }) {
@@ -47,6 +50,11 @@ export function FormPage({
             <p className="m-0 max-w-[54ch] text-[1.0625rem] leading-[1.6] text-chalk2">
               {lead}
             </p>
+            {leadNote ? (
+              <p className="m-0 max-w-[54ch] font-mono text-[0.8125rem] leading-[1.6] text-chalk">
+                {leadNote}
+              </p>
+            ) : null}
           </div>
         </header>
 
