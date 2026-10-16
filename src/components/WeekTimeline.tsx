@@ -17,7 +17,7 @@ import { useIsMobile } from '@/hooks/useViewport';
 import { useToday } from '@/hooks/useToday';
 
 /**
- * 03 — Die Woche als Zeitachse.
+ * 03 — Trainingsplan.
  *
  * Tage waagrecht, Uhrzeit senkrecht: Auf einen Blick ist zu sehen, wann
  * trainiert wird und wie lange eine Einheit dauert. Unter 720 px wird daraus
@@ -45,7 +45,7 @@ export function WeekTimeline() {
       <div className="grid gap-s3 px-[clamp(1.125rem,4vw,3.5rem)] pt-[clamp(2rem,5vw,4.25rem)] pb-[clamp(2.5rem,5vw,4.75rem)]">
         <SectionHead
           id="woche-titel"
-          title="Die Woche als Zeitachse"
+          title="Trainingsplan"
           titleWidth="max-w-[18ch]"
         />
 

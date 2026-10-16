@@ -68,7 +68,9 @@ export const impressum: LegalDoc = {
   updated: UPDATED,
   metaTitle: 'Impressum',
   metaDescription:
-    'Offenlegung und Medieninhaber von FightLab Vienna, Pottendorferstraße 9, 1120 Wien — nach E-Commerce-Gesetz und Mediengesetz.',
+    'Offenlegung und Medieninhaber von FightLab Vienna, ' +
+    site.street +
+    ', 1120 Wien — nach E-Commerce-Gesetz und Mediengesetz.',
   sections: [
     {
       no: '01',
@@ -83,6 +85,7 @@ export const impressum: LegalDoc = {
             { label: 'Anschrift', value: site.street + ', ' + site.city },
             { label: 'Bezirk', value: site.district + ', Österreich' },
             { label: 'E-Mail', value: site.email },
+            { label: 'Telefon', value: site.phone },
           ],
         },
       ],

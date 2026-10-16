@@ -13,14 +13,16 @@ export const site = {
   sublabel: 'Team Kaplan',
   /** So steht der Betrieb in Vertrag, AGB, Impressum und Datenschutz. */
   legalName: 'Aaron Kaplan – FightLab Vienna',
-  /* Schreibweise wie in Vertrag und AGB. Die Maps-Links unten bleiben bei
-     „Pottendorfer Straße“, so findet Google die Adresse sicher. */
-  street: 'Pottendorferstraße 9',
+  /* Anschrift samt Eingang, so steht sie überall auf der Seite. Für die
+     strukturierten Daten nur die Straße allein. Die Maps-Links unten führen
+     weiter zum Eingang in der Pottendorfer Straße. */
+  street: 'Wienerbergstraße 32 – Eingang auf Pottendorferstraße',
+  streetAddress: 'Wienerbergstraße 32',
   city: '1120 Wien',
   district: 'Meidling',
   transit: 'U6 Meidling · ~3 Minuten zu Fuß',
   email: 'office@fightlab.at',
-  phone: '+43 — folgt',
+  phone: '+43 670 3578567',
   /* Eine Zeitspanne über die ganze Woche wäre gelogen — der Samstag liegt
      Stunden vor dem Rest. Deshalb „ab", und der Stundenplan hat das Genaue. */
   hours: 'Mo & Mi ab 17:30 · Fr ab 16:45 · Sa ab 13:00',
@@ -166,7 +168,7 @@ export const reviewSlots = [
 ] as const;
 
 /* -------------------------------------------------------------------------- */
-/* 03 — Die Woche als Zeitachse                                                */
+/* 03 — Trainingsplan                                                          */
 /* -------------------------------------------------------------------------- */
 
 /**
@@ -435,7 +437,7 @@ export const coachFacts = [
   },
   {
     label: 'Gym',
-    value: 'Pottendorferstraße 9, 1120 Wien — U6 Meidling · ~3 Minuten zu Fuß',
+    value: `${site.street}, ${site.city} — U6 Meidling · ~3 Minuten zu Fuß`,
   },
 ] as const;
 

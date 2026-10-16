@@ -18,9 +18,10 @@ export function StructuredData() {
           "Kampfsport-Gym in Wien-Meidling für Muay Thai und Kickboxen. Anfängerkurse, Technikeinheiten, Privattraining und Fight Team.",
         url: "https://fightlab.at",
         email: site.email,
+        telephone: site.phone,
         address: {
           "@type": "PostalAddress",
-          streetAddress: site.street,
+          streetAddress: site.streetAddress,
           postalCode: "1120",
           addressLocality: "Wien",
           addressRegion: "Wien",
