@@ -429,7 +429,7 @@ export function parseSelection(query: URLSearchParams): Selection | null {
 export const coachFacts = [
   {
     label: 'Unterricht',
-    value: 'Muay Thai, Kickboxen, Privattraining.',
+    value: 'Muay Thai, Kickboxen, Boxen, Privattraining.',
   },
   {
     label: 'Camps',

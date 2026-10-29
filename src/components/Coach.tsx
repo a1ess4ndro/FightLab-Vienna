@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
-import { coachFacts } from '@/lib/content';
+import { COMBO_RATE, coachFacts } from '@/lib/content';
+import { eur } from '@/lib/format';
 import { Band } from '@/components/ui/Band';
 
 /**
@@ -26,12 +27,19 @@ export function Coach() {
             Ein Coach, ein Plan
           </h2>
           <p className="m-0 max-w-[46ch] text-[1.0625rem] leading-[1.6] text-chalk2">
-            Aaron unterrichtet jede Einheit selbst. Als aktiver Wettkämpfer in
-            K1 und MMA, trainiert regelmäßig in Thailand mit Profis. Was er dort
-            lernt, kommt als Methode zurück, nicht als Anekdote.
-            <br />
-            Das Jiu-Jitsu-Training übernimmt Firo von Brown Bear BJJ. Er ist
-            ebenfalls erfahrener Wettkämpfer und unterrichtet im Brown Bear BJJ.
+            Aaron unterrichtet jede Einheit bei FightLab selbst: Muay Thai,
+            Kickboxen und Boxen. Er ist aktiver Wettkämpfer in K1 und MMA und
+            trainiert regelmäßig in Thailand mit Profis. Was er dort lernt,
+            kommt als Methode zurück, nicht als Anekdote.
+          </p>
+          {/* Grappling ist nicht Teil von FightLab: Es findet bei Brown Bear
+              BJJ statt. Der Absatz muss das klar sagen, sonst widerspricht er
+              der Überschrift „Ein Coach, ein Plan“. */}
+          <p className="m-0 max-w-[46ch] text-[1.0625rem] leading-[1.6] text-chalk2">
+            Jiu-Jitsu gibt es bei unserem Partner Brown Bear BJJ. Dort
+            unterrichtet Firo, ebenfalls erfahrener Wettkämpfer. Wer zusätzlich
+            Grappling trainieren will, wird Mitglied bei Brown Bear BJJ und
+            trainiert bei uns im Kombi-Tarif für {eur(COMBO_RATE)} im Monat.
           </p>
 
           <dl className="m-0 grid pt-3">

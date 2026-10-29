@@ -99,7 +99,7 @@ export const impressum: LegalDoc = {
           kind: 'facts',
           rows: [
             { label: 'Rechtsform', value: 'Einzelunternehmen' },
-            { label: 'UID-Nummer', value: 'wird ergänzt', pending: true },
+            { label: 'UID-Nummer', value: 'ATU83736389' },
             {
               label: 'Gegenstand',
               value: 'Betrieb eines Kampfsport-Gyms, Sportunterricht',
@@ -676,8 +676,8 @@ export const cookies: LegalDoc = {
 /* -------------------------------------------------------------------------- */
 
 /**
- * Die Geschäftsbedingungen des Mitgliedschaftsvertrags, Fassung vom
- * 15.10.2026, wortgleich übernommen. Nur Trennfehler aus der Vorlage sind
+ * Die Geschäftsbedingungen des Mitgliedschaftsvertrags, Fassung V4 vom
+ * 18.10.2026, wortgleich übernommen. Nur Trennfehler aus der Vorlage sind
  * bereinigt („Bank-Einzugsermächtigung“). Im Jotform-Formular muss dieselbe
  * Fassung stehen — unterschrieben wird der Text dort.
  */
@@ -685,7 +685,7 @@ export const agb: LegalDoc = {
   slug: 'agb',
   title: 'AGB',
   lead: 'Allgemeine Geschäftsbedingungen für die Mitgliedschaft bei FightLab Vienna. Sie sind Bestandteil des Mitgliedsvertrags, den du im Formular unterschreibst.',
-  updated: '15. Oktober 2026',
+  updated: '18. Oktober 2026',
   metaTitle: 'AGB',
   metaDescription:
     'Allgemeine Geschäftsbedingungen von FightLab Wien: Vertragsabschluss, Mitgliedsbeitrag, Anmeldegebühr, Wertsicherung, Mindestlaufzeit, Kündigung und Haftung.',
@@ -831,7 +831,7 @@ export const agb: LegalDoc = {
       blocks: [
         {
           kind: 'text',
-          text: '7.1. FightLab befindet sich in 1120 Wien, Pottendorferstraße 9. Sofern es zu einem Ortwechsel kommt ist das Mitglied nur dann zur vorzeitigen Auflösung des Mitgliedsvertrages aus wichtigem Grund berechtigt, wenn der neue Ort der FightLab Einrichtung außerhalb von Wien liegt.',
+          text: '7.1. FightLab befindet sich in 1120 Wien, Wienerbergstraße 32 (Eingang Pottendorferstraße). Sofern es zu einem Ortwechsel kommt ist das Mitglied nur dann zur vorzeitigen Auflösung des Mitgliedsvertrages aus wichtigem Grund berechtigt, wenn der neue Ort der FightLab Einrichtung außerhalb von Wien liegt.',
         },
         {
           kind: 'text',
@@ -846,7 +846,7 @@ export const agb: LegalDoc = {
       blocks: [
         {
           kind: 'text',
-          text: '8.1. Das Mitglied stimmt zu, dass seine Daten auf Dauer gespeichert werden und diese ausschließlich zur Begründung, Durchführung und Abwicklung seiner Mitgliedschaft genutzt werden. Weiters dürfen diese Daten zur Übermittlung von Angeboten zu ähnlichen Leistungen an der angegebenen E-Mail genutzt werden. Der Verarbeitung von Daten kann vom Mitglied jederzeit widersprochen werden durch Mitteilung an office@fightlab.at oder postalisch an FightLab, 1120 Wien, Pottendorferstraße 9.',
+          text: '8.1. Das Mitglied stimmt zu, dass seine Daten auf Dauer gespeichert werden und diese ausschließlich zur Begründung, Durchführung und Abwicklung seiner Mitgliedschaft genutzt werden. Weiters dürfen diese Daten zur Übermittlung von Angeboten zu ähnlichen Leistungen an der angegebenen E-Mail genutzt werden. Der Verarbeitung von Daten kann vom Mitglied jederzeit widersprochen werden durch Mitteilung an office@fightlab.at oder postalisch an FightLab, 1120 Wien, Wienerbergstraße 32.',
         },
         {
           kind: 'text',
@@ -876,7 +876,7 @@ export const agb: LegalDoc = {
       blocks: [
         {
           kind: 'text',
-          text: '10.1. Schließt das Mitglied als Verbraucher den Mitgliedsvertrag online ab, hat es das Recht, binnen vierzehn Tagen ohne Angabe von Gründen von diesem Vertrag zurückzutreten. Die Rücktrittsfrist beträgt vierzehn Tage ab dem Tag des Vertragsabschlusses. Um das Rücktrittsrecht auszuüben, muss das Mitglied FightLab (Aaron Kaplan – FightLab Vienna, Pottendorferstraße 9, 1120 Wien, E-Mail: office@fightlab.at) mittels einer eindeutigen Erklärung (z. B. ein mit der Post versandter Brief oder eine E-Mail) über seinen Entschluss, von diesem Vertrag zurückzutreten, informieren. Es kann dafür das Muster-Widerrufsformular in Punkt 10.3 verwenden, das jedoch nicht vorgeschrieben ist. Zur Wahrung der Rücktrittsfrist reicht es aus, dass die Mitteilung über die Ausübung des Rücktrittsrechts vor Ablauf der Rücktrittsfrist abgesendet wird.',
+          text: '10.1. Schließt das Mitglied als Verbraucher den Mitgliedsvertrag online ab, hat es das Recht, binnen vierzehn Tagen ohne Angabe von Gründen von diesem Vertrag zurückzutreten. Die Rücktrittsfrist beträgt vierzehn Tage ab dem Tag des Vertragsabschlusses. Um das Rücktrittsrecht auszuüben, muss das Mitglied FightLab (Aaron Kaplan – FightLab Vienna, Wienerbergstraße 32, 1120 Wien, E-Mail: office@fightlab.at) mittels einer eindeutigen Erklärung (z. B. ein mit der Post versandter Brief oder eine E-Mail) über seinen Entschluss, von diesem Vertrag zurückzutreten, informieren. Es kann dafür das Muster-Widerrufsformular in Punkt 10.3 verwenden, das jedoch nicht vorgeschrieben ist. Zur Wahrung der Rücktrittsfrist reicht es aus, dass die Mitteilung über die Ausübung des Rücktrittsrechts vor Ablauf der Rücktrittsfrist abgesendet wird.',
         },
         {
           kind: 'text',
@@ -888,7 +888,7 @@ export const agb: LegalDoc = {
         },
         {
           kind: 'text',
-          text: 'An: Aaron Kaplan – FightLab Vienna, Pottendorferstraße 9, 1120 Wien, office@fightlab.at',
+          text: 'An: Aaron Kaplan – FightLab Vienna, Wienerbergstraße 32, 1120 Wien, office@fightlab.at',
         },
         {
           kind: 'text',
@@ -938,7 +938,7 @@ export const agb: LegalDoc = {
       blocks: [
         {
           kind: 'text',
-          text: 'Aaron Kaplan – FightLab Vienna, Pottendorferstraße 9, 1120 Wien',
+          text: 'Aaron Kaplan – FightLab Vienna, Wienerbergstraße 32, 1120 Wien',
         },
       ],
     },
