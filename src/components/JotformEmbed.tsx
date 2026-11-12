@@ -10,6 +10,12 @@ const ORIGIN = "https://form.jotform.com";
  * Die Höhe meldet das Formular selbst per `setHeight`; der Rahmen wächst mit,
  * statt innen zu scrollen. Jotforms eigenes Einbettungsskript braucht es dafür
  * nicht, es wäre nur eine weitere fremde Verbindung.
+ *
+ * Die Adresse bekommt das iframe erst, wenn der Listener hängt — wie bei
+ * Jotforms eigenem Skript. Stünde sie schon im vorgerenderten HTML, könnte das
+ * Formular vor der Hydration fertig laden; seine erste Höhenmeldung ginge
+ * verloren, und der Rahmen bliebe bei der Platzhalterhöhe stehen, mit
+ * Scrollen im Formular statt auf der Seite.
  */
 export function JotformEmbed({
   id,
@@ -23,6 +29,13 @@ export function JotformEmbed({
 }) {
   const [height, setHeight] = useState<number | null>(null);
   const frame = useRef<HTMLIFrameElement>(null);
+
+  // `isIframeEmbed` setzt auch Jotforms Skript: Das Formular weiß dann, dass
+  // es eingebettet ist.
+  const src = `${ORIGIN}/${id}?${new URLSearchParams({
+    ...prefill,
+    isIframeEmbed: "1",
+  })}`;
 
   useEffect(() => {
     const onMessage = (event: MessageEvent) => {
@@ -39,16 +52,16 @@ export function JotformEmbed({
       }
     };
     window.addEventListener("message", onMessage);
+    // Erst jetzt laden: Ab hier kommt jede Höhenmeldung an.
+    if (frame.current) frame.current.src = src;
     return () => window.removeEventListener("message", onMessage);
-  }, []);
+  }, [src]);
 
-  const query = new URLSearchParams(prefill).toString();
   return (
     <iframe
       ref={frame}
       id={`JotFormIFrame-${id}`}
       title={title}
-      src={`${ORIGIN}/${id}${query ? `?${query}` : ""}`}
       style={height ? { height } : undefined}
       // Bis zur ersten Höhenmeldung eine Bildschirmhöhe, danach genau das
       // Formular — eine Mindesthöhe ließe unter kurzen Seiten Leere stehen.
