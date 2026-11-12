@@ -63,6 +63,10 @@ export function JotformEmbed({
       id={`JotFormIFrame-${id}`}
       title={title}
       style={height ? { height } : undefined}
+      // Steht die Höhe fest, ist das ganze Formular sichtbar — Scrollen im
+      // Rahmen gäbe nur einen Balken und eine Scroll-Falle. Vorher bleibt es
+      // an, damit ohne Höhenmeldung nichts abgeschnitten ist.
+      scrolling={height ? "no" : "auto"}
       // Bis zur ersten Höhenmeldung eine Bildschirmhöhe, danach genau das
       // Formular — eine Mindesthöhe ließe unter kurzen Seiten Leere stehen.
       className={`block w-full border-0 ${height ? "" : "h-[40rem]"}`}
