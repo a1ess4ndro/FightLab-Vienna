@@ -4,6 +4,9 @@ import { useEffect, useRef, useState } from "react";
 
 const ORIGIN = "https://form.jotform.com";
 
+/** Luft unter der gemeldeten Formularhöhe, in px — damit unten nichts knapp abschneidet. */
+const EXTRA = 50;
+
 /**
  * Jotform-Formular, direkt eingebettet.
  *
@@ -62,14 +65,13 @@ export function JotformEmbed({
       ref={frame}
       id={`JotFormIFrame-${id}`}
       title={title}
-      style={height ? { height } : undefined}
-      // Steht die Höhe fest, ist das ganze Formular sichtbar — Scrollen im
-      // Rahmen gäbe nur einen Balken und eine Scroll-Falle. Vorher bleibt es
-      // an, damit ohne Höhenmeldung nichts abgeschnitten ist.
-      scrolling={height ? "no" : "auto"}
-      // Bis zur ersten Höhenmeldung eine Bildschirmhöhe, danach genau das
-      // Formular — eine Mindesthöhe ließe unter kurzen Seiten Leere stehen.
-      className={`block w-full border-0 ${height ? "" : "h-[40rem]"}`}
+      style={height ? { height: height + EXTRA } : undefined}
+      // Nie im Rahmen scrollen: Der Rahmen wächst mit dem Formular, Scrollen
+      // darin gäbe nur einen Balken und eine Scroll-Falle.
+      scrolling="no"
+      // Bis zur ersten Höhenmeldung eine Bildschirmhöhe, danach das Formular
+      // plus Luft — eine Mindesthöhe ließe unter kurzen Seiten Leere stehen.
+      className={`block w-full border-0 ${height ? "" : "h-[calc(40rem+50px)]"}`}
     />
   );
 }
