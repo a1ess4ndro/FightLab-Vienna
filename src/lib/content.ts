@@ -153,7 +153,7 @@ export const pledges = [
     no: '04',
     claim: 'Wir bringen dich weiter',
     proof:
-      'Ob du fitter werden, dich verteidigen können oder in den Ring willst: Wir arbeiten mit dir auf dein Ziel hin. Wer kämpfen will, trainiert im Competition-Team.',
+      'Ob du fitter werden, dich verteidigen können oder in den Ring willst: Wir arbeiten mit dir auf dein Ziel hin. Im Competition Training lernst du, das Gelernte auch unter Druck abzurufen.',
   },
 ] as const;
 
@@ -282,9 +282,9 @@ export const sessions: Session[] = [
     name: 'Competition Training',
     from: '16:45',
     to: '18:00',
-    level: 'Auf Einladung',
+    level: 'Alle Stufen',
     about:
-      'Für Fortgeschrittene und alle, die kämpfen wollen, auf Einladung von Aaron. Höheres Tempo, kontrolliertes Sparring und gezielte Vorbereitung auf Wettkämpfe.',
+      'Für alle Stufen. Hier wendest du das Gelernte in wettkampfähnlichen Situationen an: unter Druck, gegen jemanden, der mitdenkt. Im Mittelpunkt steht Fight IQ: Distanz lesen, Muster erkennen und im richtigen Moment die richtige Entscheidung treffen.',
     slots: 'wird ergänzt',
   },
   {
