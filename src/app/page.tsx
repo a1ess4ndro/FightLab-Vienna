@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { Booking } from "@/components/Booking";
 import { Coach } from "@/components/Coach";
 import { DistanceHero } from "@/components/DistanceHero";
+import { Hero } from "@/components/Hero";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { Objections } from "@/components/Objections";
 import { PriceCalculator } from "@/components/PriceCalculator";
@@ -25,14 +26,17 @@ export default function Home() {
         <Suspense fallback={null}>
           <SignupBanner />
         </Suspense>
-        <DistanceHero />
+        <Hero />
+        <Coach />
         <Proof />
         <WeekTimeline />
         <Objections />
         <Divider />
         <PriceCalculator />
-        <Coach />
         <Booking />
+        {/* Der Distanz-Regler zum Schluss: als Einstieg zu rätselhaft, als
+            Ausklang zeigt er, wie hier gedacht wird. */}
+        <DistanceHero />
       </main>
       <SiteFooter />
       <MobileCtaBar />

@@ -29,7 +29,13 @@ export const site = {
   opening: 'Eröffnung November 2026',
   tagline: 'Kämpfen ist wie Schach, nur dass Fehler weh tun.',
   disciplines: 'Muay Thai · Kickboxen · Boxen',
-  bookingHeadline: 'Komm einmal vorbei, dann weißt du es',
+  bookingHeadline: 'Komm zum Probetraining',
+  /* Der Einstieg beantwortet die vier Fragen, die jemand Neues zuerst hat:
+     Was ist das, wer macht es, für wen ist es, wie mache ich mit. */
+  heroTitle: 'Muay Thai, Kickboxen und Boxen in Wien‑Meidling',
+  heroLead:
+    'FightLab ist ein Kampfsport-Gym mit einem Headcoach: Aaron Kaplan, selbst aktiver Wettkämpfer. Bei uns trainieren Einsteiger:innen und Fortgeschrittene, egal wie alt oder fit du bist.',
+  heroSteps: 'Probetraining buchen · vorbeikommen · bleiben, wenn es passt',
   trialDates:
     'Probetrainings sind ab 9. November buchbar, jeweils Mo, Mi, Fr und Sa. Für Einsteiger eignet sich am besten Fundamentals am Montag.',
   bookingLead:
@@ -46,13 +52,15 @@ export const site = {
 
 export type RailItem = { id: string; no: string; label: string };
 
+/* Reihenfolge wie die Fragen von jemandem, der die Seite zum ersten Mal sieht:
+   Wer trainiert mich, was bekomme ich, wann, ist das was für mich, was
+   kostet es. Die Überschriften der Abschnitte greifen dieselben Worte auf. */
 export const rail: RailItem[] = [
-  { id: 'distanz', no: '01', label: 'Distanz' },
+  { id: 'coach', no: '01', label: 'Coach' },
   { id: 'vertrauen', no: '02', label: 'Versprechen' },
   { id: 'woche', no: '03', label: 'Trainingsplan' },
-  { id: 'zweifel', no: '04', label: 'Zweifel?' },
-  { id: 'laufzeit', no: '05', label: 'Mitglied werden' },
-  { id: 'coach', no: '06', label: 'Coach' },
+  { id: 'zweifel', no: '04', label: 'Für jede:n' },
+  { id: 'laufzeit', no: '05', label: 'Preise' },
 ];
 
 export const railIds = rail.map((item) => item.id);
@@ -125,32 +133,55 @@ export function zoneOf(value: number): Zone {
 /* 02 — Versprechen                                                            */
 /* -------------------------------------------------------------------------- */
 
+/* Was Aaron als Coach verspricht. Leihausrüstung und offene Preise sind
+   Mindeststandard, keine Versprechen; sie stehen beim Probetraining und im
+   Preisrechner. */
 export const pledges = [
   {
     no: '01',
-    claim: 'Leihausrüstung inklusive',
+    claim: 'Du wirst gesehen',
     proof:
-      'Handschuhe und Schienbeinschoner für die ersten Wochen. Eigene Ausrüstung kaufst du erst, wenn du weißt, dass du bleibst.',
+      'Aaron unterrichtet jede Einheit selbst und kennt deinen Stand. Du bekommst Korrekturen, die zu dir passen, nicht dieselbe Ansage für alle.',
   },
   {
     no: '02',
-    claim: 'Preise vollständig auf der Seite',
+    claim: 'Jede:r ist willkommen',
     proof:
-      'Monatsbetrag, die einmalige Anmeldegebühr, Gesamtsumme und Mindestlaufzeit stehen im Rechner weiter unten, die Kündigungsfrist gleich darunter. Kein Preis auf Anfrage.',
+      'Egal welches Geschlecht, welches Alter, welches Level. Trainiert wird nach Können, nicht nach Jahrgang, und niemand muss sich erst fit machen, um anzufangen.',
   },
   {
     no: '03',
-    claim: 'Kooperation mit Brown Bear BJJ',
+    claim: 'Technik vor Härte',
     proof:
-      'Striking bei uns, Bodenkampf dort — Mitglieder von Brown Bear BJJ trainieren bei uns zum Fixpreis von 55 € im Monat.',
+      'Wir bauen dich auf, statt dich zu verheizen. Sparring ist freiwillig, hat Regeln und findet nur mit Coach statt.',
   },
   {
     no: '04',
-    claim: 'Trainingslager stehen vorher im Plan',
+    claim: 'Wir bringen dich weiter',
     proof:
-      'Wenn Aaron im Camp ist, siehst du das im Stundenplan, bevor du herkommst. Kein Kurs fällt unangekündigt aus und es ist immer mindestens ein Trainer auf der Matte.',
+      'Ob du fitter werden, dich verteidigen können oder in den Ring willst: Wir arbeiten mit dir auf dein Ziel hin. Wer kämpfen will, trainiert im Competition-Team.',
   },
 ] as const;
+
+/** Kooperation mit Brown Bear BJJ: eigener Teil im Coach-Abschnitt. */
+export const partner = {
+  title: 'Striking bei uns, Grappling bei Brown Bear BJJ',
+  lead: 'Muay Thai, Kickboxen und Boxen lernst du bei FightLab. Für den Bodenkampf arbeiten wir mit Brown Bear BJJ zusammen. Dort unterrichtet Firo, ebenfalls erfahrener Wettkämpfer, Brazilian Jiu-Jitsu. So trainierst du beides, ohne zwei volle Beiträge zu zahlen.',
+  points: [
+    {
+      label: 'Für wen',
+      value: 'Alle, die Mitglied bei Brown Bear BJJ sind oder werden.',
+    },
+    {
+      label: 'Was',
+      value: 'Alle Kurse bei FightLab, zusätzlich zum Training bei Brown Bear BJJ.',
+    },
+    {
+      label: 'Preis',
+      value: '55 € im Monat bei uns, ohne eigene Mindestlaufzeit.',
+    },
+  ],
+} as const;
 
 export const reviewSlots = [
   {
@@ -197,6 +228,8 @@ export type Session = {
   from?: string;
   to?: string;
   level: string;
+  /** Was in der Einheit passiert und wer kommen kann. */
+  about: string;
   slots: string;
   /** Einheit liegt außerhalb der Nachmittagsachse (Samstag mittags). */
   offAxis?: boolean;
@@ -214,6 +247,8 @@ export const sessions: Session[] = [
     from: '17:30',
     to: '19:00',
     level: 'Ohne Vorkenntnisse',
+    about:
+      'Der Einstieg für alle, auch ohne Vorkenntnisse: Stellung, Deckung, Schläge, Tritte und Beinarbeit, Schritt für Schritt. Wer neu ist, fängt hier an.',
     slots: 'wird ergänzt',
   },
   {
@@ -222,16 +257,19 @@ export const sessions: Session[] = [
     short: 'Kinder',
     name: 'Kindertraining',
     level: 'Kinder',
+    about: 'Kampfsport für Kinder, spielerisch und mit klaren Regeln. Altersgruppen und Zeiten folgen.',
     slots: 'wird ergänzt',
   },
   {
     id: 'mi-1730',
     day: 'MI',
     short: 'Pads',
-    name: 'Pads',
+    name: 'Pads (Pratzentraining)',
     from: '17:30',
     to: '19:00',
     level: 'Alle Stufen',
+    about:
+      'Pratzentraining: Ihr arbeitet zu zweit an Kombinationen auf Pratzen und Thai-Pads, abwechselnd schlagen und halten. Für alle Stufen, das Halten lernst du dabei mit.',
     slots: 'wird ergänzt',
   },
   {
@@ -240,6 +278,7 @@ export const sessions: Session[] = [
     short: 'Kinder',
     name: 'Kindertraining',
     level: 'Kinder',
+    about: 'Kampfsport für Kinder, spielerisch und mit klaren Regeln. Altersgruppen und Zeiten folgen.',
     slots: 'wird ergänzt',
   },
   {
@@ -250,6 +289,8 @@ export const sessions: Session[] = [
     from: '16:45',
     to: '18:00',
     level: 'Auf Einladung',
+    about:
+      'Für Fortgeschrittene und alle, die kämpfen wollen, auf Einladung von Aaron. Höheres Tempo, kontrolliertes Sparring und gezielte Vorbereitung auf Wettkämpfe.',
     slots: 'wird ergänzt',
   },
   {
@@ -260,6 +301,8 @@ export const sessions: Session[] = [
     from: '13:00',
     to: '14:00',
     level: 'Alle Stufen',
+    about:
+      'Kraft, Ausdauer und Beweglichkeit, abgestimmt auf Kampfsport. Für alle Stufen.',
     slots: 'wird ergänzt',
     offAxis: true,
   },
@@ -324,7 +367,7 @@ export type TariffId = 'standard' | 'student' | 'combo';
  */
 export const tariffs: { id: TariffId; label: string }[] = [
   { id: 'standard', label: 'Standard' },
-  { id: 'student', label: 'Studenten & Azubis' },
+  { id: 'student', label: 'Ermäßigt*' },
   { id: 'combo', label: 'Kombi Brown Bear BJJ' },
 ];
 
@@ -357,7 +400,8 @@ export const contractStart = { month: 11, year: 2026 };
 
 export const priceNotes = {
   standard: 'Preise inklusive aller Kurse & Leihausrüstung für die ersten Wochen.',
-  student: 'Studentenpreis — gilt mit Studien- oder Lehrbestätigung',
+  student:
+    '*Ermäßigt gilt für Schüler:innen, Lehrlinge und Student:innen, mit Schul-, Lehr- oder Studienbestätigung.',
   combo: 'Kombipreis — gilt mit Mitgliedsnachweis von Brown Bear BJJ',
   /* Aus den AGB (legal.ts), Punkte 3.1, 4.1, 5.1 und 5.5. Ändert sich dort
      etwas, ändert es sich hier. */
@@ -432,8 +476,8 @@ export const coachFacts = [
     value: 'Muay Thai, Kickboxen, Boxen, Privattraining.',
   },
   {
-    label: 'Camps',
-    value: 'Thailand, 2–3× pro Jahr — mit Profis aus aller Welt',
+    label: 'Wettkampf',
+    value: 'Aktiv in K1 und MMA, 2–3× im Jahr Trainingslager in Thailand',
   },
   {
     label: 'Gym',

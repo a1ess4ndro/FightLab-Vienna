@@ -28,10 +28,10 @@ const TICKS = Array.from(
 );
 
 /**
- * 01 — Distanz.
+ * Distanz, am Ende der Startseite.
  *
- * Der erste Bildschirm erklärt die Methode, statt sie zu behaupten: Wer den
- * Abstand zieht, sieht, dass sich mit der Distanz die Aufgabe ändert.
+ * Zeigt die Methode, statt sie zu behaupten: Wer den Abstand zieht, sieht,
+ * dass sich mit der Distanz die Aufgabe ändert.
  * Bedienbar mit Zeiger, Finger und Tastatur.
  */
 export function DistanceHero() {
@@ -75,7 +75,7 @@ export function DistanceHero() {
       // `object-cover` beschneidet im Element selbst, es läuft nichts über.
       // Ein Überlauf-Schnitt würde nur den Fokusrahmen des randlosen Reglers
       // an der Kante abschneiden.
-      className="relative isolate grid min-h-[88vh] content-between gap-s4 pt-s5"
+      className="relative isolate grid min-h-[72vh] content-between gap-s4 pt-s5"
     >
       {/* Bild zur Zone, hinter dem ganzen Abschnitt.
           Alle drei liegen übereinander und wechseln nur die Deckkraft — ein
@@ -111,14 +111,11 @@ export function DistanceHero() {
       </div>
 
       <div className="grid gap-s3 px-[clamp(1.125rem,4vw,3.5rem)]">
-        <h1 id="distanz-titel" className="sr-only">
-          FightLab — Kampfsport-Gym für Muay Thai und Kickboxen in
-          Wien-Meidling
-        </h1>
-        <p className="data flex flex-wrap gap-y-s1 gap-x-s3 text-[0.6563rem] tracking-[0.2em] text-chalk2">
-          <span>FightLab Wien Meidling</span>
-          <span>{site.disciplines}</span>
-          <span className="text-signal">{site.opening}</span>
+        <h2 id="distanz-titel" className="sr-only">
+          Distanz: wie wir über Kampfsport denken
+        </h2>
+        <p className="data m-0 text-[0.6563rem] tracking-[0.2em] text-signal">
+          Wie wir denken
         </p>
         <p className="m-0 max-w-[30ch] text-[clamp(1.0625rem,1.7vw,1.375rem)] leading-[1.4] italic">
           {site.tagline}

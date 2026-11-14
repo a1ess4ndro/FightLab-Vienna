@@ -150,7 +150,7 @@ export function RailNav() {
           onClick={(event) => {
             if (!onHome) return;
             event.preventDefault();
-            goTo("distanz");
+            goTo("start");
           }}
           // Ohne Namen läse ein Screenreader die Wortmarke Buchstabe für
           // Buchstabe vor: „Fight Lab V I E N N A Vienna“.

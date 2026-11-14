@@ -30,7 +30,7 @@ export function useIsMobile() {
  * verändert nichts am Layout und läuft passiv.
  */
 export function useActiveSection(ids: string[], offset = 140): string {
-  const [active, setActive] = useState(ids[0]);
+  const [active, setActive] = useState("");
 
   useEffect(() => {
     let frame = 0;
@@ -39,7 +39,9 @@ export function useActiveSection(ids: string[], offset = 140): string {
       if (frame) return;
       frame = requestAnimationFrame(() => {
         frame = 0;
-        let current = ids[0];
+        // Leer, solange noch kein Abschnitt erreicht ist: Im Einstieg
+        // steht die Marke nirgends, statt fälschlich auf dem ersten Feld.
+        let current = "";
         for (const id of ids) {
           const el = document.getElementById(id);
           if (el && el.getBoundingClientRect().top <= offset) current = id;

@@ -81,6 +81,12 @@ export function PriceCalculator() {
           })}
         </div>
 
+        {/* Erklärt den Stern am Tarif „Ermäßigt*", egal welcher Tarif
+            gerade gewählt ist. */}
+        <p className="m-0 -mt-s1 text-[0.8125rem] leading-[1.5] text-ink/70">
+          {priceNotes.student}
+        </p>
+
         <div
           className="flex flex-wrap gap-s1"
           role="group"
@@ -163,9 +169,11 @@ export function PriceCalculator() {
           Mitglied werden
         </Cta>
 
-        <p className="data m-0 text-[0.625rem] text-mark">
-          {priceNotes[tariff]}
-        </p>
+        {tariff === 'student' ? null : (
+          <p className="data m-0 text-[0.625rem] text-mark">
+            {priceNotes[tariff]}
+          </p>
+        )}
 
         <p className="m-0 max-w-[60ch] text-[clamp(0.9375rem,1vw,1rem)] leading-[1.55] text-ink/80">
           {isCombo ? priceNotes.comboTerms : priceNotes.terms}

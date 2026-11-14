@@ -30,7 +30,7 @@ export function Objections() {
       <div className="grid gap-s3 px-[clamp(1.125rem,4vw,3.5rem)] pt-[clamp(2.75rem,6vw,5.5rem)]">
         <SectionHead
           id="zweifel-titel"
-          title="Was dich abhält. Klick es an, dann streichen wir es durch."
+          title="FightLab ist für jede:n. Lass uns deine Zweifel ausräumen."
           titleWidth="max-w-[26ch]"
         />
 

@@ -224,6 +224,37 @@ export function WeekTimeline() {
           </div>
         )}
 
+        {/* Was in welcher Einheit passiert und wer kommen kann. Die Namen
+            allein sagen Einsteiger:innen wenig. Jede Einheit nur einmal,
+            auch wenn sie an zwei Tagen stattfindet. */}
+        <div className="grid gap-s2 pt-s2">
+          <h3 className="m-0 text-[clamp(1.125rem,2vw,1.5rem)] font-bold tracking-[-0.02em]">
+            Was dich in den Einheiten erwartet
+          </h3>
+          <dl className="m-0 grid grid-cols-[repeat(auto-fit,minmax(min(18rem,100%),1fr))] gap-x-[clamp(1.5rem,4vw,4rem)]">
+            {sessions
+              .filter(
+                (s, i) => sessions.findIndex((o) => o.name === s.name) === i,
+              )
+              .map((s) => (
+                <div
+                  key={s.id}
+                  className="grid content-start gap-[6px] border-t border-nightline2 py-s2"
+                >
+                  <dt className="flex flex-wrap items-baseline justify-between gap-x-s2 font-mono text-[0.75rem] tracking-[0.08em] uppercase">
+                    <span>{s.name}</span>
+                    <span className="text-[0.625rem] text-signal">
+                      {s.level}
+                    </span>
+                  </dt>
+                  <dd className="m-0 text-[clamp(0.9375rem,1vw,1rem)] leading-[1.55] text-chalk2">
+                    {s.about}
+                  </dd>
+                </div>
+              ))}
+          </dl>
+        </div>
+
         {/* Drei Spuren statt zwei: die leere Spur rechts spiegelt den Hinweis
             links, damit der Knopf exakt in der Mitte der Fläche steht — auch
             wenn der Hinweistext kürzer oder länger wird. */}

@@ -29,7 +29,7 @@ export default function MitgliedschaftPage() {
     <FormPage
       eyebrow="Mitgliedschaft"
       title="Mitglied werden"
-      lead="Tarif und Laufzeit wählen, Daten eintragen, unterschreiben. Für Studenten, Azubis und die Kombi mit Brown Bear BJJ lädst du im Formular einen Nachweis hoch."
+      lead="Tarif und Laufzeit wählen, Daten eintragen, unterschreiben. Für den ermäßigten Tarif und die Kombi mit Brown Bear BJJ lädst du im Formular einen Nachweis hoch."
       leadNote="Bezahlt wird per Karte oder SEPA-Lastschrift. Bis zum 1. Dezember 2026 wird nichts abgebucht."
       aside={
         <Suspense fallback={<SelectionSummary selection={null} />}>

@@ -18,7 +18,7 @@ export function Proof() {
       <div className="grid gap-s4 px-[clamp(1.125rem,4vw,3.5rem)] py-[clamp(2.25rem,5vw,4.75rem)]">
         <SectionHead
           id="vertrauen-titel"
-          title="Was wir versprechen, können wir belegen."
+          title="Was wir dir versprechen"
           titleWidth="max-w-[22ch]"
         />
 
