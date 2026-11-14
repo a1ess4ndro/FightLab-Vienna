@@ -31,7 +31,7 @@ export function MobileCtaBar() {
       if (frame) return;
       frame = requestAnimationFrame(() => {
         frame = 0;
-        const hero = document.getElementById('start');
+        const hero = document.getElementById('distanz');
         if (!hero) return;
         setOverHero(hero.getBoundingClientRect().bottom > 0);
       });

@@ -30,12 +30,6 @@ export const site = {
   tagline: 'Kämpfen ist wie Schach, nur dass Fehler weh tun.',
   disciplines: 'Muay Thai · Kickboxen · Boxen',
   bookingHeadline: 'Komm zum Probetraining',
-  /* Der Einstieg beantwortet die vier Fragen, die jemand Neues zuerst hat:
-     Was ist das, wer macht es, für wen ist es, wie mache ich mit. */
-  heroTitle: 'Muay Thai, Kickboxen und Boxen in Wien‑Meidling',
-  heroLead:
-    'FightLab ist ein Kampfsport-Gym mit einem Headcoach: Aaron Kaplan, selbst aktiver Wettkämpfer. Bei uns trainieren Einsteiger:innen und Fortgeschrittene, egal wie alt oder fit du bist.',
-  heroSteps: 'Probetraining buchen · vorbeikommen · bleiben, wenn es passt',
   trialDates:
     'Probetrainings sind ab 9. November buchbar, jeweils Mo, Mi, Fr und Sa. Für Einsteiger eignet sich am besten Fundamentals am Montag.',
   bookingLead:
