@@ -672,20 +672,21 @@ export const cookies: LegalDoc = {
 };
 
 /* -------------------------------------------------------------------------- */
-/* AGB — Mitgliedschaftsvertrag, Stand 09.10.2026                              */
+/* AGB — Mitgliedschaftsvertrag, Stand 15.11.2026                              */
 /* -------------------------------------------------------------------------- */
 
 /**
  * Die Geschäftsbedingungen des Mitgliedschaftsvertrags, Fassung V4 vom
  * 18.10.2026, wortgleich übernommen. Nur Trennfehler aus der Vorlage sind
- * bereinigt („Bank-Einzugsermächtigung“). Im Jotform-Formular muss dieselbe
+ * bereinigt („Bank-Einzugsermächtigung“). Am 15.11.2026 in Punkt 3.1 um
+ * die sechs Tagestickets zur Anmeldegebühr ergänzt. Im Jotform-Formular muss dieselbe
  * Fassung stehen — unterschrieben wird der Text dort.
  */
 export const agb: LegalDoc = {
   slug: 'agb',
   title: 'AGB',
   lead: 'Allgemeine Geschäftsbedingungen für die Mitgliedschaft bei FightLab Vienna. Sie sind Bestandteil des Mitgliedsvertrags, den du im Formular unterschreibst.',
-  updated: '18. Oktober 2026',
+  updated: '15. November 2026',
   metaTitle: 'AGB',
   metaDescription:
     'Allgemeine Geschäftsbedingungen von FightLab Wien: Vertragsabschluss, Mitgliedsbeitrag, Anmeldegebühr, Wertsicherung, Mindestlaufzeit, Kündigung und Haftung.',
@@ -731,7 +732,7 @@ export const agb: LegalDoc = {
       blocks: [
         {
           kind: 'text',
-          text: '3.1. Das Mitglied hat sich im Mitgliedschaftsvertrag zur Leistung einer Anmeldegebühr in Höhe von einmalig € 60,00 verpflichtet, die zum im Mitgliedschaftsvertrag ausgewiesenen Termin abgebucht wird. Durch die Anmeldegebühr wird der Verwaltungsaufwand von FightLab im Zusammenhang mit dem Beginn der Mitgliedschaft abgedeckt. Durch die Leistung der Anmeldegebühr erhält das Mitglied außerdem Anspruch auf folgende Leistungen: Das Mitglied hat aufgrund der Bezahlung der Anmeldegebühr Anspruch auf einen Rundgang mit einem Mitarbeiter von FightLab durch das Studio sowie eine Erstinformation zur Benutzung des Trainingsbereiches und des sonstigen Leistungsangebotes.',
+          text: '3.1. Das Mitglied hat sich im Mitgliedschaftsvertrag zur Leistung einer Anmeldegebühr in Höhe von einmalig € 60,00 verpflichtet, die zum im Mitgliedschaftsvertrag ausgewiesenen Termin abgebucht wird. Durch die Anmeldegebühr wird der Verwaltungsaufwand von FightLab im Zusammenhang mit dem Beginn der Mitgliedschaft abgedeckt. Durch die Leistung der Anmeldegebühr erhält das Mitglied außerdem Anspruch auf folgende Leistungen: Das Mitglied hat aufgrund der Bezahlung der Anmeldegebühr Anspruch auf einen Rundgang mit einem Mitarbeiter von FightLab durch das FightLab sowie eine Erstinformation zur Benutzung der Trainingsbereiche und des sonstigen Leistungsangebotes. Außerdem erhält das Mitglied 6 Tagestickets im Wert von jeweils € 10,00, die es weitergeben kann und die zum Zutritt zum FightLab während der Öffnungszeiten eines Kalendertags berechtigen.',
         },
         {
           kind: 'text',
